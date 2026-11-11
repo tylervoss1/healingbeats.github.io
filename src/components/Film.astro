@@ -1,0 +1,152 @@
+---
+/**
+ * Jake's film, as its own obvious thing: a real thumbnail, a clear play
+ * button and the credit. Nothing loads from YouTube until play is pressed.
+ */
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import still from '../assets/film-still.jpg';
+import { SITE } from '../config';
+const watchUrl = `https://www.youtube.com/watch?v=${SITE.youtubeId}`;
+---
+<figure class="film">
+  <div class="film__frame" data-film={SITE.youtubeId}>
+    <a class="film__play" href={watchUrl} data-play>
+      <Image
+        src={still}
+        alt="Still from the film: a Healing Beats volunteer knocks on a patient’s door."
+        widths={[480, 800, 1280]}
+        sizes="(min-width: 56.25em) 55vw, 100vw"
+        loading="lazy"
+        quality={70}
+      />
+      <span class="film__key"><Icon name="play" /></span>
+      <span class="film__meta">
+        <strong>Play the film</strong>
+        <span>76 seconds, with sound</span>
+      </span>
+    </a>
+    <div class="film__screen" hidden></div>
+  </div>
+  <figcaption class="film__credit">A film by UnityPoint Health</figcaption>
+</figure>
+
+<style>
+  .film {
+    width: 100%;
+  }
+  .film__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--ink);
+    box-shadow: 0 6px 0 var(--maroon), 0 30px 40px -24px rgb(26 18 16 / 0.7);
+  }
+  .film__play {
+    position: absolute;
+    inset: 0;
+    display: block;
+    color: var(--ivory);
+    text-decoration: none;
+    --focus: var(--yellow);
+  }
+  .film__play:focus-visible {
+    outline-offset: -6px;
+    border-radius: var(--radius-lg);
+  }
+  .film__play :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out), filter 0.4s;
+  }
+  .film__play::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(26 18 16 / 0.78) 0, rgb(26 18 16 / 0) 46%);
+  }
+  .film__play:hover :global(img) {
+    transform: scale(1.03);
+    filter: brightness(1.06);
+  }
+  .film__key {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: clamp(4.5rem, 14vw, 6.5rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--ink);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 0 var(--yellow-deep), 0 0 0 0.6rem rgb(255 197 49 / 0.28), 0 18px 28px -10px rgb(26 18 16 / 0.7);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+  .film__key :global(svg) {
+    width: 2.6rem;
+    height: 2.6rem;
+    margin-left: 0.3rem;
+  }
+  .film__play:hover .film__key {
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 4px 0 var(--yellow-deep), 0 0 0 1rem rgb(255 197 49 / 0.22), 0 18px 28px -10px rgb(26 18 16 / 0.7);
+  }
+  .film__meta {
+    position: absolute;
+    z-index: 1;
+    left: 1rem;
+    bottom: 0.9rem;
+    display: grid;
+    line-height: 1.2;
+  }
+  .film__meta strong {
+    font-stretch: 72%;
+    font-weight: 800;
+    font-size: var(--text-xl);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .film__screen {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+  }
+  .film__screen :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .film__credit {
+    margin-top: var(--s-4);
+    font-stretch: 78%;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+  for (const frame of document.querySelectorAll<HTMLElement>('[data-film]')) {
+    const play = frame.querySelector<HTMLAnchorElement>('[data-play]');
+    const screen = frame.querySelector<HTMLElement>('.film__screen');
+    if (!play || !screen) continue;
+    play.setAttribute('role', 'button');
+    play.addEventListener('click', (event) => {
+      event.preventDefault();
+      const player = document.createElement('iframe');
+      player.src = `https://www.youtube-nocookie.com/embed/${frame.dataset.film}?autoplay=1&rel=0`;
+      player.title = 'Healing Beats at UnityPoint Health (film)';
+      player.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      player.allowFullscreen = true;
+      screen.append(player);
+      screen.hidden = false;
+      play.hidden = true;
+      player.focus();
+    });
+  }
+</script>

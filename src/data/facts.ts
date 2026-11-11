@@ -26,6 +26,9 @@ export const STARDUST = {
   quote: 'Thank you for spending time with me today.',
 };
 
+/** How every volunteer introduces the program to a patient. */
+export const HOSPITAL_LINE = 'This is a program offered by the hospital to help make your stay more comfortable.';
+
 export const STUDENT = {
   who: 'Undergraduate volunteer, Wisconsin, 2025',
   quote: 'ensuring that every patient feels valued and understood.',

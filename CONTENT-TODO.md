@@ -11,6 +11,8 @@ The site is written to read as finished. These are the items Jake should check b
 ## Images
 - [ ] Hero photo on Home is a still from UnityPoint Health's film (a volunteer knocking on a patient's door). Confirm UnityPoint is happy for it to be used, or supply a program photo. File: `src/assets/hero-knock.jpg`. The still is low resolution; a real photo of at least 1600px wide would look sharper.
 - [ ] Any other real program photos (no identifiable patients).
+- [ ] The film as a video file (MP4). With it, the home page can play the film behind the headline under the same red treatment. Put the file in `public/` and set `HERO_VIDEO` in `src/config.ts`. Ask UnityPoint Health or Jake for it; it cannot be taken from YouTube.
+- [ ] A sharper thumbnail for the film. The only still YouTube offers is 640px wide, and it is the same frame as the hero photo. File: `src/assets/film-still.jpg`.
 
 ## Copy drafted from the brief (check the wording is true)
 - [ ] For Hospitals FAQ: cost, staff time, infection control, which units, supervision.

@@ -1,12 +1,16 @@
 ---
-/** "Three problems, one program": who, what is hard, what changes. */
+/**
+ * "Three problems, one program": who, what is hard, what changes.
+ * Three columns on wide screens; the one under the pointer lights yellow.
+ * On touch screens the block nearest the middle of the screen lights instead.
+ */
 import Icon from './Icon.astro';
 interface Props {
   rows: { who: string; problem: string; answer: string }[];
 }
 const { rows } = Astro.props;
 ---
-<dl class="rows">
+<dl class="rows" data-rows>
   {rows.map((row, i) => (
     <div class="rows__row" data-reveal style={`--i:${i}`}>
       <dt>{row.who}</dt>
@@ -22,17 +26,21 @@ const { rows } = Astro.props;
   }
   .rows__row {
     display: grid;
-    gap: var(--s-2);
-    padding-block: var(--s-5);
+    align-content: start;
+    gap: var(--s-3);
+    margin-inline: calc(var(--gutter) * -1);
+    padding: var(--s-5) var(--gutter);
     border-bottom: 1px solid var(--rule);
+    transition: background-color 0.35s var(--ease-out), opacity 0.7s var(--ease-out), transform 0.9s var(--ease-out);
   }
   .rows__row dt {
     font-stretch: 62%;
     font-weight: 900;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     line-height: 1;
     text-transform: uppercase;
     color: var(--lit);
+    transition: color 0.35s var(--ease-out);
   }
   .rows__answer {
     display: grid;
@@ -45,15 +53,57 @@ const { rows } = Astro.props;
     height: 1.3rem;
     margin-top: 0.2em;
     color: var(--lit);
+    transition: color 0.35s var(--ease-out);
+  }
+  /* Lit: by scroll position on touch screens, by pointer on the rest */
+  .rows__row.is-active {
+    --lit: var(--ink);
+    background: var(--yellow);
+    color: var(--ink);
+  }
+  @media (hover: hover) {
+    .rows__row:hover {
+      --lit: var(--ink);
+      background: var(--yellow);
+      color: var(--ink);
+    }
   }
   @media (min-width: 56.25em) {
+    .rows {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
     .rows__row {
-      grid-template-columns: 15rem 1fr 1fr;
-      gap: var(--s-6);
-      align-items: start;
+      margin-inline: 0;
+      padding: var(--s-6) var(--s-5) var(--s-7);
+      border-bottom: 0;
+      border-left: 1px solid var(--rule);
+    }
+    .rows__row:first-child {
+      border-left: 0;
     }
     .rows__row dt {
-      font-size: 3rem;
+      font-size: 3.4rem;
+      margin-bottom: var(--s-3);
+    }
+    .rows__answer {
+      margin-top: var(--s-2);
     }
   }
 </style>
+
+<script>
+  // Touch screens have no hover, so light the block that sits in the middle of the screen.
+  if (matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    for (const list of document.querySelectorAll<HTMLElement>('[data-rows]')) {
+      const blocks = [...list.querySelectorAll<HTMLElement>('.rows__row')];
+      const watch = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) entry.target.classList.toggle('is-active', entry.isIntersecting);
+        },
+        { rootMargin: '-46% 0px -46% 0px' },
+      );
+      blocks.forEach((block) => watch.observe(block));
+    }
+  }
+</script>

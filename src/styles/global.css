@@ -140,6 +140,10 @@ textarea {
 }
 
 /* ---------- Layout ---------- */
+main {
+  overflow-x: clip;
+}
+
 .wrap {
   width: min(100% - 2 * var(--gutter), var(--wrap));
   margin-inline: auto;
@@ -379,6 +383,19 @@ h3 {
     transition-delay: calc(var(--i, 0) * 90ms);
   }
 
+  .js [data-reveal='left'] {
+    transform: translateX(-3.5rem);
+  }
+
+  .js [data-reveal='right'] {
+    transform: translateX(3.5rem);
+  }
+
+  .js [data-reveal='left'],
+  .js [data-reveal='right'] {
+    transition-duration: 0.8s, 1.2s;
+  }
+
   .js [data-reveal].is-in {
     opacity: 1;
     transform: none;
@@ -501,6 +518,23 @@ h3 {
 .strip-art .strip__band {
   font-size: 2.3rem;
   text-transform: uppercase;
+}
+
+/* Quotes: every quote on the site is set large */
+.quote {
+  margin: 0;
+  font-stretch: 66%;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 1.2rem + 4.6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: var(--lit);
+  text-wrap: balance;
+}
+
+.quote-by {
+  margin-top: var(--s-4);
+  font-weight: 600;
 }
 
 /* Pull quote */

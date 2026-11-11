@@ -2,15 +2,17 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SelectButton from '../components/SelectButton.astro';
+import Film from '../components/Film.astro';
 import Deck from '../components/Deck.astro';
+import RecordLabel from '../components/RecordLabel.astro';
 import Icon from '../components/Icon.astro';
-import CtaBand from '../components/CtaBand.astro';
 import StepList from '../components/StepList.astro';
 import ProblemRows from '../components/ProblemRows.astro';
+import CtaBand from '../components/CtaBand.astro';
 import heroPhoto from '../assets/hero-knock.jpg';
+import { HERO_VIDEO } from '../config';
 import { url, ROUTES } from '../lib/url';
-import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from '../data/facts';
-
+import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPITAL_LINE } from '../data/facts';
 ---
 <Base
   title="Healing Beats Volunteers | Music and companionship at the hospital bedside"
@@ -28,6 +30,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
         fetchpriority="high"
         quality={62}
       />
+      {HERO_VIDEO && <video class="hero__video" src={url(HERO_VIDEO)} poster={heroPhoto.src} autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>}
     </div>
     <div class="hero__body wrap">
       <h1 class="hero__title">
@@ -39,34 +42,32 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
         <SelectButton href={url(ROUTES.hospitals)} label="Bring Healing Beats to your hospital" />
         <SelectButton href={url(ROUTES.volunteer)} label="Volunteer at the bedside" />
       </div>
-      <a class="link hero__more" href={url(ROUTES.chapter)}><span>Want to start a chapter?</span><Icon name="arrow" /></a>
     </div>
     <p class="hero__credit">Photo: UnityPoint Health</p>
   </section>
 
-  <!-- Now playing: the real request that anchors the page -->
-  <a class="playing on-ink" href="#stardust">
-    <span class="wrap playing__row">
-      <span class="playing__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="strip-type playing__text"><b>Now playing</b> {STARDUST.song} &middot; {STARDUST.artist}</span>
-      <Icon name="down" class="playing__icon" />
-    </span>
-  </a>
-
-  <!-- 2. How a visit works -->
-  <section class="section on-ivory visit" id="how-it-works">
-    <div class="wrap visit__grid">
-      <div class="visit__copy">
-        <h2 data-reveal>How a visit works</h2>
-        <div class="visit__steps"><StepList steps={VISIT_STEPS} /></div>
+  <!-- 2. The film -->
+  <section class="section on-ink film-sec">
+    <div class="wrap film-sec__grid">
+      <div class="stack film-sec__copy" data-reveal>
+        <h2>See a visit <span class="lit">in 76 seconds.</span></h2>
+        <p class="lede">Founder Jake Nitzkin, RN, on what happens when a patient hears a song they have not heard in fifteen years.</p>
       </div>
-      <div class="visit__deck">
-        <Deck />
+      <div class="film-sec__film" data-reveal="right">
+        <Film />
       </div>
     </div>
   </section>
 
-  <!-- 3. Proof -->
+  <!-- 3. How a visit works -->
+  <section class="section on-ivory visit" id="how-it-works">
+    <div class="wrap">
+      <h2 data-reveal>How a visit works</h2>
+      <StepList steps={VISIT_STEPS} across />
+    </div>
+  </section>
+
+  <!-- 4. Proof -->
   <section class="section on-red proof" id="stardust">
     <div class="wrap">
       <h2 class="figures proof__figures" data-reveal>
@@ -76,86 +77,95 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
       </h2>
 
       <div class="proof__story">
-        <div class="strip-art" data-reveal>
-          <span class="strip strip--lit">
-            <span class="strip__line">Requested {STARDUST.year}</span>
-            <span class="strip__band">{STARDUST.song}</span>
-            <span class="strip__line">{STARDUST.artist}</span>
-          </span>
+        <div class="proof__label" data-reveal="left">
+          <RecordLabel
+            song={STARDUST.song}
+            artist={STARDUST.artist}
+            note={`Requested ${STARDUST.year}`}
+            rim="Requested at the bedside • Medical-surgical unit • Michigan"
+          />
         </div>
         <figure class="proof__quote" data-reveal style="--i:1">
-          <p>On a medical-surgical unit in Michigan, a patient asked for “Stardust.” It had been about fifteen years since they had heard it. They sang along.</p>
-          <blockquote class="pull">“{STARDUST.quote}”</blockquote>
-          <figcaption>Patient, {STARDUST.where}, {STARDUST.year}</figcaption>
+          <p class="lede">On a medical-surgical unit in Michigan, a patient asked for “Stardust.” It had been about fifteen years since they had heard it. They sang along.</p>
+          <blockquote class="quote">“{STARDUST.quote}”</blockquote>
+          <figcaption class="quote-by">Patient, {STARDUST.where}, {STARDUST.year}</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- 4. Who it helps -->
+  <!-- 5. Who it helps -->
   <section class="section on-ivory helps">
     <div class="wrap">
       <h2 data-reveal>Three problems. <span class="lit">One program.</span></h2>
-      <div class="helps__rows"><ProblemRows rows={THREE_PROBLEMS} /></div>
+      <ProblemRows rows={THREE_PROBLEMS} />
     </div>
   </section>
 
-  <!-- 5. For hospitals -->
-  <section class="section on-ink forhosp">
-    <div class="wrap forhosp__grid">
-      <div class="stack" data-reveal>
+  <!-- 6. For hospitals: words left, quote right -->
+  <section class="section on-ink duo">
+    <div class="wrap duo__grid">
+      <div class="stack duo__words" data-reveal="left">
         <h2>Your program. <span class="lit">Your name on it.</span></h2>
         <p class="lede">Healing Beats is turnkey and white-label. It is built to feel like your hospital’s own initiative: low cost, high impact, and low burden on staff.</p>
-        <ul class="ticks forhosp__list">
+        <ul class="ticks duo__list">
           {INCLUDED.map((item) => <li><Icon name="check" /><span>{item}</span></li>)}
         </ul>
         <p><a class="key" href={url(ROUTES.hospitals)}>Partner with us <Icon name="arrow" /></a></p>
       </div>
-      <div class="forhosp__label" data-reveal style="--i:1">
-        <span class="strip-art"><span class="strip">
-          <span class="strip__line">A program offered by</span>
-          <span class="strip__band">Your hospital</span>
-          <span class="strip__line">to help make your stay more comfortable</span>
-        </span></span>
-        <p class="forhosp__note">What volunteers tell patients: “This is a program offered by the hospital to help make your stay more comfortable.”</p>
-      </div>
+      <figure class="duo__voice" data-reveal="right" style="--i:1">
+        <span class="strip-art duo__strip">
+          <span class="strip">
+            <span class="strip__line">A program offered by</span>
+            <span class="strip__band">Your hospital</span>
+            <span class="strip__line">to make your stay more comfortable</span>
+          </span>
+        </span>
+        <blockquote class="quote">“{HOSPITAL_LINE}”</blockquote>
+        <figcaption class="quote-by">What every volunteer tells every patient</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- 6. For volunteers -->
-  <section class="section on-ivory forvol">
-    <div class="wrap forvol__grid">
-      <figure class="forvol__quote" data-reveal>
-        <blockquote>
-          <p>Connecting with patients is what drives this volunteer’s interest in medicine, and their goal of becoming a physician who pairs compassion with clinical skill,</p>
-          <p class="pull">“{STUDENT.quote}”</p>
-        </blockquote>
-        <figcaption>{STUDENT.who}</figcaption>
-      </figure>
-      <div class="stack forvol__cta" data-reveal style="--i:1">
+  <!-- 7. For volunteers: quote left, words right -->
+  <section class="section on-ivory duo duo--flip">
+    <div class="wrap duo__grid">
+      <div class="stack duo__words" data-reveal="right">
         <h2>You bring the speaker. <span class="lit">They pick the song.</span></h2>
         <p class="lede">You get step-by-step training, so you always know how to start. Students, pre-health or not, and community members are welcome.</p>
         <p><a class="key key--ink" href={url(ROUTES.volunteer)}>Volunteer <Icon name="arrow" /></a></p>
       </div>
+      <figure class="duo__voice" data-reveal="left" style="--i:1">
+        <p class="lede">Connecting with patients is what drives this volunteer’s interest in medicine, and their goal of becoming a physician who pairs compassion with clinical skill,</p>
+        <blockquote class="quote">“{STUDENT.quote}”</blockquote>
+        <figcaption class="quote-by">{STUDENT.who}</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- 7. Donate -->
+  <!-- 8. Start a chapter: words left, record right -->
+  <section class="section on-maroon duo">
+    <div class="wrap duo__grid">
+      <div class="stack duo__words" data-reveal="left">
+        <h2>Bring it to <span class="lit">your local hospital.</span></h2>
+        <p class="lede">No Healing Beats near you? A chapter is a group, often students, that partners with a nearby hospital to run the program there. We give you the training and the playbook.</p>
+        <p><a class="key" href={url(ROUTES.chapter)}>Start a chapter <Icon name="arrow" /></a></p>
+      </div>
+      <div class="duo__deck" data-reveal="right" style="--i:1">
+        <Deck label="Your hospital" sublabel="Side A" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Donate -->
   <CtaBand
     tone="yellow"
+    center
     title="Keep the music playing."
     body="Your gift funds volunteer training and brings Healing Beats to new communities. We are a registered 501(c)(3) nonprofit, and donations are tax-deductible."
     href={url(ROUTES.donate)}
     label="Donate"
   />
-
-  <!-- 8. Start a chapter -->
-  <section class="on-maroon chapter">
-    <div class="wrap chapter__row">
-      <p>No Healing Beats near you? Bring it to your local hospital.</p>
-      <a class="link" href={url(ROUTES.chapter)}><span>Start a chapter</span><Icon name="arrow" /></a>
-    </div>
-  </section>
 </Base>
 
 <style>
@@ -170,13 +180,23 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
     height: min(27.5rem, 54svh);
     background: var(--red);
   }
-  .hero__photo :global(img) {
+  .hero__photo :global(img),
+  .hero__video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 50% 22%;
     mix-blend-mode: multiply;
-    filter: contrast(1.08);
+    filter: grayscale(1) contrast(1.08);
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__video {
+      display: none;
+    }
   }
   /* Print screen and the melt into solid red */
   .hero__photo::after {
@@ -207,10 +227,6 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
     gap: var(--s-4);
     margin-top: var(--s-5);
   }
-  .hero__more {
-    margin-top: var(--s-3);
-    text-decoration: underline;
-  }
   .hero__credit {
     position: absolute;
     top: 0.6rem;
@@ -223,14 +239,12 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
   @media (prefers-reduced-motion: no-preference) {
     .hero__title span,
     .hero__lede,
-    .hero__choices,
-    .hero__more {
+    .hero__choices {
       animation: rise 0.9s var(--ease-out) backwards;
     }
     .hero__title span:nth-child(2) { animation-delay: 0.1s; }
     .hero__lede { animation-delay: 0.2s; }
     .hero__choices { animation-delay: 0.3s; }
-    .hero__more { animation-delay: 0.4s; }
   }
   @keyframes rise {
     from {
@@ -293,80 +307,14 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
     }
   }
 
-  /* ---------- Now playing ---------- */
-  .playing {
-    display: block;
-    text-decoration: none;
-    --focus: var(--yellow);
-  }
-  .playing__row {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    min-height: 3.5rem;
-  }
-  .playing__text {
-    margin-right: auto;
-  }
-  .playing__text b {
-    display: block;
-    color: var(--yellow);
-  }
-  @media (min-width: 30em) {
-    .playing__text b {
-      display: inline;
-      margin-right: 0.6em;
-    }
-  }
-  .playing :global(.playing__icon) {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--yellow);
-  }
-  .playing__bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 1.1rem;
-  }
-  .playing__bars i {
-    width: 4px;
-    height: 100%;
-    background: var(--yellow);
-    transform-origin: bottom;
-    transform: scaleY(0.5);
-  }
-  .playing__bars i:nth-child(2) { transform: scaleY(0.9); }
-  .playing__bars i:nth-child(3) { transform: scaleY(0.35); }
-  .playing__bars i:nth-child(4) { transform: scaleY(0.7); }
-  @media (prefers-reduced-motion: no-preference) {
-    .playing__bars i {
-      animation: bars 1.1s ease-in-out infinite alternate;
-    }
-    .playing__bars i:nth-child(2) { animation-duration: 0.8s; animation-delay: -0.3s; }
-    .playing__bars i:nth-child(3) { animation-duration: 1.3s; animation-delay: -0.6s; }
-    .playing__bars i:nth-child(4) { animation-duration: 0.95s; animation-delay: -0.1s; }
-  }
-  @keyframes bars {
-    from { transform: scaleY(0.25); }
-    to { transform: scaleY(1); }
-  }
-
-  /* ---------- How a visit works ---------- */
-  .visit__grid {
+  /* ---------- The film ---------- */
+  .film-sec__grid {
     display: grid;
-    gap: var(--s-7);
-  }
-  .visit__steps {
-    margin-top: var(--s-6);
-  }
-  .visit__deck {
-    display: grid;
-    justify-items: center;
+    gap: var(--s-6);
   }
   @media (min-width: 56.25em) {
-    .visit__grid {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    .film-sec__grid {
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
       align-items: center;
       gap: var(--s-8);
     }
@@ -377,107 +325,64 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
     margin-top: var(--s-7);
     display: grid;
     gap: var(--s-6);
+    justify-items: start;
   }
-  .proof__quote p {
-    font-size: var(--text-lg);
-    line-height: 1.45;
-    max-width: var(--measure);
+  .proof__label {
+    width: min(100%, 21rem);
   }
-  .proof__quote blockquote {
-    margin: var(--s-4) 0 0;
-    max-width: 26rem;
-  }
-  .proof__quote figcaption {
-    margin-top: var(--s-3);
-    font-size: var(--text-sm);
+  .proof__quote .quote {
+    margin-top: var(--s-5);
+    max-width: 18ch;
   }
   @media (min-width: 56.25em) {
     .proof__figures {
       font-size: var(--text-hero);
     }
     .proof__story {
-      grid-template-columns: 22rem 1fr;
+      grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
       align-items: center;
       gap: var(--s-8);
     }
+    .proof__label {
+      width: 100%;
+    }
   }
 
-  /* ---------- Who it helps ---------- */
-  .helps__rows {
-    margin-top: var(--s-6);
-  }
-
-  /* ---------- For hospitals ---------- */
-  .forhosp__grid {
+  /* ---------- Hospitals, volunteers, chapter: one alternating pattern ---------- */
+  .duo__grid {
     display: grid;
     gap: var(--s-7);
   }
-  .forhosp__list {
+  .duo__list {
     margin-block: var(--s-5);
   }
-  .forhosp__label {
-    max-width: 24rem;
-  }
-  .forhosp__label .strip-art {
+  .duo__strip {
     display: block;
-    transform: rotate(1.5deg);
+    max-width: 19rem;
+    margin-bottom: var(--s-6);
+    transform: rotate(-2.5deg);
   }
-  .forhosp__note {
-    margin-top: var(--s-5);
-    font-size: var(--text-sm);
-    max-width: 22rem;
+  .duo__strip .strip__band {
+    font-size: 2rem;
   }
-  @media (min-width: 56.25em) {
-    .forhosp__grid {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-      align-items: center;
-      gap: var(--s-8);
-    }
-  }
-
-  /* ---------- For volunteers ---------- */
-  .forvol__grid {
-    display: grid;
-    gap: var(--s-7);
-  }
-  .forvol__quote blockquote {
-    margin: 0;
-    font-size: var(--text-lg);
-    line-height: 1.45;
-    max-width: 30rem;
-  }
-  .forvol__quote .pull {
-    margin-top: var(--s-3);
-  }
-  .forvol__quote figcaption {
+  .duo__voice .lede + .quote {
     margin-top: var(--s-4);
-    font-size: var(--text-sm);
+  }
+  .duo__deck {
+    display: grid;
+    justify-items: center;
   }
   @media (min-width: 56.25em) {
-    .forvol__grid {
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    .duo__grid {
+      grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: var(--s-8);
     }
-    .forvol__cta {
-      order: -1;
+    .duo--flip .duo__words {
+      order: 2;
     }
-  }
-
-  /* ---------- Start a chapter ---------- */
-  .chapter__row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--s-2) var(--s-6);
-    padding-block: var(--s-5);
-  }
-  .chapter__row .link {
-    font-stretch: 78%;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--yellow);
+    .duo__deck {
+      justify-items: end;
+    }
   }
 </style>

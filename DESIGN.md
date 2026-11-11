@@ -295,13 +295,22 @@ Round lettered keys, 3rem, weight 900. Ivory on dark surfaces, ink on ivory. A c
 The printed card. Ivory stock, 3px corners, a 3px red rule top and bottom. A typewriter line, a red band holding the title in heavy condensed type (1.6rem, larger when used as an illustration), then a second typewriter line. The lit variant has ink rules and a yellow band with ink type; use it for the song that is playing or chosen. As an illustration it sits on a maroon mat with 0.5rem of margin and is tilted about 2 degrees.
 
 ### Record Deck (signature)
-A square red plinth (14px corners) with a vinyl record, a yellow centre label, and an ivory tonearm with a yellow headshell. The record turns and the arm swings in with the deck's own scroll progress through the viewport; the page scrolls natively. A pill-shaped ink play control with a round yellow key sits bottom left. Pressing it replaces the deck with the film at 16:9. Nothing is requested from the video host before that press. With reduced motion the record and arm hold still.
+A square red plinth (14px corners) with a vinyl record, a yellow centre label, and an ivory tonearm with a yellow headshell. The record turns and the arm swings in with the deck's own scroll progress through the viewport; the page scrolls natively. It is decoration only and carries no content or controls: on the home page it sits beside "Start a chapter" with a label reading "Your hospital".
+
+### Film (signature)
+Jake's film is its own block, never part of the deck. A 16:9 frame (14px corners, maroon lip) shows the film's real still in natural colour, a large round yellow play key in the centre, "Play the film" and its length bottom left, and the credit "A film by UnityPoint Health" under the frame. Nothing is requested from YouTube until play is pressed; then the player replaces the still in place. Without JavaScript the frame links to the film.
+
+### Record Label (signature)
+A requested song is shown as a round record label: a yellow disc inside a thin ring of vinyl, the song title in display type with the artist and a typewriter note under a spindle hole, and a line of text set round the rim. The rim and vinyl turn with scroll progress; the title stays upright so it always reads. It replaces the rectangular strip wherever one song is the subject.
+
+### Quotes
+Every quotation is set large: `.quote`, width 66, weight 800, 2.25rem rising to 4.5rem, line-height 1, in the surface's lit colour, with the attribution in bold body type beneath (`.quote-by`). A quote is the loudest thing in its section after the heading.
 
 ### Step List
 Numbered steps: a cap, a title, a short paragraph (max 30rem). Stacked by default. The across variant lays steps in equal columns from 900px, each under a 3px rule.
 
 ### Ruled Rows and FAQ
-Groups open with a 3px rule and close each row with a hairline. Problem rows set the name in display type in the lit colour, then the problem, then the answer in bold with an arrow. FAQ questions are title type with a round 2.75rem ink marker showing a plus; open, the marker turns yellow and shows a minus. The first question starts open.
+Groups open with a 3px rule. Problem groups are three equal columns on wide screens and stacked blocks on phones: the name in display type in the lit colour, then the problem, then the answer in bold with an arrow. The column under the pointer fills yellow and its name and arrow turn ink; on touch screens the block nearest the middle of the screen lights instead. FAQ questions are title type with a round 2.75rem ink marker showing a plus; open, the marker turns yellow and shows a minus. The first question starts open.
 
 ### Inputs / Fields
 - **Style:** label in bold above the field, optional hint in caption size. Field is at least 3.25rem tall, 8px corners, 2px ink border, a pale paper fill, body-size text, red caret.

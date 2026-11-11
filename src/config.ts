@@ -14,6 +14,15 @@ export const SITE = {
 };
 
 /**
+ * Hero video (optional). The home page shows a photo behind the headline.
+ * To play the film there instead, put an MP4 in the `public` folder and set
+ * its path here, e.g. '/hero.mp4'. It plays muted and looping under the same
+ * red treatment; the photo stays as the fallback. Keep the file short and
+ * small (10 to 20 seconds, under 3 MB).
+ */
+export const HERO_VIDEO = '';
+
+/**
  * Search engines. Leave false while the copy still has items for Jake to
  * confirm (see CONTENT-TODO.md). Set to true at launch.
  */

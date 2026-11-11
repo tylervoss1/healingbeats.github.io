@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import StepList from '../components/StepList.astro';
 import ProblemRows from '../components/ProblemRows.astro';
 import CtaBand from '../components/CtaBand.astro';
-import Deck from '../components/Deck.astro';
+import Film from '../components/Film.astro';
 import { url, ROUTES } from '../lib/url';
 import { SITE } from '../config';
 import { VISIT_STEPS, THREE_PROBLEMS } from '../data/facts';
@@ -38,7 +38,7 @@ import { VISIT_STEPS, THREE_PROBLEMS } from '../data/facts';
         <h2 data-reveal>How a visit <span class="lit">works</span></h2>
         <div class="about__steps"><StepList steps={VISIT_STEPS} /></div>
       </div>
-      <div class="about__deck"><Deck /></div>
+      <div class="about__deck"><Film /></div>
     </div>
   </section>
 

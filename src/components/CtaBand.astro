@@ -7,10 +7,12 @@ interface Props {
   body?: string;
   href: string;
   label: string;
+  /** Centre the band instead of splitting it into two columns. */
+  center?: boolean;
 }
-const { tone = 'yellow', title, body, href, label } = Astro.props;
+const { tone = 'yellow', title, body, href, label, center = false } = Astro.props;
 ---
-<section class:list={['section', 'band', `on-${tone}`]}>
+<section class:list={['section', 'band', `on-${tone}`, { 'band--center': center }]}>
   <div class="wrap band__grid" data-reveal>
     <h2>{title}</h2>
     <div class="stack">
@@ -28,11 +30,23 @@ const { tone = 'yellow', title, body, href, label } = Astro.props;
   .band h2 {
     font-size: var(--text-3xl);
   }
+  .band--center .band__grid {
+    justify-items: center;
+    text-align: center;
+    max-width: 46rem;
+  }
+  .band--center .lede {
+    margin-inline: auto;
+  }
   @media (min-width: 56.25em) {
     .band__grid {
       grid-template-columns: 1fr 1fr;
       align-items: end;
       gap: var(--s-8);
+    }
+    .band--center .band__grid {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
     }
   }
 </style>
