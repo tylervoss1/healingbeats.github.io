@@ -54,10 +54,12 @@ It succeeds when a hospital administrator and a student can each find their path
 - One embedded video, loaded only when the visitor clicks play, from `youtube-nocookie.com`, credited to UnityPoint Health.
 - A Donate button in the header of every page, including the mobile header outside the menu.
 
-**Content rules**
-- Never invent facts: no invented stats, hospital names, logos, testimonials, prices or locations.
-- Anything missing gets a visible `TODO(Jake): …` placeholder and a line in `CONTENT-TODO.md`.
-- Hospital names from the 2023 webinar are tagged `TODO(Jake): confirm OK to name`.
+**Content rules (revised by Tyler after the first draft)**
+- Design, flow and user experience come first: mobile, then desktop. Content checks never shape or weaken a layout.
+- Use everything in the brief at full strength, including the 2023 webinar figures and hospital names. The site should read as finished, not as a form waiting to be filled in.
+- Write complete, confident draft copy where the brief gives the substance but not the words (FAQ answers, chapter steps, what a shift is like).
+- Items Jake still has to check carry at most a small, quiet "to confirm" note. The full list lives in `CONTENT-TODO.md`.
+- Numbers, names and direct quotes come from the brief. Where a specific is unknown (a price, a list of locations), the page is designed so it does not need one.
 - No WordPress leftovers: no comment forms, share bars, or `#` placeholder links.
 
 **Terminology**
@@ -67,10 +69,8 @@ It succeeds when a hospital administrator and a student can each find their path
 - Donation provider. Candidates: Zeffy, Givebutter, Donorbox, PayPal Giving Fund.
 - The Formspree form ID.
 - When the custom domain moves to this site.
-- Hospital FAQ answers: cost, staff time, infection control, which units, how volunteers are supervised.
+- Jake's confirmation of drafted copy: hospital FAQ answers (cost, staff time, infection control, which units, how volunteers are supervised), chapter specifics, and his founder story.
 - Current volunteer locations.
-- All chapter specifics: what a chapter is, what support it gets, the steps.
-- Details of Jake's founder story.
 
 ## Brand Commitments
 
@@ -95,13 +95,13 @@ It succeeds when a hospital administrator and a student can each find their path
 - Volunteer testimonial (undergraduate, Wisconsin, 2025): connecting with patients drives their interest in medicine and their goal of becoming a physician who pairs compassion with clinical skill. Direct quote: "ensuring that every patient feels valued and understood."
 - Video: UnityPoint Health's 76-second piece featuring Jake, https://www.youtube.com/watch?v=eiKWuePIR6Q. Jake says the beauty of the program is helping patients relive the experience of a song taking them back to a certain time and place. He describes patients relaxing, tapping a foot under the blanket, singing, dancing or crying when they hear a song they haven't heard in 15 years, and sharing stories that are "really intimate". A patient recalls a Boy Scout trip in the '80s.
 
-**Unconfirmed (2023 public webinar; confirm with Jake before publishing)**
+**From the 2023 public webinar (use freely in the design; Jake to confirm before launch)**
 - Began as a pilot at UnityPoint Health in 2019 and resumed after COVID in 2021.
 - In 2022, 17 volunteers there logged 927 hours on 336 occasions, reaching about 36 patients per week.
 - Henry Ford West Bloomfield Hospital (MI) launched the program in January 2023.
 
-**Not on hand; do not fabricate**
-- The full verbatim text of either testimonial. Only the two quoted fragments above are exact; the rest is paraphrase.
+**Not on hand**
+- The full verbatim text of either testimonial. The two quoted fragments above are exact; the rest is told as story around them.
 - Partner hospital names or logos beyond those listed above.
 - Program photos.
 - Prices or costs.
@@ -111,7 +111,7 @@ It succeeds when a hospital administrator and a student can each find their path
 ## Product Principles
 
 1. **Two paths first.** Hospitals and volunteers are the people this site is for; each must see their way in at once.
-2. **Only true things.** Every number, name and quote comes from Healing Beats. A gap stays a visible gap until Jake fills it.
+2. **Finished first, checked second.** The site presents Healing Beats at full strength from the material on hand. What Jake still has to confirm is tracked quietly and never dilutes the experience.
 3. **Patient dignity.** No identifiable patient imagery, and patient stories appear only as Healing Beats has shared them.
 4. **Low burden, like the program.** Starting a conversation takes one short form.
 5. **Giving is always one tap away.** Donate is present on every page without being the headline.
