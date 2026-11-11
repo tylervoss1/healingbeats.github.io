@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>The Program: Healing Beats first screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Besley:wght@500;700;800&family=Libre+Franklin:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:#FBFAF6;color:#121110;font-family:"Libre Franklin",sans-serif}
+a{color:inherit;text-decoration:none}
+.bar{height:62px;padding:0 16px;display:flex;align-items:center;gap:10px;border-bottom:4px solid #121110}
+.brand{margin-right:auto;font-family:Besley,serif;font-weight:800;font-size:25px;letter-spacing:-.02em;line-height:1}
+.brand small{display:block;margin-top:3px;font-family:"Libre Franklin",sans-serif;font-weight:700;font-size:10px;letter-spacing:.24em;text-transform:uppercase}
+.donate{height:44px;padding:0 18px;display:flex;align-items:center;background:#F4511E;color:#121110;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.menu{width:44px;height:44px;display:grid;place-content:center;gap:6px;border:2px solid #121110}
+.menu i{display:block;width:20px;height:2.5px;background:#121110}
+.art{display:block;width:390px;height:250px}
+.hero{padding:16px 16px 0}
+h1{font-family:Besley,serif;font-weight:800;font-size:43px;line-height:.98;letter-spacing:-.025em}
+.lede{margin-top:10px;font-size:16.5px;line-height:1.45}
+.contents{margin-top:16px}
+.entry{display:grid;grid-template-columns:1fr 44px;align-items:center;min-height:76px;border-top:3px solid #121110;padding:8px 0 6px}
+.entry small{display:block;font-weight:700;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#B5360A}
+.entry strong{display:block;margin-top:3px;font-family:Besley,serif;font-weight:700;font-size:21px;line-height:1.08;letter-spacing:-.01em}
+.entry i{font-style:normal;font-size:26px;text-align:right}
+.more{display:flex;align-items:center;min-height:44px;border-top:1px solid #121110;font-size:15.5px;text-decoration:underline;text-underline-offset:4px}
+.next{margin:8px 16px 0;border-top:4px solid #121110;padding-top:10px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.next b{font-family:Besley,serif;font-weight:800;font-size:64px;line-height:.8;color:#F4511E}
+.next small{display:block;font-weight:700;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase}
+.next strong{display:block;margin-top:4px;font-family:Besley,serif;font-weight:700;font-size:22px}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="#">Healing Beats<small>Volunteers &#183; Est. 2019</small></a>
+  <a class="donate" href="#">Donate</a>
+  <span class="menu" aria-label="Menu"><i></i><i></i></span>
+</header>
+<svg class="art" viewBox="0 0 390 262" role="img" aria-label="Cut-paper picture: a record rising like a sun beside a door left ajar">
+  <rect width="390" height="262" fill="#FBFAF6"/>
+  <circle cx="110" cy="150" r="205" fill="#F4511E"/>
+  <circle cx="110" cy="150" r="124" fill="none" stroke="#121110" stroke-width="1.2" opacity=".45"/>
+  <circle cx="110" cy="150" r="90" fill="none" stroke="#121110" stroke-width="1.2" opacity=".45"/>
+  <circle cx="110" cy="150" r="46" fill="#121110"/>
+  <circle cx="110" cy="150" r="7" fill="#FBFAF6"/>
+  <path d="M262 0H390V262H310z" fill="#121110"/>
+  <path d="M262 0L310 262H246L214 0z" fill="#FBFAF6"/>
+  <circle cx="334" cy="150" r="10" fill="#FBFAF6"/>
+  <g transform="translate(356 228) scale(.72)"><path fill="#F4511E" d="M16 3A13 13 0 1 1 8.4 26.5L4 29l1.2-5.8A13 13 0 0 1 16 3z"/><circle cx="16" cy="16" r="4.4" fill="#121110"/></g>
+</svg>
+<main class="hero">
+  <h1>Play their song. Stay for the story.</h1>
+  <p class="lede">Healing Beats volunteers visit hospital patients, play the one song they ask for, and sit down to hear what it brings back.</p>
+  <nav class="contents" aria-label="Choose your path">
+    <a class="entry" href="#"><span><small>For hospitals</small><strong>Bring Healing Beats to your hospital</strong></span><i>&rarr;</i></a>
+    <a class="entry" href="#"><span><small>For volunteers</small><strong>Volunteer at the bedside</strong></span><i>&rarr;</i></a>
+    <a class="more" href="#">Want to start a chapter? &rarr;</a>
+  </nav>
+</main>
+<section class="next"><b>1</b><span><small>How a visit works</small><strong>Knock and ask.</strong></span></section>
+</body>
+</html>

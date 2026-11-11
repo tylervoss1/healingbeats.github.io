@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>Title Strips: Healing Beats first screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:#C5281C;color:#FFF6E0;font-family:Archivo,sans-serif;position:relative}
+a{color:inherit}
+.bar{height:60px;padding:0 16px;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto;font-stretch:75%;font-weight:800;font-size:19px;letter-spacing:.03em;text-transform:uppercase;text-decoration:none}
+.brand svg{width:30px;height:30px}
+.donate{height:44px;padding:0 18px;display:flex;align-items:center;background:#FFC531;color:#1A1210;border-radius:7px;font-stretch:75%;font-weight:800;font-size:16px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-bottom:3px solid #B8860B}
+.menu{width:44px;height:44px;display:grid;place-content:center;gap:6px;border:2px solid #FFF6E0;border-radius:7px}
+.menu i{display:block;width:20px;height:2.5px;background:#FFF6E0}
+.hero{padding:10px 16px 0}
+h1{font-stretch:62%;font-weight:900;font-size:66px;line-height:.9;letter-spacing:-.005em;text-transform:uppercase}
+h1 span{color:#FFC531}
+.lede{margin-top:14px;font-size:17px;line-height:1.42;max-width:340px}
+.cue{margin-top:20px;display:flex;align-items:center;gap:8px;font-stretch:75%;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#FFC531}
+.cue::after{content:"";flex:1;height:2px;background:#FFC531;opacity:.55}
+.tray{margin-top:10px;background:#5E0F0C;border-radius:10px;padding:8px;display:grid;gap:8px}
+.strip{display:grid;grid-template-columns:54px 1fr;gap:8px;text-decoration:none;color:#1A1210}
+.key{align-self:center;justify-self:center;width:50px;height:50px;border-radius:50%;background:#FFF6E0;border-bottom:4px solid #C9B98F;display:grid;place-content:center;font-stretch:75%;font-weight:900;font-size:20px}
+.key.lit{background:#FFC531;border-bottom-color:#B8860B}
+.card{background:#FFF6E0;border-radius:3px;border-top:3px solid #C5281C;border-bottom:3px solid #C5281C;padding:7px 0 6px}
+.card small{display:block;padding:0 12px;white-space:nowrap;font-family:"Courier Prime",monospace;font-weight:700;font-size:12.5px;letter-spacing:.02em;text-transform:uppercase}
+.band{margin:6px 0;padding:8px 12px 7px;background:#C5281C;color:#FFF6E0;display:flex;align-items:center;justify-content:space-between;gap:10px;font-stretch:68%;font-weight:800;font-size:25px;line-height:1.02}
+.band b{font-weight:400;font-size:22px}
+.more{display:flex;align-items:center;min-height:44px;margin-top:4px;font-size:16px;text-underline-offset:4px}
+.next{position:absolute;left:0;right:0;bottom:0;height:92px;background:#1A1210;padding:12px 16px}
+.next small{font-stretch:75%;font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#FFC531}
+.next p{margin-top:6px;font-family:"Courier Prime",monospace;font-weight:700;font-size:15px;letter-spacing:.03em;text-transform:uppercase;line-height:1.3}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="#">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#FFF6E0" d="M16 3A13 13 0 1 1 8.4 26.5L4 29l1.2-5.8A13 13 0 0 1 16 3z"/><circle cx="16" cy="16" r="4.4" fill="#C5281C"/><circle cx="16" cy="16" r="1.3" fill="#FFF6E0"/></svg>
+    Healing Beats
+  </a>
+  <a class="donate" href="#">Donate</a>
+  <span class="menu" aria-label="Menu"><i></i><i></i></span>
+</header>
+<main class="hero">
+  <h1>Play their song. <span>Stay for the story.</span></h1>
+  <p class="lede">Healing Beats volunteers visit hospital patients, play the one song they ask for, and sit down to hear what it brings back.</p>
+  <p class="cue">Make a selection</p>
+  <div class="tray">
+    <a class="strip" href="#">
+      <span class="key lit">A1</span>
+      <span class="card">
+        <small>For hospitals</small>
+        <span class="band">Bring Healing Beats to your hospital <b>&#9656;</b></span>
+        <small>Turnkey &middot; white-label &middot; low lift</small>
+      </span>
+    </a>
+    <a class="strip" href="#">
+      <span class="key">B2</span>
+      <span class="card">
+        <small>For volunteers</small>
+        <span class="band">Volunteer at the bedside <b>&#9656;</b></span>
+        <small>They pick the song. You listen.</small>
+      </span>
+    </a>
+  </div>
+  <a class="more" href="#">Want to start a chapter? &rarr;</a>
+</main>
+<section class="next">
+  <small>Now playing</small>
+  <p>Stardust &middot; Nat King Cole<br>Med-Surg unit &middot; Michigan &middot; 2019</p>
+</section>
+</body>
+</html>
