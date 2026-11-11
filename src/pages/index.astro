@@ -1,0 +1,635 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import SelectButton from '../components/SelectButton.astro';
+import Deck from '../components/Deck.astro';
+import Icon from '../components/Icon.astro';
+import heroPhoto from '../assets/hero-knock.jpg';
+import { url, ROUTES } from '../lib/url';
+import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED } from '../data/facts';
+
+const helps = [
+  {
+    who: 'Patients',
+    problem: 'Hospital stays are isolating. Loneliness, anxiety and pain can leave a person feeling reduced to a diagnosis.',
+    answer: 'A song they chose, and someone who stays to hear why.',
+  },
+  {
+    who: 'Volunteers',
+    problem: 'Many volunteers walk into a patient’s room not knowing what to say or do.',
+    answer: 'The music starts the conversation, and training builds confidence at the bedside.',
+  },
+  {
+    who: 'Nurses',
+    problem: 'Nurses are stretched thin, and emotional and social needs take time they rarely have.',
+    answer: 'Volunteers meet those needs and offer distraction during routine procedures.',
+  },
+];
+---
+<Base
+  title="Healing Beats Volunteers | Music and companionship at the hospital bedside"
+  description="Healing Beats volunteers visit hospital patients, play the one song they ask for, and stay to hear the story it brings back. Bring the program to your hospital or volunteer."
+>
+  <!-- 1. Opening -->
+  <section class="hero on-red">
+    <div class="hero__photo">
+      <Image
+        src={heroPhoto}
+        alt="A volunteer knocks on the door of a patient’s hospital room."
+        widths={[480, 800, 1200, 1600]}
+        sizes="(min-width: 56.25em) 50vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        quality={62}
+      />
+    </div>
+    <div class="hero__body wrap">
+      <h1 class="hero__title">
+        <span>Play their song.</span>
+        <span class="lit">Stay for the story.</span>
+      </h1>
+      <p class="lede hero__lede">Healing Beats volunteers visit hospital patients, play the one song they ask for, and sit down to hear what it brings back.</p>
+      <div class="hero__choices">
+        <SelectButton href={url(ROUTES.hospitals)} label="Bring Healing Beats to your hospital" />
+        <SelectButton href={url(ROUTES.volunteer)} label="Volunteer at the bedside" />
+      </div>
+      <a class="link hero__more" href={url(ROUTES.chapter)}><span>Want to start a chapter?</span><Icon name="arrow" /></a>
+    </div>
+    <p class="hero__credit">Photo: UnityPoint Health</p>
+  </section>
+
+  <!-- Now playing: the real request that anchors the page -->
+  <a class="playing on-ink" href="#stardust">
+    <span class="wrap playing__row">
+      <span class="playing__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="strip-type playing__text"><b>Now playing</b> {STARDUST.song} &middot; {STARDUST.artist}</span>
+      <Icon name="down" class="playing__icon" />
+    </span>
+  </a>
+
+  <!-- 2. How a visit works -->
+  <section class="section on-ivory visit" id="how-it-works">
+    <div class="wrap visit__grid">
+      <div class="visit__copy">
+        <h2 data-reveal>How a visit works</h2>
+        <ol class="steps">
+          {VISIT_STEPS.map((step, i) => (
+            <li class="step" data-reveal style={`--i:${i}`}>
+              <span class="cap" data-light>{i + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="visit__deck">
+        <Deck />
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Proof -->
+  <section class="section on-red proof" id="stardust">
+    <div class="wrap">
+      <h2 class="proof__figures" data-reveal>
+        {IMPACT.map((item) => (
+          <span class="proof__figure"><b class="lit">{item.value}</b> {item.label}</span>
+        ))}
+      </h2>
+
+      <div class="proof__story">
+        <div class="proof__strip" data-reveal>
+          <span class="strip strip--lit">
+            <span class="strip__line">Requested {STARDUST.year}</span>
+            <span class="strip__band">{STARDUST.song}</span>
+            <span class="strip__line">{STARDUST.artist}</span>
+          </span>
+        </div>
+        <figure class="proof__quote" data-reveal style="--i:1">
+          <p>On a medical-surgical unit in Michigan, a patient asked for “Stardust.” It had been about fifteen years since they had heard it. They sang along.</p>
+          <blockquote>“{STARDUST.quote}”</blockquote>
+          <figcaption>Patient, {STARDUST.where}, {STARDUST.year}</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Who it helps -->
+  <section class="section on-ivory helps">
+    <div class="wrap">
+      <h2 data-reveal>Three problems. <span class="lit">One program.</span></h2>
+      <dl class="helps__rows">
+        {helps.map((row, i) => (
+          <div class="helps__row" data-reveal style={`--i:${i}`}>
+            <dt>{row.who}</dt>
+            <dd class="helps__problem">{row.problem}</dd>
+            <dd class="helps__answer"><Icon name="arrow" /><span>{row.answer}</span></dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- 5. For hospitals -->
+  <section class="section on-ink forhosp">
+    <div class="wrap forhosp__grid">
+      <div class="stack" data-reveal>
+        <h2>Your program. <span class="lit">Your name on it.</span></h2>
+        <p class="lede">Healing Beats is turnkey and white-label. It is built to feel like your hospital’s own initiative: low cost, high impact, and low burden on staff.</p>
+        <ul class="forhosp__list">
+          {INCLUDED.map((item) => <li><Icon name="check" /><span>{item}</span></li>)}
+        </ul>
+        <p><a class="key" href={url(ROUTES.hospitals)}>Partner with us <Icon name="arrow" /></a></p>
+      </div>
+      <div class="forhosp__label" data-reveal style="--i:1">
+        <span class="strip">
+          <span class="strip__line">A program offered by</span>
+          <span class="strip__band">Your hospital</span>
+          <span class="strip__line">to help make your stay more comfortable</span>
+        </span>
+        <p class="forhosp__note">What volunteers tell patients: “This is a program offered by the hospital to help make your stay more comfortable.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. For volunteers -->
+  <section class="section on-ivory forvol">
+    <div class="wrap forvol__grid">
+      <figure class="forvol__quote" data-reveal>
+        <blockquote>
+          <p>Connecting with patients is what drives this volunteer’s interest in medicine, and their goal of becoming a physician who pairs compassion with clinical skill,</p>
+          <p class="forvol__words">“{STUDENT.quote}”</p>
+        </blockquote>
+        <figcaption>{STUDENT.who}</figcaption>
+      </figure>
+      <div class="stack forvol__cta" data-reveal style="--i:1">
+        <h2>You bring the speaker. <span class="lit">They pick the song.</span></h2>
+        <p class="lede">You get step-by-step training, so you always know how to start. Students, pre-health or not, and community members are welcome.</p>
+        <p><a class="key key--ink" href={url(ROUTES.volunteer)}>Volunteer <Icon name="arrow" /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Donate -->
+  <section class="section on-yellow give">
+    <div class="wrap give__grid" data-reveal>
+      <h2>Keep the music playing.</h2>
+      <div class="stack">
+        <p class="lede">Your gift funds volunteer training and brings Healing Beats to new communities. We are a registered 501(c)(3) nonprofit, and donations are tax-deductible.</p>
+        <p><a class="key key--ink" href={url(ROUTES.donate)}>Donate <Icon name="arrow" /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Start a chapter -->
+  <section class="on-maroon chapter">
+    <div class="wrap chapter__row">
+      <p>No Healing Beats near you? Bring it to your local hospital.</p>
+      <a class="link" href={url(ROUTES.chapter)}><span>Start a chapter</span><Icon name="arrow" /></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: clip;
+  }
+  .hero__photo {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: min(27.5rem, 54svh);
+    background: var(--red);
+  }
+  .hero__photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+    mix-blend-mode: multiply;
+    filter: contrast(1.08);
+  }
+  /* Print screen and the melt into solid red */
+  .hero__photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgb(197 40 28 / 0) 30%, rgb(197 40 28 / 0.82) 68%, var(--red) 94%),
+      radial-gradient(circle, rgb(94 15 12 / 0.55) 0.9px, transparent 1.3px) 0 0 / 5px 5px;
+  }
+  .hero__body {
+    position: relative;
+    padding-top: min(13.5rem, 25svh);
+    padding-bottom: var(--s-6);
+  }
+  .hero__title {
+    font-size: var(--text-hero);
+    line-height: 0.88;
+  }
+  .hero__title span {
+    display: block;
+  }
+  .hero__lede {
+    margin-top: var(--s-4);
+  }
+  .hero__choices {
+    display: grid;
+    gap: var(--s-4);
+    margin-top: var(--s-5);
+  }
+  .hero__more {
+    margin-top: var(--s-3);
+    text-decoration: underline;
+  }
+  .hero__credit {
+    position: absolute;
+    top: 0.6rem;
+    right: var(--gutter);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__title span,
+    .hero__lede,
+    .hero__choices,
+    .hero__more {
+      animation: rise 0.9s var(--ease-out) backwards;
+    }
+    .hero__title span:nth-child(2) { animation-delay: 0.1s; }
+    .hero__lede { animation-delay: 0.2s; }
+    .hero__choices { animation-delay: 0.3s; }
+    .hero__more { animation-delay: 0.4s; }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+  }
+
+  @media (min-width: 56.25em) {
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      min-height: min(47rem, calc(100svh - var(--header-h) - 3.5rem));
+    }
+    .hero__photo {
+      position: relative;
+      grid-column: 2;
+      grid-row: 1;
+      height: auto;
+    }
+    .hero__photo :global(img) {
+      position: absolute;
+      inset: 0;
+      object-position: 38% 30%;
+    }
+    .hero__photo::after {
+      background:
+        linear-gradient(to right, var(--red) 0, rgb(197 40 28 / 0) 34%),
+        radial-gradient(circle, rgb(94 15 12 / 0.55) 1px, transparent 1.5px) 0 0 / 6px 6px;
+    }
+    .hero__body {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      width: auto;
+      margin: 0;
+      padding: var(--s-7) var(--s-6) var(--s-7) max(var(--gutter), calc((100vw - var(--wrap)) / 2));
+    }
+    .hero__choices {
+      grid-template-columns: 1fr 1fr;
+      max-width: 44rem;
+    }
+    .hero__choices :global(.select__label) {
+      font-size: 1.5rem;
+    }
+    .hero__credit {
+      top: auto;
+      bottom: 0.75rem;
+    }
+  }
+  @media (min-width: 75em) {
+    .hero {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+    .hero__title {
+      font-size: 5.5rem;
+    }
+    .hero__title span {
+      white-space: nowrap;
+    }
+  }
+
+  /* ---------- Now playing ---------- */
+  .playing {
+    display: block;
+    text-decoration: none;
+    --focus: var(--yellow);
+  }
+  .playing__row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 3.5rem;
+  }
+  .playing__text {
+    margin-right: auto;
+  }
+  .playing__text b {
+    display: block;
+    color: var(--yellow);
+  }
+  @media (min-width: 30em) {
+    .playing__text b {
+      display: inline;
+      margin-right: 0.6em;
+    }
+  }
+  .playing :global(.playing__icon) {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--yellow);
+  }
+  .playing__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 1.1rem;
+  }
+  .playing__bars i {
+    width: 4px;
+    height: 100%;
+    background: var(--yellow);
+    transform-origin: bottom;
+    transform: scaleY(0.5);
+  }
+  .playing__bars i:nth-child(2) { transform: scaleY(0.9); }
+  .playing__bars i:nth-child(3) { transform: scaleY(0.35); }
+  .playing__bars i:nth-child(4) { transform: scaleY(0.7); }
+  @media (prefers-reduced-motion: no-preference) {
+    .playing__bars i {
+      animation: bars 1.1s ease-in-out infinite alternate;
+    }
+    .playing__bars i:nth-child(2) { animation-duration: 0.8s; animation-delay: -0.3s; }
+    .playing__bars i:nth-child(3) { animation-duration: 1.3s; animation-delay: -0.6s; }
+    .playing__bars i:nth-child(4) { animation-duration: 0.95s; animation-delay: -0.1s; }
+  }
+  @keyframes bars {
+    from { transform: scaleY(0.25); }
+    to { transform: scaleY(1); }
+  }
+
+  /* ---------- How a visit works ---------- */
+  .visit__grid {
+    display: grid;
+    gap: var(--s-7);
+  }
+  .steps {
+    margin-top: var(--s-6);
+    display: grid;
+    gap: var(--s-5);
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--s-4);
+    align-items: start;
+  }
+  .step h3 {
+    padding-top: 0.55rem;
+  }
+  .step p {
+    margin-top: var(--s-2);
+    max-width: 30rem;
+  }
+  .step .cap {
+    transition-delay: calc(var(--i, 0) * 90ms + 250ms);
+  }
+  .visit__deck {
+    display: grid;
+    justify-items: center;
+  }
+  @media (min-width: 56.25em) {
+    .visit__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      align-items: center;
+      gap: var(--s-8);
+    }
+  }
+
+  /* ---------- Proof ---------- */
+  .proof__figures {
+    display: grid;
+    gap: 0.1em;
+    font-size: var(--text-3xl);
+  }
+  .proof__figure b {
+    font-weight: 900;
+  }
+  .proof__story {
+    margin-top: var(--s-7);
+    display: grid;
+    gap: var(--s-6);
+  }
+  .proof__strip {
+    max-width: 20rem;
+    padding: var(--s-2);
+    border-radius: var(--radius);
+    background: var(--maroon);
+    transform: rotate(-2deg);
+  }
+  .proof__strip .strip__band {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+  }
+  .proof__quote p {
+    font-size: var(--text-lg);
+    line-height: 1.45;
+    max-width: var(--measure);
+  }
+  .proof__quote blockquote {
+    margin: var(--s-4) 0 0;
+    font-stretch: 72%;
+    font-weight: 800;
+    font-size: var(--text-xl);
+    line-height: 1.1;
+    color: var(--yellow);
+    max-width: 26rem;
+    text-wrap: balance;
+  }
+  .proof__quote figcaption {
+    margin-top: var(--s-3);
+    font-size: var(--text-sm);
+  }
+  @media (min-width: 56.25em) {
+    .proof__figures {
+      font-size: var(--text-hero);
+    }
+    .proof__story {
+      grid-template-columns: 22rem 1fr;
+      align-items: center;
+      gap: var(--s-8);
+    }
+  }
+
+  /* ---------- Who it helps ---------- */
+  .helps__rows {
+    margin-top: var(--s-6);
+    border-top: 3px solid var(--ink);
+  }
+  .helps__row {
+    display: grid;
+    gap: var(--s-2);
+    padding-block: var(--s-5);
+    border-bottom: 1px solid var(--rule);
+  }
+  .helps__row dt {
+    font-stretch: 62%;
+    font-weight: 900;
+    font-size: 2.4rem;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .helps__answer {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr;
+    gap: var(--s-2);
+    font-weight: 700;
+  }
+  .helps__answer :global(svg) {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.2em;
+    color: var(--red);
+  }
+  @media (min-width: 56.25em) {
+    .helps__row {
+      grid-template-columns: 15rem 1fr 1fr;
+      gap: var(--s-6);
+      align-items: start;
+    }
+    .helps__row dt {
+      font-size: 3rem;
+    }
+  }
+
+  /* ---------- For hospitals ---------- */
+  .forhosp__grid {
+    display: grid;
+    gap: var(--s-7);
+  }
+  .forhosp__list {
+    display: grid;
+    gap: var(--s-3);
+    margin-block: var(--s-5);
+  }
+  .forhosp__list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: var(--s-3);
+  }
+  .forhosp__list :global(svg) {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-top: 0.15em;
+    color: var(--yellow);
+  }
+  .forhosp__label {
+    max-width: 24rem;
+  }
+  .forhosp__label .strip {
+    transform: rotate(1.5deg);
+  }
+  .forhosp__label .strip__band {
+    font-size: 2.3rem;
+    text-transform: uppercase;
+  }
+  .forhosp__note {
+    margin-top: var(--s-5);
+    font-size: var(--text-sm);
+    max-width: 22rem;
+  }
+  @media (min-width: 56.25em) {
+    .forhosp__grid {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      align-items: center;
+      gap: var(--s-8);
+    }
+  }
+
+  /* ---------- For volunteers ---------- */
+  .forvol__grid {
+    display: grid;
+    gap: var(--s-7);
+  }
+  .forvol__quote blockquote {
+    margin: 0;
+    font-size: var(--text-lg);
+    line-height: 1.45;
+    max-width: 30rem;
+  }
+  .forvol__words {
+    margin-top: var(--s-3);
+    font-stretch: 72%;
+    font-weight: 800;
+    font-size: var(--text-xl);
+    line-height: 1.1;
+    color: var(--red);
+    text-wrap: balance;
+  }
+  .forvol__quote figcaption {
+    margin-top: var(--s-4);
+    font-size: var(--text-sm);
+  }
+  @media (min-width: 56.25em) {
+    .forvol__grid {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--s-8);
+    }
+    .forvol__cta {
+      order: -1;
+    }
+  }
+
+  /* ---------- Donate ---------- */
+  .give__grid {
+    display: grid;
+    gap: var(--s-5);
+  }
+  .give h2 {
+    font-size: var(--text-3xl);
+  }
+  @media (min-width: 56.25em) {
+    .give__grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: var(--s-8);
+    }
+  }
+
+  /* ---------- Start a chapter ---------- */
+  .chapter__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-2) var(--s-6);
+    padding-block: var(--s-5);
+  }
+  .chapter__row .link {
+    font-stretch: 78%;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+</style>

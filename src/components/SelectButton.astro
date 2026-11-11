@@ -1,0 +1,109 @@
+---
+/**
+ * The hero's audience choice: a plain button. When it is hovered, focused or
+ * pressed it lights up yellow, and a 45 slides in where the arrow was and spins.
+ */
+import Icon from './Icon.astro';
+interface Props {
+  href: string;
+  label: string;
+}
+const { href, label } = Astro.props;
+---
+<a class="select" href={href}>
+  <span class="select__label">{label}</span>
+  <span class="select__end" aria-hidden="true">
+    <Icon name="arrow" class="select__arrow" />
+    <span class="select__disc"></span>
+  </span>
+</a>
+
+<style>
+  .select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    min-height: 4.25rem;
+    padding: 0.8rem 1rem 0.7rem 1.25rem;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--ivory);
+    color: var(--ink);
+    text-decoration: none;
+    box-shadow: 0 4px 0 var(--ivory-shade), 0 14px 22px -12px rgb(26 18 16 / 0.6);
+    transition: background-color 0.25s var(--ease-out), transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .select__label {
+    font-stretch: 68%;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 1.85rem);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .select__end {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    flex: none;
+  }
+  .select :global(.select__arrow) {
+    width: 1.6rem;
+    height: 1.6rem;
+    transition: transform 0.35s var(--ease-out), opacity 0.2s;
+  }
+  .select__disc {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, var(--ink) 0 7%, var(--red) 7.5% 34%, transparent 34.5%),
+      repeating-radial-gradient(circle, #1a1210 0 2px, #3a2d2a 2px 3px);
+    transform: translateX(5rem);
+    transition: transform 0.5s var(--ease-out);
+  }
+  .select__disc::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - 1px);
+    top: 20%;
+    width: 2px;
+    height: 9%;
+    background: var(--ivory);
+  }
+  .select:hover,
+  .select:focus-visible,
+  .select:active {
+    background: var(--yellow);
+    box-shadow: 0 4px 0 var(--yellow-deep), 0 14px 22px -12px rgb(26 18 16 / 0.6);
+  }
+  .select:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--yellow-deep), 0 6px 10px -8px rgb(26 18 16 / 0.6);
+  }
+  .select:hover :global(.select__arrow),
+  .select:focus-visible :global(.select__arrow),
+  .select:active :global(.select__arrow) {
+    transform: translateX(-1rem);
+    opacity: 0;
+  }
+  .select:hover .select__disc,
+  .select:focus-visible .select__disc,
+  .select:active .select__disc {
+    transform: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .select:hover .select__disc,
+    .select:focus-visible .select__disc,
+    .select:active .select__disc {
+      animation: select-spin 1.8s linear 0.5s infinite;
+    }
+  }
+  @keyframes select-spin {
+    to { transform: rotate(360deg); }
+  }
+</style>

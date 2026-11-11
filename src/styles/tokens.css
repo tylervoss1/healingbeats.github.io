@@ -1,0 +1,67 @@
+/* Design tokens: the single source for colour, type, space and motion. */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("../assets/fonts/archivo-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../assets/fonts/courier-prime-latin-700.woff2") format("woff2");
+}
+
+:root {
+  /* Colour: the jukebox panel */
+  --red: #c5281c;
+  --red-deep: #a41f15;
+  --maroon: #5e0f0c;
+  --ink: #1a1210;
+  --ivory: #fff6e0;
+  --ivory-shade: #f0e2bc;
+  --yellow: #ffc531;
+  --yellow-deep: #b8860b;
+
+  /* Type */
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-strip: "Courier Prime", "Courier New", monospace;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.45rem, 1.1rem + 1.5vw, 1.9rem);
+  --text-2xl: clamp(2.5rem, 1.6rem + 4.4vw, 4rem);
+  --text-3xl: clamp(3.1rem, 1.5rem + 7.6vw, 5rem);
+  --text-hero: clamp(3.75rem, 0.6rem + 15.2vw, 6rem);
+
+  /* Space: one rhythm */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 6.5rem;
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
+  --wrap: 74rem;
+  --measure: 34rem;
+
+  /* Shape and motion */
+  --radius: 8px;
+  --radius-lg: 14px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --header-h: 3.75rem;
+}
+
+@media (min-width: 56.25em) {
+  :root {
+    --header-h: 4.5rem;
+  }
+}

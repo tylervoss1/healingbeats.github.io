@@ -1,0 +1,223 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { url, ROUTES, NAV } from '../lib/url';
+
+const here = Astro.url.pathname.replace(/\/?$/, '/');
+const isCurrent = (href: string) => here === url(href);
+---
+<header class="site-header on-red">
+  <div class="site-header__bar wrap">
+    <a class="site-header__logo" href={url(ROUTES.home)} aria-label="Healing Beats Volunteers, home">
+      <Logo />
+    </a>
+
+    <nav class="site-header__nav" aria-label="Main">
+      <ul>
+        {NAV.map((item) => (
+          <li><a href={url(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="key site-header__donate" href={url(ROUTES.donate)} aria-current={isCurrent(ROUTES.donate) ? 'page' : undefined}>Donate</a>
+
+    <a class="site-header__toggle" href="#footer-nav" data-menu-open aria-haspopup="dialog" aria-controls="site-menu">
+      <Icon name="menu" />
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</header>
+
+<dialog class="menu on-maroon" id="site-menu" aria-label="Menu">
+  <div class="menu__top">
+    <a class="menu__logo" href={url(ROUTES.home)} aria-label="Healing Beats Volunteers, home"><Logo hole="var(--maroon)" /></a>
+    <button class="menu__close" type="button" data-menu-close>
+      <Icon name="close" />
+      <span class="sr-only">Close menu</span>
+    </button>
+  </div>
+  <nav aria-label="Menu">
+    <ul class="menu__list">
+      <li><a href={url(ROUTES.home)} aria-current={isCurrent(ROUTES.home) ? 'page' : undefined}>Home</a></li>
+      {NAV.map((item) => (
+        <li><a href={url(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+  <a class="key menu__donate" href={url(ROUTES.donate)}>Donate</a>
+</dialog>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: box-shadow 0.3s;
+  }
+  :global(.is-scrolled) .site-header {
+    box-shadow: 0 1px 0 var(--maroon), 0 10px 24px -14px rgb(26 18 16 / 0.7);
+  }
+  .site-header__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: var(--header-h);
+  }
+  .site-header__logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-right: auto;
+    text-decoration: none;
+  }
+  .site-header__nav {
+    display: none;
+  }
+  .site-header__donate {
+    min-height: 2.75rem;
+    padding-inline: 1.1rem;
+  }
+  .site-header__toggle {
+    display: grid;
+    place-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 2px solid var(--ivory);
+    border-radius: var(--radius);
+  }
+  .site-header__toggle :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  @media (min-width: 56.25em) {
+    .site-header__toggle {
+      display: none;
+    }
+    .site-header__nav {
+      display: block;
+      margin-right: var(--s-4);
+    }
+    .site-header__nav ul {
+      display: flex;
+      gap: 0.25rem;
+    }
+    .site-header__nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding: 0 0.85rem;
+      border-radius: var(--radius);
+      font-stretch: 78%;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .site-header__nav a:hover {
+      background: var(--red-deep);
+    }
+    .site-header__nav a[aria-current='page'] {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+  }
+
+  /* Full-height menu sheet */
+  .menu {
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0 var(--gutter) var(--s-6);
+    border: 0;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .menu[open] {
+    display: flex;
+  }
+  .menu::backdrop {
+    background: rgb(26 18 16 / 0.6);
+  }
+  .menu__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+    flex: none;
+  }
+  .menu__logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-decoration: none;
+  }
+  .menu__close {
+    display: grid;
+    place-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 2px solid var(--ivory);
+    border-radius: var(--radius);
+    background: none;
+    cursor: pointer;
+  }
+  .menu__close :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .menu__list {
+    margin-top: var(--s-5);
+    border-top: 1px solid var(--rule);
+  }
+  .menu__list a {
+    display: flex;
+    align-items: center;
+    min-height: 4.25rem;
+    border-bottom: 1px solid var(--rule);
+    font-stretch: 62%;
+    font-weight: 900;
+    font-size: 2.6rem;
+    line-height: 1;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .menu__list a[aria-current='page'] {
+    color: var(--yellow);
+  }
+  .menu__donate {
+    margin-top: auto;
+    min-height: 3.5rem;
+    font-size: 1.25rem;
+  }
+  .menu__list + .menu__donate,
+  nav + .menu__donate {
+    margin-top: var(--s-6);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .menu[open] {
+      animation: sheet-in 0.45s var(--ease-out);
+    }
+    .menu[open] .menu__list li {
+      animation: row-in 0.55s var(--ease-out) backwards;
+      animation-delay: calc(60ms * var(--n, 0) + 80ms);
+    }
+    .menu__list li:nth-child(2) { --n: 1; }
+    .menu__list li:nth-child(3) { --n: 2; }
+    .menu__list li:nth-child(4) { --n: 3; }
+    .menu__list li:nth-child(5) { --n: 4; }
+  }
+  @keyframes sheet-in {
+    from { clip-path: inset(0 0 100% 0); }
+    to { clip-path: inset(0); }
+  }
+  @keyframes row-in {
+    from { opacity: 0; transform: translateY(0.75rem); }
+  }
+</style>
