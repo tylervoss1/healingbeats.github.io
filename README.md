@@ -32,10 +32,10 @@ npm run build && npm run preview
 
 ## Deploying
 
-`.github/workflows/deploy.yml` builds the site and publishes it to GitHub Pages on every push to `main`.
+`.github/workflows/deploy.yml` builds the site and publishes it to GitHub Pages on every push to `main` or `claude/wizardly-thompson-bp2q41`.
 
 1. In the repository, open Settings, then Pages, and set Source to "GitHub Actions".
-2. Push or merge to `main`.
+2. Push to one of those branches. The branch must be the repository's default branch, or be allowed in the `github-pages` environment settings.
 
 The workflow reads the site address from the Pages settings, so the same code works at the `github.io` address and at a custom domain.
 
