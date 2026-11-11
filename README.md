@@ -44,7 +44,7 @@ The workflow reads the site address from the Pages settings, so the same code wo
 The design was made with [Impeccable](https://impeccable.style). After a fresh clone, restore its engine and editor hooks with:
 
 ```bash
-npx impeccable install -y --providers=claude --scope=project
+npx impeccable install -y --providers=claude --scope=project --force
 ```
 
 ## Fonts

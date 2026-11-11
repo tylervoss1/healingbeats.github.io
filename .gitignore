@@ -12,7 +12,7 @@ dist/
 # Claude Code: per-machine settings (Impeccable's installer writes its hooks here)
 .claude/settings.local.json
 
-# Impeccable engine binary: platform-specific, restored by `npx impeccable install`
+# Impeccable engine binary: platform-specific, restored by `npx impeccable install --force`
 .claude/skills/impeccable/scripts/bin/
 
 # impeccable-ignore-start
