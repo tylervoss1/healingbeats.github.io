@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T02:16:06+00:00",
+  "title": "Design System: Healing Beats Volunteers",
+  "extensions": {
+    "colorMeta": {
+      "red": {
+        "role": "primary",
+        "displayName": "Cherry Red",
+        "canonical": "#c5281c",
+        "tonalRamp": [
+          "oklch(15% 0.070 30)",
+          "oklch(27% 0.107 30)",
+          "oklch(38% 0.141 30)",
+          "oklch(50% 0.179 30)",
+          "oklch(61% 0.176 30)",
+          "oklch(73% 0.138 30)",
+          "oklch(84% 0.104 30)",
+          "oklch(95% 0.070 30)"
+        ]
+      },
+      "red-deep": {
+        "role": "primary",
+        "displayName": "Deep Red",
+        "canonical": "#a41f15",
+        "tonalRamp": [
+          "oklch(15% 0.061 29)",
+          "oklch(27% 0.094 29)",
+          "oklch(38% 0.124 29)",
+          "oklch(50% 0.156 29)",
+          "oklch(61% 0.154 29)",
+          "oklch(73% 0.121 29)",
+          "oklch(84% 0.091 29)",
+          "oklch(95% 0.061 29)"
+        ]
+      },
+      "maroon": {
+        "role": "primary",
+        "displayName": "Maroon",
+        "canonical": "#5e0f0c",
+        "tonalRamp": [
+          "oklch(15% 0.040 28)",
+          "oklch(27% 0.062 28)",
+          "oklch(38% 0.082 28)",
+          "oklch(50% 0.103 28)",
+          "oklch(61% 0.101 28)",
+          "oklch(73% 0.080 28)",
+          "oklch(84% 0.060 28)",
+          "oklch(95% 0.040 28)"
+        ]
+      },
+      "yellow": {
+        "role": "secondary",
+        "displayName": "Lit Yellow",
+        "canonical": "#ffc531",
+        "tonalRamp": [
+          "oklch(15% 0.059 85)",
+          "oklch(27% 0.090 85)",
+          "oklch(38% 0.119 85)",
+          "oklch(50% 0.150 85)",
+          "oklch(61% 0.147 85)",
+          "oklch(73% 0.116 85)",
+          "oklch(84% 0.087 85)",
+          "oklch(95% 0.059 85)"
+        ]
+      },
+      "yellow-deep": {
+        "role": "secondary",
+        "displayName": "Lamp Shade",
+        "canonical": "#b8860b",
+        "tonalRamp": [
+          "oklch(15% 0.048 82)",
+          "oklch(27% 0.073 82)",
+          "oklch(38% 0.096 82)",
+          "oklch(50% 0.122 82)",
+          "oklch(61% 0.120 82)",
+          "oklch(73% 0.094 82)",
+          "oklch(84% 0.071 82)",
+          "oklch(95% 0.048 82)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1a1210",
+        "tonalRamp": [
+          "oklch(15% 0.005 34)",
+          "oklch(27% 0.008 34)",
+          "oklch(38% 0.010 34)",
+          "oklch(50% 0.013 34)",
+          "oklch(61% 0.013 34)",
+          "oklch(73% 0.010 34)",
+          "oklch(84% 0.008 34)",
+          "oklch(95% 0.005 34)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Strip Ivory",
+        "canonical": "#fff6e0",
+        "tonalRamp": [
+          "oklch(15% 0.011 88)",
+          "oklch(27% 0.017 88)",
+          "oklch(38% 0.022 88)",
+          "oklch(50% 0.028 88)",
+          "oklch(61% 0.027 88)",
+          "oklch(73% 0.022 88)",
+          "oklch(84% 0.016 88)",
+          "oklch(95% 0.011 88)"
+        ]
+      },
+      "ivory-shade": {
+        "role": "neutral",
+        "displayName": "Ivory Shade",
+        "canonical": "#f0e2bc",
+        "tonalRamp": [
+          "oklch(15% 0.019 90)",
+          "oklch(27% 0.029 90)",
+          "oklch(38% 0.038 90)",
+          "oklch(50% 0.048 90)",
+          "oklch(61% 0.047 90)",
+          "oklch(73% 0.037 90)",
+          "oklch(84% 0.028 90)",
+          "oklch(95% 0.019 90)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home hero headline and the proof figures on wide screens. Set with font-stretch: 62%."
+      },
+      "headline-lg": {
+        "displayName": "Headline large",
+        "purpose": "Inner page H1, figure runs, closing band H2."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section H2."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "H3, step titles, FAQ questions, pull quotes. Set with font-stretch: 72%."
+      },
+      "body-lg": {
+        "displayName": "Body large",
+        "purpose": "The lede under a heading, max 34rem."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text, max 34rem."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Captions, attributions, hints, legal lines."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Key labels. Set with font-stretch: 75%, uppercase."
+      },
+      "strip": {
+        "displayName": "Strip",
+        "purpose": "Typewriter lines on title strips and one-line printed readouts."
+      }
+    },
+    "shadows": [
+      {
+        "name": "key-lip",
+        "value": "0 3px 0 var(--yellow-deep), 0 8px 14px -6px rgb(26 18 16 / 0.45)",
+        "purpose": "Resting yellow key. Ink keys use a #000 lip, ivory caps use var(--ivory-shade)."
+      },
+      {
+        "name": "key-pressed",
+        "value": "0 1px 0 var(--yellow-deep), 0 3px 6px -4px rgb(26 18 16 / 0.45)",
+        "purpose": "Pressed key, paired with translateY(2px)."
+      },
+      {
+        "name": "large-key-lip",
+        "value": "0 4px 0 var(--ivory-shade), 0 14px 22px -12px rgb(26 18 16 / 0.6)",
+        "purpose": "Hero select buttons; the lip turns var(--yellow-deep) when lit."
+      },
+      {
+        "name": "lit-halo",
+        "value": "0 3px 0 var(--yellow-deep), 0 0 0 5px rgb(255 197 49 / 0.25), 0 8px 12px -6px rgb(26 18 16 / 0.4)",
+        "purpose": "A cap that has lit."
+      },
+      {
+        "name": "deck-plinth",
+        "value": "0 6px 0 var(--maroon), 0 30px 40px -24px rgb(26 18 16 / 0.55)",
+        "purpose": "The record deck only."
+      },
+      {
+        "name": "header-scrolled",
+        "value": "0 1px 0 var(--maroon), 0 10px 24px -14px rgb(26 18 16 / 0.7)",
+        "purpose": "Sticky header once the page has moved 8px."
+      },
+      {
+        "name": "field-focus",
+        "value": "0 0 0 4px var(--yellow)",
+        "purpose": "Focus ring on form fields, replacing the outline."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one easing curve, for reveals, presses and slides."
+      },
+      {
+        "name": "press",
+        "value": "0.18s",
+        "purpose": "Key hover and press transitions."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity 0.7s, transform 0.9s from translateY(1.25rem), 90ms stagger",
+        "purpose": "Content entering view. Runs only under prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "hero-rise",
+        "value": "0.9s from translateY(1.5rem), 100ms stagger",
+        "purpose": "Hero headline lines, lede and actions at load."
+      },
+      {
+        "name": "cap-light",
+        "value": "0.5s, delayed 90ms per step plus 250ms",
+        "purpose": "Step keys lighting in sequence."
+      },
+      {
+        "name": "disc-slide",
+        "value": "transform 0.5s, then 1.8s linear spin",
+        "purpose": "The 45 entering a select button and spinning."
+      },
+      {
+        "name": "deck-progress",
+        "value": "record rotate(calc(var(--p) * 900deg)); arm 4deg to 25deg",
+        "purpose": "Record and tonearm follow the deck scroll progress through the viewport."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone-wide",
+        "value": "30em"
+      },
+      {
+        "name": "form-columns",
+        "value": "40em"
+      },
+      {
+        "name": "wide",
+        "value": "56.25em"
+      },
+      {
+        "name": "hero-wide",
+        "value": "75em"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Key",
+      "kind": "button",
+      "refersTo": "key",
+      "description": "The main action on red, ink, maroon and ivory surfaces. One per section.",
+      "html": "<div class=\"ds-key-stage\"><a class=\"ds-key\" href=\"#\">Partner with us <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></a></div>",
+      "css": ".ds-key-stage { padding: 2rem; background: var(--red); } .ds-key { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0.55rem 1.25rem 0.5rem; border: 0; border-radius: var(--radius); background: var(--yellow); color: var(--ink); font-family: var(--font-body); font-stretch: 75%; font-weight: 800; font-size: 1.0625rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; cursor: pointer; box-shadow: 0 3px 0 var(--yellow-deep), 0 8px 14px -6px rgb(26 18 16 / 0.45); transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), background-color 0.18s; } .ds-key svg { width: 1.1em; height: 1.1em; flex: none; } .ds-key:hover { background: #ffd255; } .ds-key:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--yellow-deep), 0 3px 6px -4px rgb(26 18 16 / 0.45); } .ds-key:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ink Key",
+      "kind": "button",
+      "refersTo": "key-ink",
+      "description": "The main action on the yellow surface, and on ivory.",
+      "html": "<div class=\"ds-key-ink-stage\"><a class=\"ds-key-ink\" href=\"#\">Donate <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></a></div>",
+      "css": ".ds-key-ink-stage { padding: 2rem; background: var(--yellow); } .ds-key-ink { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0.55rem 1.25rem 0.5rem; border: 0; border-radius: var(--radius); background: var(--ink); color: var(--ivory); font-family: var(--font-body); font-stretch: 75%; font-weight: 800; font-size: 1.0625rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; cursor: pointer; box-shadow: 0 3px 0 #000, 0 8px 14px -6px rgb(26 18 16 / 0.45); transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), background-color 0.18s; } .ds-key-ink svg { width: 1.1em; height: 1.1em; flex: none; } .ds-key-ink:hover { background: #2c211d; } .ds-key-ink:active { transform: translateY(2px); box-shadow: 0 1px 0 #000; } .ds-key-ink:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }"
+    },
+    {
+      "name": "Select Button",
+      "kind": "custom",
+      "refersTo": "select-button",
+      "description": "The hero audience choice. Lights yellow on hover, focus or press; a 45 slides in and spins.",
+      "html": "<div class=\"ds-select-stage\"><a class=\"ds-select\" href=\"#\"><span class=\"ds-select-label\">Volunteer at the bedside</span><span class=\"ds-select-end\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg><span class=\"ds-select-disc\"></span></span></a></div>",
+      "css": ".ds-select-stage { padding: 2rem; background: var(--red); max-width: 26rem; } .ds-select { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.25rem; padding: 0.8rem 1rem 0.7rem 1.25rem; overflow: hidden; border-radius: var(--radius); background: var(--ivory); color: var(--ink); font-family: var(--font-body); text-decoration: none; box-shadow: 0 4px 0 var(--ivory-shade), 0 14px 22px -12px rgb(26 18 16 / 0.6); transition: background-color 0.25s var(--ease-out), transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out); } .ds-select-label { font-stretch: 68%; font-weight: 800; font-size: clamp(1.5rem, 1.2rem + 1.4vw, 1.85rem); line-height: 1.02; } .ds-select-end { position: relative; display: grid; place-items: center; width: 3rem; height: 3rem; flex: none; } .ds-select-end svg { width: 1.6rem; height: 1.6rem; transition: transform 0.35s var(--ease-out), opacity 0.2s; } .ds-select-disc { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, var(--ink) 0 7%, var(--red) 7.5% 34%, transparent 34.5%), repeating-radial-gradient(circle, #1a1210 0 2px, #3a2d2a 2px 3px); transform: translateX(5rem); transition: transform 0.5s var(--ease-out); } .ds-select-disc::after { content: ''; position: absolute; left: calc(50% - 1px); top: 20%; width: 2px; height: 9%; background: var(--ivory); } .ds-select:hover, .ds-select:focus-visible, .ds-select:active { background: var(--yellow); box-shadow: 0 4px 0 var(--yellow-deep), 0 14px 22px -12px rgb(26 18 16 / 0.6); } .ds-select:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; } .ds-select:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--yellow-deep), 0 6px 10px -8px rgb(26 18 16 / 0.6); } .ds-select:hover .ds-select-end svg, .ds-select:focus-visible .ds-select-end svg { transform: translateX(-1rem); opacity: 0; } .ds-select:hover .ds-select-disc, .ds-select:focus-visible .ds-select-disc { transform: none; } @media (prefers-reduced-motion: no-preference) { .ds-select:hover .ds-select-disc, .ds-select:focus-visible .ds-select-disc { animation: ds-select-spin 1.8s linear 0.5s infinite; } } @keyframes ds-select-spin { to { transform: rotate(360deg); } }"
+    },
+    {
+      "name": "Title Strip",
+      "kind": "card",
+      "refersTo": "strip",
+      "description": "The printed card: typewriter lines around a red band. Shown as an illustration on its maroon mat.",
+      "html": "<div class=\"ds-strip-stage\"><div class=\"ds-strip-mat\"><span class=\"ds-strip\"><span class=\"ds-strip-line\">A program offered by</span><span class=\"ds-strip-band\">Your hospital</span><span class=\"ds-strip-line\">to help make your stay more comfortable</span></span></div></div>",
+      "css": ".ds-strip-stage { padding: 2.5rem 2rem; background: var(--ink); } .ds-strip-mat { max-width: 24rem; padding: 0.5rem; border-radius: var(--radius); background: var(--maroon); transform: rotate(-2deg); } .ds-strip { display: block; background: var(--ivory); color: var(--ink); border-block: 3px solid var(--red); border-radius: 3px; padding-block: 0.5rem 0.45rem; } .ds-strip-line { display: block; padding-inline: 0.85rem; font-family: var(--font-strip); font-weight: 700; font-size: 0.8125rem; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.3; } .ds-strip-band { display: block; margin-block: 0.4rem; padding: 0.5rem 0.85rem 0.42rem; background: var(--red); color: var(--ivory); font-family: var(--font-body); font-stretch: 68%; font-weight: 800; font-size: 2.3rem; line-height: 1.02; text-transform: uppercase; }"
+    },
+    {
+      "name": "Title Strip, lit",
+      "kind": "card",
+      "refersTo": "strip-band-lit",
+      "description": "The strip for the song that is playing or chosen: ink rules, yellow band.",
+      "html": "<div class=\"ds-striplit-stage\"><span class=\"ds-striplit\"><span class=\"ds-striplit-line\">Requested 2019</span><span class=\"ds-striplit-band\">Stardust</span><span class=\"ds-striplit-line\">Nat King Cole</span></span></div>",
+      "css": ".ds-striplit-stage { padding: 2rem; background: var(--red); } .ds-striplit { display: block; max-width: 20rem; background: var(--ivory); color: var(--ink); border-block: 3px solid var(--ink); border-radius: 3px; padding-block: 0.5rem 0.45rem; } .ds-striplit-line { display: block; padding-inline: 0.85rem; font-family: var(--font-strip); font-weight: 700; font-size: 0.8125rem; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.3; } .ds-striplit-band { display: block; margin-block: 0.4rem; padding: 0.5rem 0.85rem 0.42rem; background: var(--yellow); color: var(--ink); font-family: var(--font-body); font-stretch: 68%; font-weight: 800; font-size: 2.4rem; line-height: 1.02; text-transform: uppercase; }"
+    },
+    {
+      "name": "Step with Cap",
+      "kind": "custom",
+      "refersTo": "cap",
+      "description": "A numbered step. The round key lights yellow when the step enters view; hover here to see it lit.",
+      "html": "<div class=\"ds-step-stage\"><div class=\"ds-step\"><span class=\"ds-cap\">1</span><div><h3 class=\"ds-step-title\">Knock and ask</h3><p class=\"ds-step-body\">Every visit starts with the patient&rsquo;s say-so.</p></div></div></div>",
+      "css": ".ds-step-stage { padding: 2rem; background: var(--ivory); color: var(--ink); font-family: var(--font-body); } .ds-step { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; align-items: start; } .ds-cap { display: grid; place-content: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--ink); color: var(--ivory); font-stretch: 75%; font-weight: 900; font-size: 1.25rem; box-shadow: 0 3px 0 #000, 0 8px 12px -6px rgb(26 18 16 / 0.4); transition: background-color 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out); } .ds-step:hover .ds-cap { background: var(--yellow); color: var(--ink); box-shadow: 0 3px 0 var(--yellow-deep), 0 0 0 5px rgb(255 197 49 / 0.25), 0 8px 12px -6px rgb(26 18 16 / 0.4); } .ds-step-title { margin: 0; padding-top: 0.55rem; font-stretch: 72%; font-weight: 800; font-size: var(--text-xl); line-height: 1.05; } .ds-step-body { margin: 0.5rem 0 0; font-size: var(--text-base); line-height: 1.55; max-width: 30rem; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Form field on the yellow surface: bold label, 2px ink border, yellow focus ring.",
+      "html": "<div class=\"ds-field-stage\"><div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-field-email\">Work email</label><input class=\"ds-field-input\" id=\"ds-field-email\" type=\"email\" placeholder=\"you@hospital.org\" /></div></div>",
+      "css": ".ds-field-stage { padding: 2rem; background: var(--ivory); color: var(--ink); font-family: var(--font-body); } .ds-field { display: grid; gap: 0.35rem; max-width: 24rem; } .ds-field-label { font-weight: 700; font-size: var(--text-base); } .ds-field-input { width: 100%; min-height: 3.25rem; padding: 0.7rem 0.85rem; border: 2px solid var(--ink); border-radius: var(--radius); background: #fffdf6; color: var(--ink); font: inherit; font-size: 1.0625rem; caret-color: var(--red); transition: box-shadow 0.2s, border-color 0.2s; } .ds-field-input:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--yellow); } .ds-field-input[aria-invalid='true'] { border-color: var(--red); background: #fff1ec; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky red header from 900px: condensed uppercase links, yellow tab for the current page, Donate key.",
+      "html": "<div class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">For hospitals</a><a class=\"ds-nav-link\" href=\"#\" aria-current=\"page\">Volunteer</a><a class=\"ds-nav-link\" href=\"#\">About</a><a class=\"ds-nav-donate\" href=\"#\">Donate</a></div>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 0.25rem; height: 4.5rem; padding-inline: 1.5rem; background: var(--red); color: var(--ivory); font-family: var(--font-body); } .ds-nav-link { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 0.85rem; border-radius: var(--radius); color: inherit; font-stretch: 78%; font-weight: 700; font-size: 1.0625rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: background-color 0.2s, color 0.2s; } .ds-nav-link:hover { background: var(--red-deep); } .ds-nav-link[aria-current='page'] { background: var(--yellow); color: var(--ink); } .ds-nav-link:focus-visible, .ds-nav-donate:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; } .ds-nav-donate { display: inline-flex; align-items: center; min-height: 2.75rem; margin-left: 1rem; padding: 0.55rem 1.1rem 0.5rem; border-radius: var(--radius); background: var(--yellow); color: var(--ink); font-stretch: 75%; font-weight: 800; font-size: 1.0625rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; box-shadow: 0 3px 0 var(--yellow-deep), 0 8px 14px -6px rgb(26 18 16 / 0.45); transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), background-color 0.18s; } .ds-nav-donate:hover { background: #ffd255; } .ds-nav-donate:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--yellow-deep), 0 3px 6px -4px rgb(26 18 16 / 0.45); }"
+    },
+    {
+      "name": "Ruled Row",
+      "kind": "custom",
+      "description": "Repeated items as ruled rows, not cards: 3px opening rule, hairline between rows, name in the lit colour.",
+      "html": "<div class=\"ds-rows\"><div class=\"ds-row\"><div class=\"ds-row-who\">Patients</div><div>Hospital stays are isolating.</div><div class=\"ds-row-answer\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg><span>A song they chose, and someone who stays to hear why.</span></div></div><div class=\"ds-row\"><div class=\"ds-row-who\">Nurses</div><div>Nurses are stretched thin.</div><div class=\"ds-row-answer\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg><span>Volunteers meet those needs.</span></div></div></div>",
+      "css": ".ds-rows { padding: 0 2rem 2rem; background: var(--ivory); color: var(--ink); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.55; } .ds-rows > .ds-row:first-child { border-top: 3px solid currentColor; } .ds-row { display: grid; grid-template-columns: 11rem 1fr 1fr; gap: 2rem; align-items: start; padding-block: 1.5rem; border-bottom: 1px solid rgb(26 18 16 / 0.22); } .ds-row-who { font-stretch: 62%; font-weight: 900; font-size: 2.4rem; line-height: 1; text-transform: uppercase; color: var(--red); } .ds-row-answer { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.5rem; font-weight: 700; } .ds-row-answer svg { width: 1.3rem; height: 1.3rem; margin-top: 0.2em; color: var(--red); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Title Strips",
+    "overview": "The site is the selection panel of a jukebox. Whole regions are flooded in one flat colour, the way a cabinet is enamelled. Things you can press are keys with a visible lip. Things that are printed (a song, an artist, a year) sit on ivory title strips with a red band. When something is chosen it lights yellow. A record and a tonearm appear once, where the film lives.\n\nThe system is loud in colour and plain in structure. Headings are heavy condensed capitals set tight and large. Reading text is an ordinary grotesque at a comfortable size, left aligned, in a narrow measure. Sections are separated by a change of flood, never by boxes, and lists are ruled rows, never cards.\n\nThe one photograph is treated as print: the still of a volunteer at a patient's door is multiplied onto red and covered with a dot screen, so it reads as red ink on the same panel. The site does not use a full-colour stock hero over icon cards.",
+    "keyCharacteristics": [
+      "Five flat surfaces (red, ink, maroon, ivory, yellow); each section takes exactly one, edge to edge.",
+      "One lit colour per surface, used for what is pressable, current, or the stressed half of a headline.",
+      "Heavy condensed uppercase headings (Archivo, width 62, weight 900) against a plain reading face.",
+      "Pressable things look pressable: a solid lip under the key that shortens when pressed.",
+      "Printed title strips in typewriter capitals carry songs, names and dates.",
+      "Motion follows native scroll and state. Nothing takes over scrolling and nothing plays sound unasked."
+    ],
+    "rules": [
+      {
+        "name": "The One Flood Rule",
+        "body": "Every section sets one of five surfaces (red, ink, maroon, ivory, yellow) and fills the full width with it, flat. The surface sets text, lit colour, hairline and focus ring together. Neighbouring sections change surface; nothing inside a section sits on a different coloured panel except a title strip, the deck, or a yellow confirmation block.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Lamp Rule",
+        "body": "Each surface has a single lit colour: yellow on red, ink and maroon; red on ivory; ink on yellow. Use it for what can be pressed, what is current, and the stressed part of a headline or figure. Do not introduce a second accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Large Lamp Rule",
+        "body": "Yellow on cherry red is 3.6:1. It is allowed there only for type that counts as large under WCAG (bold at 18.66px and up, in practice the title size and above) and for icons. Small text on red is ivory (5.3:1). Yellow text of any size is fine on ink (11.7:1) and maroon (8.6:1).",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Widths Rule",
+        "body": "Width carries hierarchy. 62 is for uppercase headings and figures. 68 to 78 is for titles, key labels and navigation. 100 is for reading. Do not set running text condensed, and do not set a heading at normal width.",
+        "section": "typography"
+      },
+      {
+        "name": "The Typewriter Rule",
+        "body": "Courier Prime appears only where something is printed on a card: the lines of a title strip, the now-playing readout, a registration number. A strip's top line (a year, \"A program offered by\") is part of the card and stays with its band. Typewriter text never floats above a section heading as a label.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Kicker Rule",
+        "body": "Headings stand alone. No small uppercase label, eyebrow or tag sits above an H1 or H2. If a section needs context, the lede under the heading gives it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Left Edge Rule",
+        "body": "Headings, text and actions share the left edge of their column. Centring is reserved for objects (the deck in its column, a glyph inside a round key).",
+        "section": "layout"
+      },
+      {
+        "name": "The Key Lip Rule",
+        "body": "A lip means \"this can be pressed\". It goes straight down, never sideways, uses the deeper shade of the object's own colour, and shortens on press. Do not put a lip or a shadow on text blocks, sections or images.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do give every section one of the five surfaces and let it run edge to edge. Change surface between neighbours.",
+      "Do use the surface's lit colour for the stressed half of a headline, as in \"Three problems. One program.\"",
+      "Do make every action a key with a lip, or a quiet link with the arrow. Keep one main key per section.",
+      "Do keep tap targets at 2.75rem (44px) or more, reading text at 1.0625rem, and contrast at WCAG 2.2 AA.",
+      "Do set songs, names and dates on a title strip when they are the subject, with the lit variant for the one that is playing.",
+      "Do separate repeated items with a 3px opening rule and hairlines.",
+      "Do gate entrance, scroll-linked and looping motion behind `prefers-reduced-motion: no-preference`, and leave scrolling to the browser.",
+      "Do draw new icons in the authored set's style: 24px grid, 2.25px round strokes."
+    ],
+    "donts": [
+      "Don't put a kicker, eyebrow or small label above a heading. A strip's own top line is not a kicker and stays.",
+      "Don't set small yellow text on cherry red. Below title size, text on red is ivory.",
+      "Don't add a second accent colour or a sixth surface.",
+      "Don't use gradient blobs, colour washes or glass. Gradients are only the dot screen, the photo's melt into red, and vinyl.",
+      "Don't use emoji or an icon library. Icons come from the authored set.",
+      "Don't lay content out as a repeated grid of three cards, or centre every block.",
+      "Don't set Courier Prime anywhere except printed strips and one-line printed readouts.",
+      "Don't put a lip or shadow on anything that cannot be pressed, apart from the deck and the scrolled header.",
+      "Don't hijack scroll, autoplay sound, or load the video before the visitor presses play.",
+      "Don't show a photo in full colour. Photographs are printed in red ink with the dot screen."
+    ]
+  }
+}

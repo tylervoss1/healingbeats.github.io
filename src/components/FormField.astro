@@ -55,7 +55,7 @@ const describedBy = [hint ? `${id}-hint` : null, `${id}-error`].filter(Boolean).
     padding: 0.7rem 0.85rem;
     border: 2px solid var(--ink);
     border-radius: var(--radius);
-    background: #fffdf6;
+    background: var(--paper);
     color: var(--ink);
     font-size: 1.0625rem;
     caret-color: var(--red);
@@ -82,6 +82,6 @@ const describedBy = [hint ? `${id}-hint` : null, `${id}-error`].filter(Boolean).
   }
   .field :global([aria-invalid='true']) {
     border-color: var(--red);
-    background: #fff1ec;
+    background: var(--paper-error);
   }
 </style>

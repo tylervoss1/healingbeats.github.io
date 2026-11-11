@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import SelectButton from '../components/SelectButton.astro';
 import Deck from '../components/Deck.astro';
 import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
 import StepList from '../components/StepList.astro';
 import ProblemRows from '../components/ProblemRows.astro';
 import heroPhoto from '../assets/hero-knock.jpg';
@@ -68,14 +69,14 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
   <!-- 3. Proof -->
   <section class="section on-red proof" id="stardust">
     <div class="wrap">
-      <h2 class="proof__figures" data-reveal>
+      <h2 class="figures proof__figures" data-reveal>
         {IMPACT.map((item) => (
-          <span class="proof__figure"><b class="lit">{item.value}</b> {item.label}</span>
+          <span><b>{item.value}</b> {item.label}</span>
         ))}
       </h2>
 
       <div class="proof__story">
-        <div class="proof__strip" data-reveal>
+        <div class="strip-art" data-reveal>
           <span class="strip strip--lit">
             <span class="strip__line">Requested {STARDUST.year}</span>
             <span class="strip__band">{STARDUST.song}</span>
@@ -84,7 +85,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
         </div>
         <figure class="proof__quote" data-reveal style="--i:1">
           <p>On a medical-surgical unit in Michigan, a patient asked for “Stardust.” It had been about fifteen years since they had heard it. They sang along.</p>
-          <blockquote>“{STARDUST.quote}”</blockquote>
+          <blockquote class="pull">“{STARDUST.quote}”</blockquote>
           <figcaption>Patient, {STARDUST.where}, {STARDUST.year}</figcaption>
         </figure>
       </div>
@@ -105,17 +106,17 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
       <div class="stack" data-reveal>
         <h2>Your program. <span class="lit">Your name on it.</span></h2>
         <p class="lede">Healing Beats is turnkey and white-label. It is built to feel like your hospital’s own initiative: low cost, high impact, and low burden on staff.</p>
-        <ul class="forhosp__list">
+        <ul class="ticks forhosp__list">
           {INCLUDED.map((item) => <li><Icon name="check" /><span>{item}</span></li>)}
         </ul>
         <p><a class="key" href={url(ROUTES.hospitals)}>Partner with us <Icon name="arrow" /></a></p>
       </div>
       <div class="forhosp__label" data-reveal style="--i:1">
-        <span class="strip">
+        <span class="strip-art"><span class="strip">
           <span class="strip__line">A program offered by</span>
           <span class="strip__band">Your hospital</span>
           <span class="strip__line">to help make your stay more comfortable</span>
-        </span>
+        </span></span>
         <p class="forhosp__note">What volunteers tell patients: “This is a program offered by the hospital to help make your stay more comfortable.”</p>
       </div>
     </div>
@@ -127,7 +128,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
       <figure class="forvol__quote" data-reveal>
         <blockquote>
           <p>Connecting with patients is what drives this volunteer’s interest in medicine, and their goal of becoming a physician who pairs compassion with clinical skill,</p>
-          <p class="forvol__words">“{STUDENT.quote}”</p>
+          <p class="pull">“{STUDENT.quote}”</p>
         </blockquote>
         <figcaption>{STUDENT.who}</figcaption>
       </figure>
@@ -140,15 +141,13 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
   </section>
 
   <!-- 7. Donate -->
-  <section class="section on-yellow give">
-    <div class="wrap give__grid" data-reveal>
-      <h2>Keep the music playing.</h2>
-      <div class="stack">
-        <p class="lede">Your gift funds volunteer training and brings Healing Beats to new communities. We are a registered 501(c)(3) nonprofit, and donations are tax-deductible.</p>
-        <p><a class="key key--ink" href={url(ROUTES.donate)}>Donate <Icon name="arrow" /></a></p>
-      </div>
-    </div>
-  </section>
+  <CtaBand
+    tone="yellow"
+    title="Keep the music playing."
+    body="Your gift funds volunteer training and brings Healing Beats to new communities. We are a registered 501(c)(3) nonprofit, and donations are tax-deductible."
+    href={url(ROUTES.donate)}
+    label="Donate"
+  />
 
   <!-- 8. Start a chapter -->
   <section class="on-maroon chapter">
@@ -374,29 +373,10 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
   }
 
   /* ---------- Proof ---------- */
-  .proof__figures {
-    display: grid;
-    gap: 0.1em;
-    font-size: var(--text-3xl);
-  }
-  .proof__figure b {
-    font-weight: 900;
-  }
   .proof__story {
     margin-top: var(--s-7);
     display: grid;
     gap: var(--s-6);
-  }
-  .proof__strip {
-    max-width: 20rem;
-    padding: var(--s-2);
-    border-radius: var(--radius);
-    background: var(--maroon);
-    transform: rotate(-2deg);
-  }
-  .proof__strip .strip__band {
-    font-size: 2.4rem;
-    text-transform: uppercase;
   }
   .proof__quote p {
     font-size: var(--text-lg);
@@ -405,13 +385,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
   }
   .proof__quote blockquote {
     margin: var(--s-4) 0 0;
-    font-stretch: 72%;
-    font-weight: 800;
-    font-size: var(--text-xl);
-    line-height: 1.1;
-    color: var(--yellow);
     max-width: 26rem;
-    text-wrap: balance;
   }
   .proof__quote figcaption {
     margin-top: var(--s-3);
@@ -439,30 +413,14 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
     gap: var(--s-7);
   }
   .forhosp__list {
-    display: grid;
-    gap: var(--s-3);
     margin-block: var(--s-5);
-  }
-  .forhosp__list li {
-    display: grid;
-    grid-template-columns: 1.5rem 1fr;
-    gap: var(--s-3);
-  }
-  .forhosp__list :global(svg) {
-    width: 1.4rem;
-    height: 1.4rem;
-    margin-top: 0.15em;
-    color: var(--yellow);
   }
   .forhosp__label {
     max-width: 24rem;
   }
-  .forhosp__label .strip {
+  .forhosp__label .strip-art {
+    display: block;
     transform: rotate(1.5deg);
-  }
-  .forhosp__label .strip__band {
-    font-size: 2.3rem;
-    text-transform: uppercase;
   }
   .forhosp__note {
     margin-top: var(--s-5);
@@ -488,14 +446,8 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
     line-height: 1.45;
     max-width: 30rem;
   }
-  .forvol__words {
+  .forvol__quote .pull {
     margin-top: var(--s-3);
-    font-stretch: 72%;
-    font-weight: 800;
-    font-size: var(--text-xl);
-    line-height: 1.1;
-    color: var(--red);
-    text-wrap: balance;
   }
   .forvol__quote figcaption {
     margin-top: var(--s-4);
@@ -509,22 +461,6 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from
     }
     .forvol__cta {
       order: -1;
-    }
-  }
-
-  /* ---------- Donate ---------- */
-  .give__grid {
-    display: grid;
-    gap: var(--s-5);
-  }
-  .give h2 {
-    font-size: var(--text-3xl);
-  }
-  @media (min-width: 56.25em) {
-    .give__grid {
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      gap: var(--s-8);
     }
   }
 

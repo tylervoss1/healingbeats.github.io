@@ -27,6 +27,12 @@
   --ivory-shade: #f0e2bc;
   --yellow: #ffc531;
   --yellow-deep: #b8860b;
+  --yellow-hover: #ffd255;
+  --ink-hover: #2c211d;
+  --ink-lip: #000;
+  --paper: #fffdf6;
+  --paper-error: #fff1ec;
+  --groove: #33282a;
 
   /* Type */
   --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;

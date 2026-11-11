@@ -232,7 +232,7 @@ h3 {
   color: var(--ink);
   font-stretch: 75%;
   font-weight: 800;
-  font-size: 1.0625rem;
+  font-size: var(--text-base);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
@@ -242,7 +242,7 @@ h3 {
 }
 
 .key:hover {
-  background: #ffd255;
+  background: var(--yellow-hover);
 }
 
 .key:active {
@@ -253,15 +253,15 @@ h3 {
 .key--ink {
   background: var(--ink);
   color: var(--ivory);
-  box-shadow: 0 3px 0 #000, 0 8px 14px -6px rgb(26 18 16 / 0.45);
+  box-shadow: 0 3px 0 var(--ink-lip), 0 8px 14px -6px rgb(26 18 16 / 0.45);
 }
 
 .key--ink:hover {
-  background: #2c211d;
+  background: var(--ink-hover);
 }
 
 .key--ink:active {
-  box-shadow: 0 1px 0 #000;
+  box-shadow: 0 1px 0 var(--ink-lip);
 }
 
 .key svg {
@@ -290,7 +290,7 @@ h3 {
 .on-ivory .cap {
   background: var(--ink);
   color: var(--ivory);
-  box-shadow: 0 3px 0 #000, 0 8px 12px -6px rgb(26 18 16 / 0.4);
+  box-shadow: 0 3px 0 var(--ink-lip), 0 8px 12px -6px rgb(26 18 16 / 0.4);
 }
 
 .cap.is-lit,
@@ -511,4 +511,17 @@ h3 {
   line-height: 1.1;
   color: var(--lit);
   text-wrap: balance;
+}
+
+/* ---------- Reduced motion: state changes are instant, nothing travels ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
 }

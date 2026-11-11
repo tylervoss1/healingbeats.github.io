@@ -20,7 +20,7 @@ const year = new Date().getFullYear();
     </nav>
 
     <div class="site-footer__contact">
-      <p class="strip-type">Contact</p>
+      <p class="site-footer__label">Contact</p>
       <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
       <p>{SITE.founder}, founder</p>
     </div>
@@ -66,8 +66,8 @@ const year = new Date().getFullYear();
   .site-footer__contact p + p {
     margin-top: var(--s-2);
   }
-  .site-footer__contact .strip-type {
-    color: var(--yellow);
+  .site-footer__label {
+    font-weight: 700;
   }
   .site-footer__contact a {
     display: inline-flex;
