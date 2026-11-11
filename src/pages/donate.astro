@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import DonationEmbed from '../components/DonationEmbed.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../config';
+import { STARDUST } from '../data/facts';
+
+const funds = [
+  { title: 'Volunteer training', body: 'So every volunteer walks in confident, careful and ready to listen.' },
+  { title: 'New communities', body: 'So more hospitals, and more patients, get a visitor with a song.' },
+];
+---
+<Base
+  title="Donate"
+  description="Your gift funds volunteer training and brings Healing Beats to new communities. Healing Beats Volunteers is a 501(c)(3) nonprofit, EIN 84-3530929. Donations are tax-deductible."
+>
+  <PageHero
+    title="Keep the music"
+    lit="playing."
+    lede="A gift to Healing Beats puts a trained volunteer, a speaker and a patient’s favorite song in the same room."
+    action={{ href: '#give', label: 'Donate' }}
+  />
+
+  <section class="section on-ivory">
+    <div class="wrap split">
+      <h2 class="sticky" data-reveal>What your gift <span class="lit">funds</span></h2>
+      <ul class="ticks">
+        {funds.map((item, i) => (
+          <li data-reveal style={`--i:${i}`}>
+            <Icon name="check" />
+            <div><strong>{item.title}</strong><p>{item.body}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section on-red">
+    <div class="wrap split split--even split--center">
+      <div class="strip-art" data-reveal>
+        <span class="strip strip--lit">
+          <span class="strip__line">Requested {STARDUST.year}</span>
+          <span class="strip__band">{STARDUST.song}</span>
+          <span class="strip__line">{STARDUST.artist}</span>
+        </span>
+      </div>
+      <figure class="stack" data-reveal style="--i:1">
+        <p class="lede">A patient in Michigan asked for a song they had not heard in about fifteen years. They sang along.</p>
+        <blockquote class="pull">“{STARDUST.quote}”</blockquote>
+        <figcaption>Patient, {STARDUST.where}, {STARDUST.year}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section on-yellow" id="give">
+    <div class="wrap split">
+      <div class="stack sticky">
+        <h2>Donate</h2>
+        <p class="lede">{SITE.name} is a registered 501(c)(3) nonprofit. Your donation is tax-deductible.</p>
+        <p class="strip-type">EIN {SITE.ein}</p>
+      </div>
+      <DonationEmbed />
+    </div>
+  </section>
+</Base>
+
+<style>
+  blockquote {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StepList from '../components/StepList.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import FormField from '../components/FormField.astro';
+import Icon from '../components/Icon.astro';
+import { url, ROUTES } from '../lib/url';
+import { VISIT_STEPS, TRAINING_TOPICS, STUDENT } from '../data/facts';
+
+const whoFor = [
+  { title: 'College and pre-health students', body: 'Real time with patients, before the white coat.' },
+  { title: 'Community members', body: 'Anyone with a free afternoon and a good ear.' },
+  { title: 'No musical skill needed', body: 'The patient’s song plays from a phone or tablet. You bring the company.' },
+];
+---
+<Base
+  title="Volunteer"
+  description="Volunteer at the hospital bedside with Healing Beats: knock, ask what the patient would like to hear, play it, and stay for the story. See what a shift is like and sign up."
+>
+  <PageHero
+    title="Volunteer"
+    lit="at the bedside."
+    lede="You knock, ask what they would like to hear, press play, and stay for the story. We train you for every part of it."
+    action={{ href: '#interest', label: 'Volunteer' }}
+  />
+
+  <section class="section on-ivory">
+    <div class="wrap split">
+      <div class="stack sticky">
+        <h2 data-reveal>What a shift <span class="lit">is like</span></h2>
+        <p class="lede">You go room to room with a small speaker. Each visit follows the same three steps, so you always know how to begin.</p>
+      </div>
+      <div>
+        <StepList steps={VISIT_STEPS} />
+        <p class="shift__after" data-reveal>Then you watch what a song can do. Patients relax. A foot taps under the blanket. Some sing, some dance, some cry at a song they have not heard in fifteen years. One patient was taken straight back to a Boy Scout trip in the ’80s.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-ink">
+    <div class="wrap split">
+      <div class="stack sticky">
+        <h2 data-reveal>Training that <span class="lit">has your back</span></h2>
+        <p class="lede">A structured, step-by-step process so you feel confident before your first knock.</p>
+      </div>
+      <ul class="ticks">
+        {TRAINING_TOPICS.map((topic, i) => (
+          <li data-reveal style={`--i:${i}`}>
+            <Icon name="check" />
+            <div><strong>{topic.title}</strong><p>{topic.body}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section on-ivory">
+    <div class="wrap split split--even split--center">
+      <div>
+        <h2 data-reveal>Who it <span class="lit">is for</span></h2>
+        <ul class="whofor">
+          {whoFor.map((item, i) => (
+            <li data-reveal style={`--i:${i}`}><h3>{item.title}</h3><p>{item.body}</p></li>
+          ))}
+        </ul>
+      </div>
+      <figure class="stack" data-reveal>
+        <blockquote class="stack">
+          <p class="lede">Connecting with patients is what drives this volunteer’s interest in medicine, and their goal of becoming a physician who pairs compassion with clinical skill,</p>
+          <p class="pull">“{STUDENT.quote}”</p>
+        </blockquote>
+        <figcaption>{STUDENT.who}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section on-red">
+    <div class="wrap split split--even">
+      <h2 data-reveal>Where you <span class="lit">can serve</span></h2>
+      <div class="stack" data-reveal style="--i:1">
+        <p class="lede">Healing Beats has run at UnityPoint Health – Meriter in Madison, Wisconsin, and at Henry Ford West Bloomfield Hospital in Michigan. Tell us where you are and we will point you to the nearest program.</p>
+        <p class="confirm">Current locations to confirm.</p>
+        <p><a class="link" href={url(ROUTES.chapter)}><span>No program near you? Start a chapter</span><Icon name="arrow" /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-yellow" id="interest">
+    <div class="wrap split">
+      <div class="stack sticky">
+        <h2>Volunteer</h2>
+        <p class="lede">Leave your details and we will be in touch about training and the nearest program.</p>
+      </div>
+      <InquiryForm
+        subject="Volunteer interest"
+        submitLabel="Sign me up"
+        successTitle="You are on the list."
+        successBody="We will email you about training and the nearest program."
+      >
+        <FormField name="name" label="Your name" autocomplete="name" required />
+        <FormField name="email" label="Email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" required />
+        <FormField name="location" label="City and state" autocomplete="address-level2" required />
+        <FormField name="affiliation" label="School or affiliation" autocomplete="organization" />
+        <FormField name="preferred" label="Preferred hospital or area" required />
+        <FormField name="heard" label="How did you hear about us?" />
+      </InquiryForm>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .shift__after {
+    margin-top: var(--s-6);
+    padding-top: var(--s-5);
+    border-top: 3px solid var(--ink);
+    font-size: var(--text-lg);
+    line-height: 1.45;
+    max-width: var(--measure);
+  }
+  .whofor {
+    margin-top: var(--s-6);
+    display: grid;
+    gap: var(--s-5);
+  }
+  .whofor p {
+    margin-top: var(--s-1);
+  }
+</style>

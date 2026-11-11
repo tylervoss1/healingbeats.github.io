@@ -1,0 +1,79 @@
+---
+/** Questions as native disclosures, so they work without JavaScript. */
+interface Props {
+  items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+---
+<div class="faq">
+  {items.map((item, i) => (
+    <details class="faq__item" open={i === 0}>
+      <summary><span>{item.q}</span><i aria-hidden="true"></i></summary>
+      <p>{item.a}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq {
+    border-top: 3px solid currentColor;
+  }
+  .faq__item {
+    border-bottom: 1px solid var(--rule);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    min-height: 4rem;
+    padding-block: var(--s-3);
+    cursor: pointer;
+    list-style: none;
+    font-stretch: 72%;
+    font-weight: 800;
+    font-size: var(--text-xl);
+    line-height: 1.08;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary i {
+    position: relative;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: none;
+    border-radius: 50%;
+    background: var(--ink);
+    transition: background-color 0.25s;
+  }
+  summary i::before,
+  summary i::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1rem;
+    height: 2.5px;
+    margin: -1.25px 0 0 -0.5rem;
+    background: var(--ivory);
+    transition: transform 0.3s var(--ease-out), background-color 0.25s;
+  }
+  summary i::after {
+    transform: rotate(90deg);
+  }
+  details[open] summary i {
+    background: var(--yellow);
+  }
+  details[open] summary i::before,
+  details[open] summary i::after {
+    background: var(--ink);
+  }
+  details[open] summary i::after {
+    transform: rotate(0deg);
+  }
+  .faq__item p {
+    max-width: var(--measure);
+    padding-bottom: var(--s-5);
+  }
+</style>

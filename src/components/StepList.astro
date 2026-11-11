@@ -1,0 +1,58 @@
+---
+/** A numbered sequence. Each key lights as its step scrolls into view. */
+interface Props {
+  steps: readonly { title: string; body: string }[];
+  /** Lay the steps side by side on wide screens. */
+  across?: boolean;
+}
+const { steps, across = false } = Astro.props;
+---
+<ol class:list={['steps', { 'steps--across': across }]}>
+  {steps.map((step, i) => (
+    <li class="step" data-reveal style={`--i:${i}`}>
+      <span class="cap" data-light>{i + 1}</span>
+      <div>
+        <h3>{step.title}</h3>
+        <p>{step.body}</p>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .steps {
+    display: grid;
+    gap: var(--s-5);
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--s-4);
+    align-items: start;
+  }
+  .step h3 {
+    padding-top: 0.55rem;
+  }
+  .step p {
+    margin-top: var(--s-2);
+    max-width: 30rem;
+  }
+  .step .cap {
+    transition-delay: calc(var(--i, 0) * 90ms + 250ms);
+  }
+  @media (min-width: 56.25em) {
+    .steps--across {
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+      gap: var(--s-6);
+    }
+    .steps--across .step {
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+      padding-top: var(--s-4);
+      border-top: 3px solid currentColor;
+    }
+    .steps--across .step h3 {
+      padding-top: 0;
+    }
+  }
+</style>

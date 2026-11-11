@@ -1,0 +1,59 @@
+---
+/** "Three problems, one program": who, what is hard, what changes. */
+import Icon from './Icon.astro';
+interface Props {
+  rows: { who: string; problem: string; answer: string }[];
+}
+const { rows } = Astro.props;
+---
+<dl class="rows">
+  {rows.map((row, i) => (
+    <div class="rows__row" data-reveal style={`--i:${i}`}>
+      <dt>{row.who}</dt>
+      <dd>{row.problem}</dd>
+      <dd class="rows__answer"><Icon name="arrow" /><span>{row.answer}</span></dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .rows {
+    border-top: 3px solid currentColor;
+  }
+  .rows__row {
+    display: grid;
+    gap: var(--s-2);
+    padding-block: var(--s-5);
+    border-bottom: 1px solid var(--rule);
+  }
+  .rows__row dt {
+    font-stretch: 62%;
+    font-weight: 900;
+    font-size: 2.4rem;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--lit);
+  }
+  .rows__answer {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr;
+    gap: var(--s-2);
+    font-weight: 700;
+  }
+  .rows__answer :global(svg) {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.2em;
+    color: var(--lit);
+  }
+  @media (min-width: 56.25em) {
+    .rows__row {
+      grid-template-columns: 15rem 1fr 1fr;
+      gap: var(--s-6);
+      align-items: start;
+    }
+    .rows__row dt {
+      font-size: 3rem;
+    }
+  }
+</style>

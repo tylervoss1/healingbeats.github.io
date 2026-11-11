@@ -1,0 +1,215 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StepList from '../components/StepList.astro';
+import ProblemRows from '../components/ProblemRows.astro';
+import Faq from '../components/Faq.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import FormField from '../components/FormField.astro';
+import Icon from '../components/Icon.astro';
+import { IMPACT, UNITYPOINT_2022 } from '../data/facts';
+
+const solves = [
+  {
+    who: 'For patients',
+    problem: 'Long, quiet days. Loneliness, anxiety and pain, and the sense of being a diagnosis instead of a person.',
+    answer: 'A visitor with time, a song they chose, and a real conversation.',
+  },
+  {
+    who: 'For volunteers',
+    problem: 'Volunteers who are unsure what to do in a patient’s room drift away.',
+    answer: 'A clear routine and a natural way to start talking keeps them confident and coming back.',
+  },
+  {
+    who: 'For nurses',
+    problem: 'Emotional and social needs go unmet when the floor is busy.',
+    answer: 'Trained volunteers meet those needs and offer distraction during routine procedures.',
+  },
+];
+
+const included = [
+  { title: 'Turnkey volunteer training', body: 'A structured, step-by-step course built on 6+ years at the bedside.' },
+  { title: 'Implementation guidance', body: 'A plan for recruiting, training and launching, so your team is never guessing.' },
+  { title: 'Materials in your brand', body: 'Everything is custom-branded to your hospital’s name and style.' },
+  { title: 'Ongoing consultation', body: 'We stay available after launch as the program grows.' },
+];
+
+const timeline = [
+  { title: 'Recruit', body: 'We help you find volunteers, from local colleges and pre-health programs to your existing volunteer pool.' },
+  { title: 'Train', body: 'Volunteers learn patient autonomy, emotional sensitivity, infection control and how to find each patient’s needs.' },
+  { title: 'Launch', body: 'Start on the units you choose, with branded materials and a simple routine for every visit.' },
+  { title: 'Ongoing support', body: 'We check in, answer questions and help you expand to more units.' },
+];
+
+const faq = [
+  {
+    q: 'What does it cost?',
+    a: 'Healing Beats is built to be low cost. The equipment is a phone or tablet and a small Bluetooth speaker. Pricing depends on the size of your program, so tell us about your hospital and we will talk it through.',
+  },
+  {
+    q: 'How much staff time does it take?',
+    a: 'Very little, by design. We supply the training, the materials and the launch plan. Your team’s time goes to recruiting and scheduling volunteers, as it does today.',
+  },
+  {
+    q: 'How do you handle infection control?',
+    a: 'Infection control is part of every volunteer’s training. Volunteers follow your hospital’s hand-hygiene and isolation policies, and equipment is cleaned between rooms.',
+  },
+  {
+    q: 'Which units is it for?',
+    a: 'The program has run on medical-surgical units, where stays can be long and quiet. Together we choose the units where it fits best in your hospital.',
+  },
+  {
+    q: 'How are volunteers supervised?',
+    a: 'Volunteers work inside your existing volunteer services structure and report to your volunteer coordinator. Healing Beats provides their training and ongoing consultation.',
+  },
+];
+---
+<Base
+  title="For Hospitals"
+  description="A turnkey, white-label volunteer program that brings music and companionship to your patients, with low cost and low burden on staff. See what is included and start a conversation."
+>
+  <PageHero
+    title="Bring Healing Beats"
+    lit="to your hospital."
+    lede="A turnkey, white-label volunteer program that meets patients’ emotional and social needs through music and companionship. Low cost, high impact, low burden on your staff."
+    action={{ href: '#inquiry', label: 'Partner with us' }}
+  />
+
+  <section class="section on-ivory">
+    <div class="wrap">
+      <h2 data-reveal>What it solves <span class="lit">on your units</span></h2>
+      <ProblemRows rows={solves} />
+    </div>
+  </section>
+
+  <section class="section on-ink">
+    <div class="wrap split">
+      <h2 class="sticky" data-reveal>What is <span class="lit">included</span></h2>
+      <ul class="ticks">
+        {included.map((item, i) => (
+          <li data-reveal style={`--i:${i}`}>
+            <Icon name="check" />
+            <div><strong>{item.title}</strong><p>{item.body}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section on-ivory">
+    <div class="wrap">
+      <h2 data-reveal>From first call <span class="lit">to first visit</span></h2>
+      <StepList steps={timeline} across />
+    </div>
+  </section>
+
+  <section class="section on-red">
+    <div class="wrap split split--even split--center">
+      <div class="stack" data-reveal>
+        <h2>It carries <span class="lit">your name</span></h2>
+        <p class="lede">Healing Beats is meant to feel like your hospital’s own initiative. Training materials, volunteer guides and patient-facing pieces are branded to your name and style.</p>
+        <p>Volunteers introduce it the same way every time: “This is a program offered by the hospital to help make your stay more comfortable.”</p>
+      </div>
+      <div class="strip-art" data-reveal style="--i:1">
+        <span class="strip">
+          <span class="strip__line">A program offered by</span>
+          <span class="strip__band">Your hospital</span>
+          <span class="strip__line">to help make your stay more comfortable</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-maroon">
+    <div class="wrap">
+      <h2 class="sr-only">Results</h2>
+      <p class="figures" data-reveal>
+        {IMPACT.map((item) => <span><b>{item.value}</b> {item.label}</span>)}
+      </p>
+      <div class="split split--even results">
+        <div class="stack" data-reveal>
+          <h3>One year at UnityPoint Health – Meriter</h3>
+          <dl class="results__list">
+            {UNITYPOINT_2022.map((item) => (
+              <div><dt>{item.value}</dt><dd>{item.label}</dd></div>
+            ))}
+          </dl>
+          <p class="confirm">2022 figures, from a 2023 public webinar. To confirm.</p>
+        </div>
+        <ol class="history" data-reveal style="--i:1">
+          <li><b>2019</b><span>Pilot begins at UnityPoint Health in Madison, Wisconsin.</span></li>
+          <li><b>2021</b><span>The program resumes after COVID.</span></li>
+          <li><b>2023</b><span>Henry Ford West Bloomfield Hospital in Michigan launches in January.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-ivory">
+    <div class="wrap split">
+      <h2 class="sticky" data-reveal>Questions <span class="lit">hospitals ask</span></h2>
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <section class="section on-yellow" id="inquiry">
+    <div class="wrap split">
+      <div class="stack sticky">
+        <h2>Partner with us</h2>
+        <p class="lede">Tell us a little about your hospital. Jake Nitzkin, RN, will reply to set up a conversation.</p>
+      </div>
+      <InquiryForm
+        subject="Hospital inquiry"
+        submitLabel="Send inquiry"
+        successTitle="Thank you. Your inquiry is on its way."
+        successBody="Jake will reply by email to set up a time to talk."
+      >
+        <FormField name="name" label="Your name" autocomplete="name" required />
+        <FormField name="title" label="Your title" autocomplete="organization-title" required />
+        <FormField name="hospital" label="Hospital or health system" autocomplete="organization" required />
+        <FormField name="location" label="City and state" autocomplete="address-level2" required />
+        <FormField name="email" label="Email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" required />
+        <FormField name="phone" label="Phone" type="tel" autocomplete="tel" inputmode="tel" />
+        <FormField name="message" label="What would you like to know?" type="textarea" required />
+      </InquiryForm>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .results {
+    margin-top: var(--s-7);
+  }
+  .results__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-4) var(--s-5);
+    margin-top: var(--s-4);
+  }
+  .results__list dt {
+    font-stretch: 62%;
+    font-weight: 900;
+    font-size: 3.4rem;
+    line-height: 0.95;
+    color: var(--yellow);
+  }
+  .history {
+    display: grid;
+    gap: var(--s-4);
+    border-top: 3px solid var(--ivory);
+    padding-top: var(--s-4);
+  }
+  .history li {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: var(--s-4);
+    align-items: baseline;
+  }
+  .history b {
+    font-stretch: 62%;
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--yellow);
+  }
+</style>

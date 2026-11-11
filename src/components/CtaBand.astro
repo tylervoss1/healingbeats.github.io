@@ -1,0 +1,38 @@
+---
+/** A closing band: one line and one action. */
+import Icon from './Icon.astro';
+interface Props {
+  tone?: 'yellow' | 'maroon' | 'ink';
+  title: string;
+  body?: string;
+  href: string;
+  label: string;
+}
+const { tone = 'yellow', title, body, href, label } = Astro.props;
+---
+<section class:list={['section', 'band', `on-${tone}`]}>
+  <div class="wrap band__grid" data-reveal>
+    <h2>{title}</h2>
+    <div class="stack">
+      {body && <p class="lede">{body}</p>}
+      <p><a class:list={['key', { 'key--ink': tone === 'yellow' }]} href={href}>{label} <Icon name="arrow" /></a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .band__grid {
+    display: grid;
+    gap: var(--s-5);
+  }
+  .band h2 {
+    font-size: var(--text-3xl);
+  }
+  @media (min-width: 56.25em) {
+    .band__grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: var(--s-8);
+    }
+  }
+</style>

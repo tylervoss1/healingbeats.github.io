@@ -15,7 +15,7 @@ export const UNITYPOINT_2022 = [
   { value: '17', label: 'volunteers' },
   { value: '927', label: 'hours at the bedside' },
   { value: '336', label: 'visits' },
-  { value: '36', label: 'patients a week, about' },
+  { value: '36', label: 'patients each week (approx.)' },
 ] as const;
 
 export const STARDUST = {
@@ -59,3 +59,21 @@ export const TRAINING_TOPICS = [
   { title: 'Infection control', body: 'Hand hygiene, equipment cleaning and the precautions your unit expects.' },
   { title: 'Finding each patient’s needs', body: 'Some people want to sing. Some want to talk. Some want quiet company.' },
 ] as const;
+
+export const THREE_PROBLEMS = [
+  {
+    who: 'Patients',
+    problem: 'Hospital stays are isolating. Loneliness, anxiety and pain can leave a person feeling reduced to a diagnosis.',
+    answer: 'A song they chose, and someone who stays to hear why.',
+  },
+  {
+    who: 'Volunteers',
+    problem: 'Many volunteers walk into a patient’s room not knowing what to say or do.',
+    answer: 'The music starts the conversation, and training builds confidence at the bedside.',
+  },
+  {
+    who: 'Nurses',
+    problem: 'Nurses are stretched thin, and emotional and social needs take time they rarely have.',
+    answer: 'Volunteers meet those needs and offer distraction during routine procedures.',
+  },
+];

@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StepList from '../components/StepList.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import FormField from '../components/FormField.astro';
+import Icon from '../components/Icon.astro';
+
+const support = [
+  { title: 'The full training', body: 'The same step-by-step volunteer training our hospital partners use.' },
+  { title: 'Help approaching a hospital', body: 'How to find the right person, and what to bring to the first meeting.' },
+  { title: 'Ready-made materials', body: 'Guides and patient-facing pieces, branded for the hospital you partner with.' },
+  { title: 'Someone to call', body: 'Ongoing consultation from people who have launched the program before.' },
+];
+
+const steps = [
+  { title: 'Tell us about your group', body: 'Who you are, where you are, and which hospital you have in mind.' },
+  { title: 'Plan the approach', body: 'We talk through your hospital and how to bring the idea to its volunteer services team.' },
+  { title: 'Train your first volunteers', body: 'Your founding members complete the Healing Beats training.' },
+  { title: 'Launch', body: 'Start visits with the hospital, with us on call.' },
+];
+---
+<Base
+  title="Start a Chapter"
+  description="Bring Healing Beats to your local hospital. A chapter is a group, often students, that partners with a nearby hospital to run the program, with our training and support."
+>
+  <PageHero
+    title="Start"
+    lit="a chapter."
+    lede="No Healing Beats near you? A chapter is a group, often students, that partners with a local hospital to run the program there."
+    action={{ href: '#chapter', label: 'Start a chapter' }}
+  />
+
+  <section class="section on-ivory">
+    <div class="wrap split">
+      <div class="stack sticky">
+        <h2 data-reveal>What we <span class="lit">give you</span></h2>
+        <p class="lede">You bring the people and the local knowledge. We bring a program that already works.</p>
+      </div>
+      <ul class="ticks">
+        {support.map((item, i) => (
+          <li data-reveal style={`--i:${i}`}>
+            <Icon name="check" />
+            <div><strong>{item.title}</strong><p>{item.body}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section on-ink">
+    <div class="wrap">
+      <h2 data-reveal>Four steps <span class="lit">to your first visit</span></h2>
+      <StepList steps={steps} across />
+      <p class="confirm chapter-note">Chapter details drafted from the program model. To confirm.</p>
+    </div>
+  </section>
+
+  <section class="section on-yellow" id="chapter">
+    <div class="wrap split">
+      <div class="stack sticky">
+        <h2>Start a chapter</h2>
+        <p class="lede">Tell us who you are and where. We will reply with next steps.</p>
+      </div>
+      <InquiryForm
+        subject="Chapter interest"
+        submitLabel="Send"
+        successTitle="Thank you. We have your note."
+        successBody="We will email you about starting a chapter."
+      >
+        <FormField name="name" label="Your name" autocomplete="name" required />
+        <FormField name="email" label="Email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" required />
+        <FormField name="group" label="School or organization" autocomplete="organization" required />
+        <FormField name="location" label="City and state" autocomplete="address-level2" required />
+        <FormField name="hospital" label="Hospital you have in mind" />
+        <FormField name="message" label="Anything else we should know?" type="textarea" />
+      </InquiryForm>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .chapter-note {
+    margin-top: var(--s-6);
+  }
+</style>

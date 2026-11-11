@@ -4,27 +4,12 @@ import Base from '../layouts/Base.astro';
 import SelectButton from '../components/SelectButton.astro';
 import Deck from '../components/Deck.astro';
 import Icon from '../components/Icon.astro';
+import StepList from '../components/StepList.astro';
+import ProblemRows from '../components/ProblemRows.astro';
 import heroPhoto from '../assets/hero-knock.jpg';
 import { url, ROUTES } from '../lib/url';
-import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED } from '../data/facts';
+import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS } from '../data/facts';
 
-const helps = [
-  {
-    who: 'Patients',
-    problem: 'Hospital stays are isolating. Loneliness, anxiety and pain can leave a person feeling reduced to a diagnosis.',
-    answer: 'A song they chose, and someone who stays to hear why.',
-  },
-  {
-    who: 'Volunteers',
-    problem: 'Many volunteers walk into a patient’s room not knowing what to say or do.',
-    answer: 'The music starts the conversation, and training builds confidence at the bedside.',
-  },
-  {
-    who: 'Nurses',
-    problem: 'Nurses are stretched thin, and emotional and social needs take time they rarely have.',
-    answer: 'Volunteers meet those needs and offer distraction during routine procedures.',
-  },
-];
 ---
 <Base
   title="Healing Beats Volunteers | Music and companionship at the hospital bedside"
@@ -72,17 +57,7 @@ const helps = [
     <div class="wrap visit__grid">
       <div class="visit__copy">
         <h2 data-reveal>How a visit works</h2>
-        <ol class="steps">
-          {VISIT_STEPS.map((step, i) => (
-            <li class="step" data-reveal style={`--i:${i}`}>
-              <span class="cap" data-light>{i + 1}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <div class="visit__steps"><StepList steps={VISIT_STEPS} /></div>
       </div>
       <div class="visit__deck">
         <Deck />
@@ -120,15 +95,7 @@ const helps = [
   <section class="section on-ivory helps">
     <div class="wrap">
       <h2 data-reveal>Three problems. <span class="lit">One program.</span></h2>
-      <dl class="helps__rows">
-        {helps.map((row, i) => (
-          <div class="helps__row" data-reveal style={`--i:${i}`}>
-            <dt>{row.who}</dt>
-            <dd class="helps__problem">{row.problem}</dd>
-            <dd class="helps__answer"><Icon name="arrow" /><span>{row.answer}</span></dd>
-          </div>
-        ))}
-      </dl>
+      <div class="helps__rows"><ProblemRows rows={THREE_PROBLEMS} /></div>
     </div>
   </section>
 
@@ -391,26 +358,8 @@ const helps = [
     display: grid;
     gap: var(--s-7);
   }
-  .steps {
+  .visit__steps {
     margin-top: var(--s-6);
-    display: grid;
-    gap: var(--s-5);
-  }
-  .step {
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: var(--s-4);
-    align-items: start;
-  }
-  .step h3 {
-    padding-top: 0.55rem;
-  }
-  .step p {
-    margin-top: var(--s-2);
-    max-width: 30rem;
-  }
-  .step .cap {
-    transition-delay: calc(var(--i, 0) * 90ms + 250ms);
   }
   .visit__deck {
     display: grid;
@@ -482,43 +431,6 @@ const helps = [
   /* ---------- Who it helps ---------- */
   .helps__rows {
     margin-top: var(--s-6);
-    border-top: 3px solid var(--ink);
-  }
-  .helps__row {
-    display: grid;
-    gap: var(--s-2);
-    padding-block: var(--s-5);
-    border-bottom: 1px solid var(--rule);
-  }
-  .helps__row dt {
-    font-stretch: 62%;
-    font-weight: 900;
-    font-size: 2.4rem;
-    line-height: 1;
-    text-transform: uppercase;
-    color: var(--red);
-  }
-  .helps__answer {
-    display: grid;
-    grid-template-columns: 1.4rem 1fr;
-    gap: var(--s-2);
-    font-weight: 700;
-  }
-  .helps__answer :global(svg) {
-    width: 1.3rem;
-    height: 1.3rem;
-    margin-top: 0.2em;
-    color: var(--red);
-  }
-  @media (min-width: 56.25em) {
-    .helps__row {
-      grid-template-columns: 15rem 1fr 1fr;
-      gap: var(--s-6);
-      align-items: start;
-    }
-    .helps__row dt {
-      font-size: 3rem;
-    }
   }
 
   /* ---------- For hospitals ---------- */

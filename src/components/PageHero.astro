@@ -1,0 +1,53 @@
+---
+/** The opening band of an inner page: one H1, one sentence, an optional action. */
+import Icon from './Icon.astro';
+interface Props {
+  title: string;
+  lit?: string;
+  lede: string;
+  action?: { href: string; label: string };
+}
+const { title, lit, lede, action } = Astro.props;
+---
+<section class="page-hero on-red">
+  <div class="wrap">
+    <h1>{title} {lit && <span class="lit">{lit}</span>}</h1>
+    <p class="lede">{lede}</p>
+    {action && <p class="page-hero__action"><a class="key" href={action.href}>{action.label} <Icon name="down" /></a></p>}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding-block: var(--s-7) var(--s-8);
+  }
+  .page-hero h1 {
+    max-width: 16ch;
+  }
+  .page-hero .lede {
+    margin-top: var(--s-4);
+  }
+  .page-hero__action {
+    margin-top: var(--s-5);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .page-hero h1,
+    .page-hero .lede,
+    .page-hero__action {
+      animation: hero-rise 0.9s var(--ease-out) backwards;
+    }
+    .page-hero .lede { animation-delay: 0.1s; }
+    .page-hero__action { animation-delay: 0.2s; }
+  }
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+  }
+  @media (min-width: 56.25em) {
+    .page-hero {
+      padding-block: var(--s-8) var(--s-9);
+    }
+  }
+</style>

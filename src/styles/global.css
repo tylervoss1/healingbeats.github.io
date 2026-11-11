@@ -48,6 +48,12 @@ ol {
   list-style: none;
 }
 
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
 img,
 svg {
   display: block;
@@ -362,7 +368,6 @@ h3 {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  opacity: 0.75;
 }
 
 /* ---------- Scroll reveals (content is visible without JS) ---------- */
@@ -381,6 +386,10 @@ h3 {
 }
 
 /* ---------- Utilities ---------- */
+[hidden] {
+  display: none !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -408,4 +417,98 @@ h3 {
 
 .skip:focus {
   transform: none;
+}
+
+/* ---------- Shared section patterns ---------- */
+.section > .wrap:not(.split) > h2 + * {
+  margin-top: var(--s-6);
+}
+
+.split {
+  display: grid;
+  gap: var(--s-7);
+}
+
+@media (min-width: 56.25em) {
+  .split {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--s-8);
+    align-items: start;
+  }
+  .split--even {
+    grid-template-columns: 1fr 1fr;
+  }
+  .split--center {
+    align-items: center;
+  }
+  .split > .sticky {
+    position: sticky;
+    top: calc(var(--header-h) + var(--s-6));
+  }
+}
+
+/* A run of figures set as a headline, not as cards */
+.figures {
+  display: grid;
+  gap: 0.1em;
+  font-stretch: 62%;
+  font-weight: 900;
+  font-size: var(--text-3xl);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.figures b {
+  color: var(--lit);
+}
+
+/* Ticked list */
+.ticks {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.ticks li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: var(--s-3);
+}
+
+.ticks svg {
+  width: 1.45rem;
+  height: 1.45rem;
+  margin-top: 0.12em;
+  color: var(--lit);
+}
+
+.ticks strong {
+  display: block;
+  font-stretch: 72%;
+  font-weight: 800;
+  font-size: var(--text-xl);
+  line-height: 1.08;
+}
+
+/* Tilted printed strip used as an illustration */
+.strip-art {
+  max-width: 24rem;
+  padding: var(--s-2);
+  border-radius: var(--radius);
+  background: var(--maroon);
+  transform: rotate(-2deg);
+}
+
+.strip-art .strip__band {
+  font-size: 2.3rem;
+  text-transform: uppercase;
+}
+
+/* Pull quote */
+.pull {
+  font-stretch: 72%;
+  font-weight: 800;
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  color: var(--lit);
+  text-wrap: balance;
 }

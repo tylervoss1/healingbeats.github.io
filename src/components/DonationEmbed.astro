@@ -1,0 +1,41 @@
+---
+/**
+ * The donation slot. Set DONATION_EMBED in src/config.ts to switch it on.
+ * With a URL it shows the provider's form; without one it shows how to give today.
+ */
+import Icon from './Icon.astro';
+import { DONATION_EMBED, SITE } from '../config';
+const live = DONATION_EMBED.url !== '';
+---
+{live ? (
+  <div class="give-embed">
+    <iframe src={DONATION_EMBED.url} title={`Donate to ${SITE.name}`} loading="lazy" allow="payment"></iframe>
+    <p><a class="link" href={DONATION_EMBED.url}><span>Open the donation form in a new page</span><Icon name="arrow" /></a></p>
+  </div>
+) : (
+  <div class="give-soon">
+    <h3>Online giving opens soon</h3>
+    <p>Until then, email Jake and he will help you make your gift.</p>
+    <p><a class="key key--ink" href={`mailto:${SITE.email}?subject=${encodeURIComponent('I would like to donate')}`}><Icon name="mail" /> Email to donate</a></p>
+  </div>
+)}
+
+<style>
+  .give-embed iframe {
+    width: 100%;
+    min-height: 44rem;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    background: #fffdf6;
+  }
+  .give-soon {
+    display: grid;
+    gap: var(--s-4);
+    padding: var(--s-6) var(--s-5);
+    border-block: 3px solid var(--ink);
+    background: #fffdf6;
+    color: var(--ink);
+    --lit: var(--red);
+    --focus: var(--ink);
+  }
+</style>

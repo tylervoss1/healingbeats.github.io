@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import StepList from '../components/StepList.astro';
+import ProblemRows from '../components/ProblemRows.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Deck from '../components/Deck.astro';
+import { url, ROUTES } from '../lib/url';
+import { SITE } from '../config';
+import { VISIT_STEPS, THREE_PROBLEMS } from '../data/facts';
+---
+<Base
+  title="About"
+  description="Healing Beats Volunteers creates humanizing healthcare experiences through music and companionship. Meet founder Jake Nitzkin, RN, and see how a visit works."
+>
+  <PageHero
+    title="A song, a chair,"
+    lit="and time to listen."
+    lede={SITE.mission}
+  />
+
+  <section class="section on-ivory">
+    <div class="wrap split">
+      <h2 class="sticky" data-reveal>How it <span class="lit">started</span></h2>
+      <div class="prose" data-reveal style="--i:1">
+        <p class="lede">Jake Nitzkin is a registered nurse. He saw what every nurse sees: patients who are lonely, anxious and in pain, and a floor too busy to sit with them.</p>
+        <p>He also saw volunteers who wanted to help but did not know what to do once they were in the room. Music turned out to answer both. Ask a patient for a song, and you have a reason to knock and something to talk about.</p>
+        <p>Healing Beats began as a pilot at UnityPoint Health in Madison, Wisconsin, in 2019, and resumed after COVID in 2021. Jake has coordinated the program at UnityPoint Health – Meriter, and in January 2023 Henry Ford West Bloomfield Hospital in Michigan launched it too.</p>
+        <p>The beauty of it, Jake says, is helping patients relive the way a song takes them back to a certain time and place. They relax. They tap a foot under the blanket. They share stories that are “really intimate.”</p>
+        <p class="confirm">Founder story drafted from Jake’s public talks. To confirm.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-ink">
+    <div class="wrap split split--even split--center">
+      <div>
+        <h2 data-reveal>How a visit <span class="lit">works</span></h2>
+        <div class="about__steps"><StepList steps={VISIT_STEPS} /></div>
+      </div>
+      <div class="about__deck"><Deck /></div>
+    </div>
+  </section>
+
+  <section class="section on-ivory">
+    <div class="wrap">
+      <h2 data-reveal>Three problems. <span class="lit">One program.</span></h2>
+      <ProblemRows rows={THREE_PROBLEMS} />
+    </div>
+  </section>
+
+  <section class="section on-red">
+    <div class="wrap split split--even split--center">
+      <div class="stack" data-reveal>
+        <h2>Built for hospitals <span class="lit">to make their own</span></h2>
+        <p class="lede">Healing Beats is offered to hospitals as a turnkey, white-label program: training, launch guidance, branded materials and ongoing consultation. Patients experience it as something their hospital does for them.</p>
+      </div>
+      <div class="strip-art" data-reveal style="--i:1">
+        <span class="strip">
+          <span class="strip__line">A program offered by</span>
+          <span class="strip__band">Your hospital</span>
+          <span class="strip__line">to help make your stay more comfortable</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Bring it to your hospital." body="See what is included, how launch works, and how to start a conversation." href={url(ROUTES.hospitals)} label="Partner with us" />
+</Base>
+
+<style>
+  .about__steps {
+    margin-top: var(--s-6);
+  }
+  .about__deck {
+    display: grid;
+    justify-items: center;
+  }
+</style>
