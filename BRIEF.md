@@ -1,6 +1,6 @@
 # Design brief: Healing Beats Volunteers site
 
-Status: waiting for Tyler to pick a direction. No site code is written until then.
+Status: this is the brief from before the build, kept as a record. Tyler picked direction A ("Title Strips"), and the home page has been reworked twice since. The "start a chapter" path has been removed entirely. For the current state, read `PRODUCT.md` and `DESIGN.md`.
 
 Product facts live in `PRODUCT.md`. This brief covers what gets built and how it should work.
 
@@ -11,7 +11,6 @@ Product facts live in `PRODUCT.md`. This brief covers what gets built and how it
 | Hospital leader (volunteer services, patient experience, nursing) | At a desk or on a phone between meetings, sceptical, has seen many pitches | See that the program is real and low-burden, then start a conversation |
 | Volunteer (mostly students, mostly on phones) | Between classes, curious, unsure what they would do in a patient's room | See what a shift is like, then sign up |
 | Donor | Already persuaded | Give from any page in one tap |
-| Chapter starter | Motivated, fewer in number | Find the chapter page and raise a hand |
 
 The test for the home page: a hospital leader and a student each find their path within 5 seconds on a phone.
 
@@ -29,22 +28,20 @@ Headline for the home page (same in all three directions): **"Play their song. S
 - `/hospitals` For Hospitals
 - `/volunteer` Volunteer
 - `/donate` Donate
-- `/start-a-chapter` Start a Chapter
 - `/about` About
-- Footer on every page: EIN 84-3530929, the 501(c)(3) statement, the contact email, and links to all six pages.
+- Footer on every page: EIN 84-3530929, the 501(c)(3) statement, the contact email, and links to all five pages.
 
 Header on every page: logo, a Donate button that is always visible (on phones too, outside the menu), and the menu.
 
 ## 4. Home page, top to bottom
 
-1. **Opening.** The headline (the only H1), one sentence explaining the program, then two equal choices: "Bring Healing Beats to your hospital" and "Volunteer at the bedside". Below them, one quiet link: "Want to start a chapter?"
+1. **Opening.** The headline (the only H1), one sentence explaining the program, then two equal choices: "Bring Healing Beats to your hospital" and "Volunteer at the bedside".
 2. **How a visit works.** Three steps (knock and ask, the patient picks a song, listen to the story) beside the video. The video loads only when play is pressed, and credits UnityPoint Health.
 3. **Proof.** The three impact numbers and the "Stardust" patient story.
 4. **Who it helps.** Patients, volunteers and nurses: three problems, one program.
 5. **For hospitals.** Turnkey and white-label, what is included, and a link to the hospitals page.
 6. **For volunteers.** The student's story, and a link to the volunteer page.
-7. **Donate.** What a gift funds: volunteer training and expansion to new communities.
-8. **Start a chapter.** A slim band, then the footer.
+7. **Donate.** What a gift funds: volunteer training and expansion to new communities. Then the footer.
 
 ## 5. Inner pages
 
@@ -63,11 +60,7 @@ Header on every page: logo, a Donate button that is always visible (on phones to
 - Who it is for.
 - Where you can serve. Designed so it works without a fixed list: the form asks for your area.
 - Interest form: name, email, city/state, school or affiliation (optional), preferred hospital or area, how you heard about us.
-- A link: "No program near you? Start a chapter."
-
-**Start a Chapter**
-- What a chapter is, what support Healing Beats gives, and the steps.
-- Interest form.
+- A link to the For Hospitals page for visitors whose hospital has no program yet.
 
 **Donate**
 - The ask, what gifts fund, tax-deductible status and the EIN.

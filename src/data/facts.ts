@@ -50,7 +50,7 @@ export const VISIT_STEPS = [
 ] as const;
 
 export const INCLUDED = [
-  'Turnkey volunteer training, built on 6+ years of experience',
+  'Training for every volunteer, run by Healing Beats and built on 6+ years of experience',
   'Step-by-step guidance for recruitment, training and launch',
   'Materials branded with your hospital’s name and style',
   'Ongoing consultation after launch',

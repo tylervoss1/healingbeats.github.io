@@ -19,7 +19,7 @@ The site is written to read as finished. These are the items Jake should check b
 - [ ] For Hospitals timeline: recruit, train, launch, ongoing support.
 - [ ] Volunteer: "Who it is for", including "No musical skill needed".
 - [ ] Volunteer: current locations. The page names the two hospitals above and asks visitors for their area.
-- [ ] Start a Chapter: what a chapter is, the support list, and the four steps.
+- [ ] The model as the site now states it: a hospital asks for the program, Healing Beats trains every volunteer, and volunteers join at a hospital that has it. (Home, For Hospitals, Volunteer)
 - [ ] About: Jake's founder story.
 - [ ] Testimonials are told as short stories around the exact quoted words. Supply the full original wording if you want longer quotes.
 

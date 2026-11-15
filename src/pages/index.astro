@@ -61,9 +61,14 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
 
   <!-- 3. How a visit works -->
   <section class="section on-ivory visit" id="how-it-works">
-    <div class="wrap">
-      <h2 data-reveal>How a visit works</h2>
-      <StepList steps={VISIT_STEPS} across />
+    <div class="wrap visit__grid">
+      <div>
+        <h2 data-reveal>How a visit works</h2>
+        <div class="visit__steps"><StepList steps={VISIT_STEPS} /></div>
+      </div>
+      <div class="visit__deck" data-reveal="right" style="--i:1">
+        <Deck label="Their song" sublabel="Side A" />
+      </div>
     </div>
   </section>
 
@@ -107,7 +112,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
     <div class="wrap duo__grid">
       <div class="stack duo__words" data-reveal="left">
         <h2>Your program. <span class="lit">Your name on it.</span></h2>
-        <p class="lede">Healing Beats is turnkey and white-label. It is built to feel like your hospital’s own initiative: low cost, high impact, and low burden on staff.</p>
+        <p class="lede">You tell us you want the program. Healing Beats trains every volunteer and helps you launch. It runs under your hospital’s name: low cost, high impact, and low burden on staff.</p>
         <ul class="ticks duo__list">
           {INCLUDED.map((item) => <li><Icon name="check" /><span>{item}</span></li>)}
         </ul>
@@ -132,7 +137,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
     <div class="wrap duo__grid">
       <div class="stack duo__words" data-reveal="right">
         <h2>You bring the speaker. <span class="lit">They pick the song.</span></h2>
-        <p class="lede">You get step-by-step training, so you always know how to start. Students, pre-health or not, and community members are welcome.</p>
+        <p class="lede">Healing Beats trains you step by step before your first visit, so you always know how to start. Students, pre-health or not, and community members are welcome.</p>
         <p><a class="key key--ink" href={url(ROUTES.volunteer)}>Volunteer <Icon name="arrow" /></a></p>
       </div>
       <figure class="duo__voice" data-reveal="left" style="--i:1">
@@ -143,21 +148,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
     </div>
   </section>
 
-  <!-- 8. Start a chapter: words left, record right -->
-  <section class="section on-maroon duo">
-    <div class="wrap duo__grid">
-      <div class="stack duo__words" data-reveal="left">
-        <h2>Bring it to <span class="lit">your local hospital.</span></h2>
-        <p class="lede">No Healing Beats near you? A chapter is a group, often students, that partners with a nearby hospital to run the program there. We give you the training and the playbook.</p>
-        <p><a class="key" href={url(ROUTES.chapter)}>Start a chapter <Icon name="arrow" /></a></p>
-      </div>
-      <div class="duo__deck" data-reveal="right" style="--i:1">
-        <Deck label="Your hospital" sublabel="Side A" />
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. Donate -->
+  <!-- 8. Donate -->
   <CtaBand
     tone="yellow"
     center
@@ -320,6 +311,29 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
     }
   }
 
+  /* ---------- How a visit works ---------- */
+  .visit__grid {
+    display: grid;
+    gap: var(--s-7);
+  }
+  .visit__steps {
+    margin-top: var(--s-6);
+  }
+  .visit__deck {
+    display: grid;
+    justify-items: center;
+  }
+  @media (min-width: 56.25em) {
+    .visit__grid {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      align-items: center;
+      gap: var(--s-8);
+    }
+    .visit__deck {
+      justify-items: end;
+    }
+  }
+
   /* ---------- Proof ---------- */
   .proof__story {
     margin-top: var(--s-7);
@@ -348,7 +362,7 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
     }
   }
 
-  /* ---------- Hospitals, volunteers, chapter: one alternating pattern ---------- */
+  /* ---------- Hospitals and volunteers: one alternating pattern ---------- */
   .duo__grid {
     display: grid;
     gap: var(--s-7);
@@ -368,10 +382,6 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
   .duo__voice .lede + .quote {
     margin-top: var(--s-4);
   }
-  .duo__deck {
-    display: grid;
-    justify-items: center;
-  }
   @media (min-width: 56.25em) {
     .duo__grid {
       grid-template-columns: 1fr 1fr;
@@ -380,9 +390,6 @@ import { IMPACT, STARDUST, STUDENT, VISIT_STEPS, INCLUDED, THREE_PROBLEMS, HOSPI
     }
     .duo--flip .duo__words {
       order: 2;
-    }
-    .duo__deck {
-      justify-items: end;
     }
   }
 </style>

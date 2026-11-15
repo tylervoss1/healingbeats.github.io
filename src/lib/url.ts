@@ -10,7 +10,6 @@ export const ROUTES = {
   hospitals: '/hospitals/',
   volunteer: '/volunteer/',
   donate: '/donate/',
-  chapter: '/start-a-chapter/',
   about: '/about/',
 } as const;
 
@@ -18,6 +17,5 @@ export const ROUTES = {
 export const NAV = [
   { href: ROUTES.hospitals, label: 'For Hospitals' },
   { href: ROUTES.volunteer, label: 'Volunteer' },
-  { href: ROUTES.chapter, label: 'Start a Chapter' },
   { href: ROUTES.about, label: 'About' },
 ] as const;

@@ -11,7 +11,7 @@ Scope: the home page and, through shared components, every other page of the Hea
 
 ## Audience and job
 - Hospital leaders decide whether to start a conversation. Volunteers (mostly students on phones) decide whether to sign up. Each must find their path within five seconds on a phone.
-- Donate is always one tap away in the header. Starting a chapter is a quiet third path.
+- Donate is always one tap away in the header. There is no "start a chapter" path: a program starts when a hospital asks for it, and Healing Beats trains every volunteer.
 - Proof on hand: 5 hospitals, 50 volunteers trained, 2,000+ hours; the "Stardust" patient story; the UnityPoint film; 2022 webinar figures.
 
 ## Tyler's steering on the chosen direction (binding)
@@ -29,9 +29,9 @@ OWN-WORLD: Cherry red floods whole regions; ink black and strip ivory alternate 
 
 STORY: A volunteer knocks, the patient picks the song, the volunteer stays for the story. The visitor sees that moment, sees it works, and picks hospital or volunteer.
 
-FIRST VIEWPORT: On a 390 x 844 phone: sticky red header with mark, wordmark, yellow Donate key and menu. The door photo, printed in red ink, fills the top and melts into solid red. The headline "Play their song. Stay for the story." in ivory and yellow condensed capitals overlaps the photo's lower edge. One sentence, then two full-width ivory buttons stacked, hospitals first, then a quiet chapter link. On desktop the text and buttons take the left, the photo the right.
+FIRST VIEWPORT: On a 390 x 844 phone: sticky red header with mark, wordmark, yellow Donate key and menu. The door photo, printed in red ink, fills the top and melts into solid red. The headline "Play their song. Stay for the story." in ivory and yellow condensed capitals overlaps the photo's lower edge. One sentence, then two full-width ivory buttons stacked, hospitals first. On desktop the text and buttons take the left, the photo the right.
 
-SIGNATURE INTERACTION: Pressing or hovering a hero button lights it yellow and a 45 slides out from behind it and spins. In "How a visit works" a record turns and the tonearm swings in as the page scrolls; pressing play drops the needle and loads the film.
+SIGNATURE INTERACTION: Pressing or hovering a hero button lights it yellow and a 45 slides out from behind it and spins. In "How a visit works" a record turns and the tonearm swings in as the page scrolls. The film is its own section with its own play button.
 
 MOTION GRAMMAR: Native scroll only, never hijacked. Transform and opacity only. Keys light in sequence as their step enters view. One short stagger on the headline at load. Everything is still for visitors who ask for reduced motion.
 

@@ -21,13 +21,14 @@ In priority order:
 1. **Hospitals:** volunteer services managers, patient experience leaders and nurse leaders deciding whether to bring the program in. They need credibility, a clear sense of what is included, low burden on staff, and an easy way to start a conversation. This is how the program grows.
 2. **Individual volunteers:** mostly college and pre-health students, plus community members, mostly on phones. They need to know what a shift looks like, what training they get, where they can serve, and how to sign up.
 3. **Donors:** people ready to give. Donating is not a headline path, but it must be reachable from every page.
-4. **Chapter starters:** people who want to bring Healing Beats to a new place, such as a student group at its local hospital. Lower priority than the three above.
+
+There is no "start a chapter" path (removed by Tyler). A new program starts one way: a hospital asks for it.
 
 ## Product Purpose
 
 Healing Beats Volunteers is a registered 501(c)(3) nonprofit. Its mission: "Creating humanizing healthcare experiences through music and companionship."
 
-This site replaces the current WordPress.com site at healingbeatsvolunteers.org. It exists to turn each audience's interest into a first contact: a hospital inquiry, a volunteer sign-up, a donation, or a chapter inquiry.
+This site replaces the current WordPress.com site at healingbeatsvolunteers.org. It exists to turn each audience's interest into a first contact: a hospital inquiry, a volunteer sign-up, or a donation.
 
 It succeeds when a hospital administrator and a student can each find their path within a few seconds on a phone.
 
@@ -35,6 +36,7 @@ It succeeds when a hospital administrator and a student can each find their path
 
 - **The patient picks the song.** A volunteer plays the song the patient asks for, then sits down and listens to the story and the people that song brings back. The companionship is as therapeutic as the music. For some patients the volunteer is the only person they get to chat with casually.
 - **One program, three problems.** It addresses patient loneliness and anxiety; volunteer dissatisfaction and anxiety (the music gives volunteers a natural conversation starter); and nurse overburden (volunteers meet emotional and social needs and offer distraction during routine procedures).
+- **Hospitals ask, Healing Beats trains everyone.** A hospital says it wants the program and works with Healing Beats to start it. Healing Beats trains every volunteer. Volunteers join a program at a hospital that has one.
 - **Turnkey and white-label for hospitals.** The program is meant to feel like the hospital's own initiative. Volunteers tell patients, "This is a program offered by the hospital to help make your stay more comfortable." Low cost, high impact, low burden on staff.
 
 ## Operating Context
@@ -48,8 +50,8 @@ It succeeds when a hospital administrator and a student can each find their path
 ## Capabilities and Constraints
 
 **Site capabilities**
-- Six pages: Home, For Hospitals, Volunteer, Donate, Start a Chapter, About.
-- Three forms: hospital inquiry, volunteer interest, chapter interest.
+- Five pages: Home, For Hospitals, Volunteer, Donate, About.
+- Two forms: hospital inquiry and volunteer interest.
 - A donation embed slot driven by one config value. The current site says the donation form is "coming soon".
 - One embedded video, loaded only when the visitor clicks play, from `youtube-nocookie.com`, credited to UnityPoint Health.
 - A Donate button in the header of every page, including the mobile header outside the menu.
@@ -57,19 +59,19 @@ It succeeds when a hospital administrator and a student can each find their path
 **Content rules (revised by Tyler after the first draft)**
 - Design, flow and user experience come first: mobile, then desktop. Content checks never shape or weaken a layout.
 - Use everything in the brief at full strength, including the 2023 webinar figures and hospital names. The site should read as finished, not as a form waiting to be filled in.
-- Write complete, confident draft copy where the brief gives the substance but not the words (FAQ answers, chapter steps, what a shift is like).
+- Write complete, confident draft copy where the brief gives the substance but not the words (FAQ answers, what a shift is like).
 - Items Jake still has to check carry at most a small, quiet "to confirm" note. The full list lives in `CONTENT-TODO.md`.
 - Numbers, names and direct quotes come from the brief. Where a specific is unknown (a price, a list of locations), the page is designed so it does not need one.
 - No WordPress leftovers: no comment forms, share bars, or `#` placeholder links.
 
 **Terminology**
-- Call-to-action labels are the same sitewide: "Partner with us", "Volunteer", "Donate", "Start a chapter".
+- Call-to-action labels are the same sitewide: "Partner with us", "Volunteer", "Donate".
 
 **Undecided**
 - Donation provider. Candidates: Zeffy, Givebutter, Donorbox, PayPal Giving Fund.
 - The Formspree form ID.
 - When the custom domain moves to this site.
-- Jake's confirmation of drafted copy: hospital FAQ answers (cost, staff time, infection control, which units, how volunteers are supervised), chapter specifics, and his founder story.
+- Jake's confirmation of drafted copy: hospital FAQ answers (cost, staff time, infection control, which units, how volunteers are supervised) and his founder story.
 - Current volunteer locations.
 
 ## Brand Commitments
