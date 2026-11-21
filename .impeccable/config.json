@@ -6,5 +6,20 @@
       "maxChars": 8000
     }
   },
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "public/brand-lab/index.html"
+        ],
+        "createdAt": "2026-11-21T20:50:52.781Z",
+        "reason": "Agent: brand-lab is a separate team tool for trying fonts and colours; its fonts are the subject being tested, not site type"
+      }
+    ]
+  }
 }

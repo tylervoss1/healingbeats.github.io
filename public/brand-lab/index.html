@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Healing Beats Brand Lab</title>
+<link id="fav" rel="icon" href="data:,">
+<script>
+/* ===== SETUP: paste your Supabase project URL and anon (public) key here =====
+   Supabase dashboard > Project Settings > API. Leave blank to run in this-browser-only mode. */
+window.HB_CONFIG={SUPABASE_URL:'',SUPABASE_ANON_KEY:''};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+/* VOICE: a quiet shared workbench; the tool stays neutral so the brand options are the only color.
+   IDEA: a printer's proof sheet: one live proof of the Healing Beats site, team proofs pinned to a board below.
+   PICTURE: the live proof (header with logo, hero, stats, story, cards) plus real-size favicon and app-icon mockups.
+   COLOUR and TYPE: chrome is near-white / near-black in Inter; every other color and font comes from the combo.
+   LAYOUT: controls rail left, proof right, shared board full width beneath; stacks under 900px. */
+:root{color-scheme:light dark;--bg:light-dark(#f6f6f4,#141414);--panel:light-dark(#fff,#1e1e1e);--ink:light-dark(#151515,#ededed);--mute:light-dark(#666,#9a9a9a);--line:light-dark(#e3e3df,#2f2f2f);--hi:light-dark(#151515,#ededed)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif;overflow-x:clip}
+header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px max(3vw,16px);border-bottom:1px solid var(--line)}
+h1{font-size:20px;margin:0;font-weight:600}
+.status{font-size:13px;color:var(--mute);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:#a3a3a3}.dot.live{background:#16a34a}
+.wrap{display:grid;grid-template-columns:330px minmax(0,1fr);gap:20px;padding:20px max(3vw,16px)}
+@media(max-width:900px){.wrap{grid-template-columns:minmax(0,1fr)}.rail{order:2}}
+.rail{display:flex;flex-direction:column;gap:14px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.box h2{font-size:14px;margin:0 0 10px;font-weight:600}
+.hint{font-size:12px;color:var(--mute);margin:8px 0 0}
+label{display:block;font-size:13px;color:var(--mute);margin:10px 0 4px}
+select,input[type=text],textarea{width:100%;font:inherit;font-size:16px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+textarea{min-height:64px;resize:vertical}
+input[type=range]{width:100%;accent-color:var(--hi)}
+button{font:inherit;font-size:14px;min-height:40px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+button.pri{background:var(--hi);color:var(--bg);border-color:var(--hi)}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.lg:focus-visible{outline:2px solid #3b82f6;outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.sw{display:grid;grid-template-columns:44px minmax(0,1fr) 54px;gap:8px;align-items:center;margin-bottom:8px}
+.sw input[type=color]{width:44px;height:44px;border:1px solid var(--line);border-radius:8px;padding:0;background:none;cursor:pointer}
+.sw .nm{font-size:13px}.sw .hx{font-size:12px;color:var(--mute);font-family:ui-monospace,monospace}
+.lock{padding:0;font-size:13px}.lock[aria-pressed=true]{background:var(--hi);color:var(--bg)}
+.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px}
+.lg{position:relative;aspect-ratio:1;border:1px solid var(--line);border-radius:10px;background:repeating-conic-gradient(light-dark(#eee,#2a2a2a) 0 25%,transparent 0 50%) 0 0/12px 12px;display:grid;place-items:center;cursor:pointer;padding:8px}
+.lg img,.lg svg{max-width:100%;max-height:100%}
+.lg[aria-pressed=true]{outline:2px solid var(--hi);outline-offset:1px}
+.lg span{position:absolute;inset:auto 0 0;font-size:10px;background:color-mix(in srgb,var(--panel) 85%,transparent);padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:0 0 9px 9px}
+.drop{border:1px dashed var(--line);border-radius:10px;padding:12px;text-align:center;font-size:13px;color:var(--mute);margin-top:10px}
+.drop.on{border-color:var(--hi);color:var(--ink)}
+/* proof */
+.proof{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--c-bg);color:var(--c-ink);font-family:var(--f-body);font-size:var(--base)}
+.p-nav{display:flex;align-items:center;gap:16px;padding:14px clamp(16px,4vw,40px);border-bottom:1px solid color-mix(in srgb,var(--c-ink) 10%,transparent);flex-wrap:wrap}
+.p-brand{display:flex;align-items:center;gap:10px;font-family:var(--f-head);font-weight:var(--hw);font-size:1.1em;margin-right:auto}
+.p-brand img,.p-brand svg{height:40px;width:auto;max-width:120px;object-fit:contain}
+.p-nav a{color:inherit;text-decoration:none;font-size:.92em}
+.p-links{display:flex;gap:16px}@media(max-width:640px){.p-links{display:none}}
+.btn{display:inline-block;padding:.75em 1.25em;border-radius:var(--rad);font-weight:600;font-size:.95em;margin:0 .5em .5em 0}
+.b1{background:var(--c-primary);color:var(--c-onp)}.b2{border:2px solid var(--c-ink);color:var(--c-ink)}.b3{background:var(--c-accent);color:var(--c-ona);margin:0}
+.p-hero{padding:clamp(28px,5vw,60px) clamp(16px,4vw,40px)}
+.p-hero .eyb{font-size:.85em;color:var(--c-primary);font-weight:600;margin:0 0 .6em}
+.p-hero h3{font-family:var(--f-head);font-weight:var(--hw);font-size:var(--s4);line-height:1.05;margin:0 0 .35em;text-wrap:balance;letter-spacing:var(--ls);max-width:18ch}
+.p-hero p{max-width:56ch;margin:0 0 1.4em;opacity:.85}
+.p-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--c-primary);color:var(--c-onp);text-align:center}
+.p-stats div{padding:1.1em .5em}.p-stats b{display:block;font-family:var(--f-head);font-weight:var(--hw);font-size:var(--s3);line-height:1}.p-stats small{font-size:.8em;opacity:.9}
+.p-story{padding:clamp(24px,4vw,48px) clamp(16px,4vw,40px);display:grid;gap:8px}
+.p-story blockquote{margin:0;font-family:var(--f-head);font-weight:var(--hw);font-size:var(--s2);line-height:1.25;max-width:30ch;letter-spacing:var(--ls)}
+.p-story cite{font-style:normal;font-size:.85em;opacity:.75}
+.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:0 clamp(16px,4vw,40px) clamp(24px,4vw,40px)}
+.card{background:var(--c-surface);border-radius:var(--rad);padding:1.2em}
+.card h4{font-family:var(--f-head);font-weight:var(--hw);font-size:var(--s1);margin:0 0 .3em;line-height:1.2}
+.card p{margin:0;opacity:.85;font-size:.92em}
+.tag{display:inline-block;font-size:.72em;font-weight:600;background:var(--c-accent);color:var(--c-ona);padding:.25em .6em;border-radius:99px;margin-bottom:.7em}
+.p-scale{padding:clamp(18px,3vw,32px) clamp(16px,4vw,40px);background:var(--c-surface)}
+.p-scale div{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid color-mix(in srgb,var(--c-ink) 12%,transparent);padding:.35em 0;overflow:hidden;white-space:nowrap}
+.p-scale small{font-family:Inter,sans-serif;font-size:12px;opacity:.6;width:70px;flex:none}
+.p-scale span{font-family:var(--f-head);font-weight:var(--hw);line-height:1.1;overflow:hidden;text-overflow:ellipsis}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:var(--panel)}
+.ok{color:#15803d}.warn{color:#b45309}.bad{color:#b91c1c}
+/* icon mockups */
+.mocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:14px}
+.mock{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.mock h3{font-size:13px;font-weight:600;margin:0 0 10px;color:var(--mute)}
+.tab{display:flex;align-items:center;gap:8px;background:light-dark(#dee1e6,#35363a);border-radius:10px 10px 0 0;padding:8px 12px;font-size:12px;color:light-dark(#202124,#e8eaed);max-width:240px}
+.tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabbar{background:light-dark(#f1f3f4,#202124);padding:8px 8px 0;border-radius:8px}
+.addr{background:light-dark(#fff,#35363a);padding:6px 10px;font-size:12px;color:var(--mute);border-radius:0 8px 8px 8px}
+.serp{display:flex;gap:10px;align-items:center;font-size:12px}.serp .ic{width:28px;height:28px;border-radius:50%;background:light-dark(#f1f3f4,#303134);display:grid;place-items:center}
+.serp b{display:block;font-weight:500;font-size:13px}.serp small{color:var(--mute)}
+.serp-t{color:light-dark(#1a0dab,#8ab4f8);font-size:16px;margin:6px 0 0}
+.home{display:flex;gap:14px;justify-content:center;padding:14px;border-radius:14px;background:linear-gradient(160deg,#5b7fa6,#2d3e5c)}
+.home figure{margin:0;text-align:center;color:#fff;font-size:11px}
+.home canvas{display:block;width:60px;height:60px;border-radius:14px;margin-bottom:4px;box-shadow:0 2px 6px #0004}
+.home i{display:block;width:60px;height:60px;border-radius:14px;background:#ffffff38;margin-bottom:4px}
+.onbg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.onbg div{aspect-ratio:1.4;border-radius:8px;display:grid;place-items:center;padding:12px}
+.onbg img,.onbg svg{max-width:80%;max-height:70%}
+.social{border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.social .img{aspect-ratio:1.91;display:flex;align-items:center;gap:6%;padding:6%}
+.social .img img,.social .img svg{height:55%;width:auto;max-width:35%}
+.social .img b{font-size:clamp(14px,2vw,20px);line-height:1.1}
+.social p{margin:0;padding:8px 10px;font-size:12px;color:var(--mute)}
+/* board */
+.board{padding:0 max(3vw,16px) 40px}
+.board h2{font-size:16px;margin:8px 0 4px}
+.board .sub{font-size:13px;color:var(--mute);margin:0 0 12px}
+.saved{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column}
+.mini.cur{outline:2px solid var(--hi)}
+.mini .pv{padding:14px;cursor:pointer;min-height:118px;display:grid;gap:6px;align-content:start}
+.mini .pv .lh{display:flex;align-items:center;gap:8px}
+.mini .pv img,.mini .pv svg{height:28px;width:auto;max-width:70px}
+.mini .pv b{font-size:20px;line-height:1.1}
+.mini .pv i{font-style:normal;font-size:13px;opacity:.8}
+.mini .bar{display:flex;height:12px}.mini .bar span{flex:1}
+.mini .meta{padding:10px 10px 0;font-size:13px}
+.mini .meta strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini .meta em{font-style:normal;color:var(--mute);font-size:12px}
+.mini .meta p{margin:4px 0 0;font-size:12px;color:var(--mute);overflow-wrap:anywhere}
+.mini .ft{display:flex;gap:6px;padding:10px;flex-wrap:wrap;margin-top:auto}
+.mini .ft button{min-height:34px;padding:4px 10px;font-size:13px}
+.liked{background:var(--hi)!important;color:var(--bg)!important}
+.empty{color:var(--mute);border:1px dashed var(--line);border-radius:12px;padding:24px;text-align:center;grid-column:1/-1}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--hi);color:var(--bg);padding:10px 16px;border-radius:8px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+.toast.on{opacity:1}
+@media(prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div><h1>Healing Beats brand lab</h1><div class="status"><span class="dot" id="dot"></span><span id="statusTxt">Connecting to the shared board…</span></div></div>
+  <div class="row">
+    <input type="text" id="me" placeholder="Your name" aria-label="Your name" style="width:150px">
+    <button id="shufAll">Shuffle everything</button>
+    <button id="copyCss">Copy CSS</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside class="rail">
+    <section class="box">
+      <h2>Save to the shared board</h2>
+      <label for="cName">Name this combo</label><input type="text" id="cName" placeholder="Warm teal + Fraunces">
+      <label for="cNote">Note for the team (optional)</label><textarea id="cNote" placeholder="Why you like it, what to try next"></textarea>
+      <div class="row" style="margin-top:10px"><button id="save" class="pri">Save as new</button><button id="update" hidden>Update loaded combo</button></div>
+    </section>
+
+    <section class="box">
+      <h2>Logos and icons</h2>
+      <div class="logos" id="logos"></div>
+      <div class="drop" id="drop">Drop logo files here (SVG or PNG work best)<br><button id="pick" style="margin-top:8px">Choose files</button><input type="file" id="file" accept="image/svg+xml,image/png,image/jpeg,image/webp" multiple hidden></div>
+      <label for="icBg">Icon background</label>
+      <select id="icBg"><option value="none">Transparent</option><option value="white">White</option><option value="bg">Background color</option><option value="surface">Surface color</option><option value="primary">Primary color</option><option value="accent">Accent color</option><option value="ink">Text color</option></select>
+      <label for="icShape">Icon shape</label>
+      <select id="icShape"><option value="square">Square</option><option value="rounded">Rounded</option><option value="circle">Circle</option></select>
+      <label for="icPad">Icon padding: <span id="icPadV"></span>%</label><input type="range" id="icPad" min="0" max="30" step="2">
+      <div class="row" style="margin-top:10px" id="dlRow">
+        <select id="dlSize" style="flex:1" aria-label="Icon size"><option value="32">32px favicon</option><option value="48">48px favicon</option><option value="180">180px Apple touch icon</option><option value="192">192px Android icon</option><option value="512">512px app icon</option></select>
+        <button id="dlBtn">Download PNG</button>
+      </div>
+      <p class="hint">Keep the headphones and heart, no red cross: the Red Cross emblem is protected by federal law (18 U.S.C. § 706).</p>
+    </section>
+
+    <section class="box">
+      <h2>Color</h2>
+      <div id="swatches"></div>
+      <label for="harm">Shuffle mode</label>
+      <select id="harm"><option value="analogous">Analogous</option><option value="complementary">Complementary</option><option value="triadic">Triadic</option><option value="split">Split complementary</option><option value="mono">Monochrome</option><option value="dark">Dark mode</option></select>
+      <div class="row" style="margin-top:10px"><button id="shufColor">Shuffle colors</button><button id="swapBg">Flip light/dark</button></div>
+      <label for="paste">Paste hex codes</label><input type="text" id="paste" placeholder="#fbf7f2, #2b6f77, #e8a33d …">
+      <div class="row" style="margin-top:8px"><button id="applyPaste">Apply</button></div>
+    </section>
+
+    <section class="box">
+      <h2>Type</h2>
+      <label for="fh">Heading font</label><select id="fh"></select>
+      <label for="fb">Body font</label><select id="fb"></select>
+      <label for="hw">Heading weight: <span id="hwv"></span></label><input type="range" id="hw" min="300" max="900" step="100">
+      <label for="ratio">Scale ratio</label>
+      <select id="ratio"><option value="1.2">1.200 Minor third</option><option value="1.25">1.250 Major third</option><option value="1.333">1.333 Perfect fourth</option><option value="1.414">1.414 Augmented fourth</option><option value="1.5">1.500 Perfect fifth</option></select>
+      <label for="base">Body size: <span id="basev"></span>px</label><input type="range" id="base" min="14" max="20" step="1">
+      <label for="ls">Heading tracking: <span id="lsv"></span>em</label><input type="range" id="ls" min="-0.05" max="0.05" step="0.01">
+      <label for="rad">Corner radius: <span id="radv"></span>px</label><input type="range" id="rad" min="0" max="28" step="2">
+      <div class="row" style="margin-top:10px"><button id="shufType">Shuffle pairing</button></div>
+    </section>
+  </aside>
+
+  <main>
+    <div class="proof" id="proof">
+      <nav class="p-nav"><span class="p-brand"><span id="navLogo"></span><span>Healing Beats</span></span><span class="p-links"><a>For hospitals</a><a>Volunteer</a><a>About</a></span><span class="btn b3">Donate</span></nav>
+      <div class="p-hero">
+        <p class="eyb">Healing Beats Volunteers</p>
+        <h3>Creating humanizing healthcare experiences through music and companionship</h3>
+        <p>Volunteers visit hospital patients, play the songs they ask for, and stay to hear the stories those songs bring back.</p>
+        <span class="btn b1">Bring it to your hospital</span><span class="btn b2">Become a volunteer</span>
+      </div>
+      <div class="p-stats"><div><b>5</b><small>hospitals partnered</small></div><div><b>50</b><small>volunteers trained</small></div><div><b>2,000+</b><small>hours with patients</small></div></div>
+      <div class="p-story"><blockquote>“Thank you for spending time with me today.”</blockquote><cite>Patient who sang along to “Stardust” for the first time in 15 years · Medical-surgical unit, Michigan, 2019</cite></div>
+      <div class="p-grid">
+        <div class="card"><span class="tag">Patients</span><h4>Less loneliness and anxiety</h4><p>A familiar song and someone to talk to during an isolating stay.</p></div>
+        <div class="card"><span class="tag">Volunteers</span><h4>An easy way to connect</h4><p>Music gives volunteers a natural way to start a conversation.</p></div>
+        <div class="card"><span class="tag">Nurses</span><h4>Less on their plate</h4><p>Volunteers meet social needs and offer distraction during procedures.</p></div>
+      </div>
+      <div class="p-scale" id="scale"></div>
+    </div>
+    <div class="chips" id="chips"></div>
+
+    <div class="mocks">
+      <div class="mock"><h3>Browser tab</h3><div class="tabbar"><div class="tab"><canvas id="cvTab" width="32" height="32" style="width:16px;height:16px"></canvas><span>Healing Beats Volunteers</span></div><div class="addr">healingbeatsvolunteers.org</div></div></div>
+      <div class="mock"><h3>Google result</h3><div class="serp"><span class="ic"><canvas id="cvSerp" width="36" height="36" style="width:18px;height:18px"></canvas></span><div><b>Healing Beats Volunteers</b><small>healingbeatsvolunteers.org</small></div></div><p class="serp-t">Music and companionship for hospital patients</p></div>
+      <div class="mock"><h3>Phone home screen</h3><div class="home"><figure><i></i>Photos</figure><figure><canvas id="cvHome" width="180" height="180"></canvas>Healing Beats</figure><figure><i></i>Maps</figure></div></div>
+      <div class="mock"><h3>Logo on light, brand and dark</h3><div class="onbg" id="onbg"></div></div>
+      <div class="mock"><h3>Link preview when shared</h3><div class="social"><div class="img" id="socialImg"></div><p>healingbeatsvolunteers.org</p></div></div>
+    </div>
+  </main>
+</div>
+
+<section class="board">
+  <h2>Team board</h2>
+  <p class="sub" id="boardSub">Saved combos from everyone with the link. Click one to load it, then tweak and save a new version or update it.</p>
+  <div class="saved" id="saved"></div>
+</section>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+{
+const FONTS={'Inter':'sans','DM Sans':'sans','Manrope':'sans','Plus Jakarta Sans':'sans','Outfit':'sans','Sora':'sans','Work Sans':'sans','Poppins':'sans','Montserrat':'sans','Nunito':'sans','Quicksand':'sans','Figtree':'sans','Lexend':'sans','Barlow':'sans','Oswald':'display','Bebas Neue':'display','Archivo Black':'display','Syne':'display','Unbounded':'display','Fraunces':'serif','Playfair Display':'serif','DM Serif Display':'serif','Libre Baskerville':'serif','Lora':'serif','Source Serif 4':'serif','Cormorant Garamond':'serif','Instrument Serif':'serif','EB Garamond':'serif','Merriweather':'serif','Young Serif':'serif'};
+const BODY=['Inter','DM Sans','Manrope','Plus Jakarta Sans','Work Sans','Figtree','Nunito','Lexend','Source Serif 4','Lora','Merriweather','Outfit'];
+const ROLES=[['bg','Background'],['surface','Surface'],['ink','Text'],['primary','Primary'],['accent','Accent']];
+const LKEY='hb-lab-local-v1';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isHex=h=>/^#[0-9a-f]{6}$/i.test(h||'');
+const PLACE='placeholder';
+const PLACE_SVG='<svg viewBox="0 0 64 64" aria-label="Placeholder mark"><path d="M10 38v-6a22 22 0 0 1 44 0v6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><rect x="6" y="36" width="10" height="16" rx="4" fill="currentColor"/><rect x="48" y="36" width="10" height="16" rx="4" fill="currentColor"/><path d="M32 52c-7-5-11-9-11-14a5.5 5.5 0 0 1 11-1.5A5.5 5.5 0 0 1 43 38c0 5-4 9-11 14z" fill="var(--c-accent,#e8a33d)"/></svg>';
+let S={c:{bg:'#fbf7f2',surface:'#f1e8de',ink:'#1f2a37',primary:'#2b6f77',accent:'#e8a33d'},locks:{},fh:'Fraunces',fb:'Figtree',hw:600,ratio:1.25,base:17,ls:-0.01,rad:12,logo:PLACE,icon:{bg:'primary',shape:'rounded',pad:14}};
+let logos=[],board=[],loadedId=null;
+let sb=null,shared=false,uid=null;try{uid=localStorage.getItem('hb-me')||null}catch(e){}
+
+/* fonts */
+const loaded=new Set();
+function loadFont(f){if(!FONTS[f]||loaded.has(f))return;loaded.add(f);const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+f.replace(/ /g,'+')+':wght@300;400;500;600;700;800;900&display=swap';document.head.appendChild(l)}
+const stack=f=>`'${(f||'Inter').replace(/'/g,'')}',${FONTS[f]==='serif'?'Georgia,serif':'system-ui,sans-serif'}`;
+
+/* color math */
+const rgb=h=>{const n=parseInt(h.slice(1),16);return[n>>16&255,n>>8&255,n&255]};
+const lum=h=>{const a=rgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4});return .2126*a[0]+.7152*a[1]+.0722*a[2]};
+const contrast=(a,b)=>{const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+const hsl=(h,s,l)=>{h=((h%360)+360)%360;s/=100;l/=100;const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return'#'+[f(0),f(8),f(4)].map(v=>Math.round(v*255).toString(16).padStart(2,'0')).join('')};
+const onColor=h=>contrast(h,'#ffffff')>=contrast(h,'#111111')?'#ffffff':'#111111';
+const shade=(h,a)=>'#'+rgb(h).map(v=>Math.max(0,Math.min(255,v+a)).toString(16).padStart(2,'0')).join('');
+const sat=h=>{const c=rgb(h).map(v=>v/255),mx=Math.max(...c),mn=Math.min(...c);return mx?(mx-mn)/mx:0};
+const r=(a,b)=>a+Math.random()*(b-a);
+function genPalette(mode){
+  const h=r(0,360),o={analogous:[30,-30],complementary:[180,160],triadic:[120,240],split:[150,210],mono:[0,0],dark:[180,30]}[mode];let p;
+  if(mode==='dark')p={bg:hsl(h,r(15,35),r(6,11)),surface:hsl(h,r(15,30),r(13,18)),ink:hsl(h,r(5,15),r(90,96)),primary:hsl(h+o[1],r(50,75),r(55,65)),accent:hsl(h+o[0],r(60,90),r(58,68))};
+  else p={bg:hsl(h,r(10,40),r(95,98)),surface:hsl(h,r(12,35),r(87,92)),ink:hsl(h,r(15,35),r(9,15)),primary:hsl(h+o[0],r(40,70),r(26,38)),accent:hsl(h+o[1],r(65,90),r(52,62))};
+  ROLES.forEach(([k])=>{if(!S.locks[k])S.c[k]=p[k]});
+}
+
+/* logos */
+const safeSrc=s=>typeof s==='string'&&/^(data:image\/(png|jpeg|webp|gif|svg\+xml)[;,]|\/_blob\/|https:\/\/)/i.test(s)?s:'';
+const logoSrc=l=>l?safeSrc(l.url||l.src):'';
+const curLogo=()=>logos.find(l=>l.id===S.logo);
+function logoHTML(id,alt){const l=id===PLACE?null:logos.find(x=>x.id===id);const s=logoSrc(l);return s?`<img src="${esc(s)}" alt="${esc(alt||l.name||'Logo')}">`:PLACE_SVG}
+const imgCache={};
+function getImg(src){if(!imgCache[src])imgCache[src]=new Promise((ok,no)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>ok(i);i.onerror=no;i.src=src});return imgCache[src]}
+const placeURL=()=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(PLACE_SVG.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" ').replace(/currentColor/g,S.c.primary===iconBgHex()?S.c.bg:S.c.primary).replace('var(--c-accent,#e8a33d)',S.c.accent));
+function iconBgHex(){const b=S.icon.bg;return b==='none'?null:b==='white'?'#ffffff':S.c[b]}
+async function drawIcon(cv,size){
+  cv.width=size;cv.height=size;const x=cv.getContext('2d');x.clearRect(0,0,size,size);
+  const bg=iconBgHex(),sh=S.icon.shape;x.save();x.beginPath();
+  if(sh==='circle')x.arc(size/2,size/2,size/2,0,Math.PI*2);else if(sh==='rounded')x.roundRect(0,0,size,size,size*.22);else x.rect(0,0,size,size);
+  x.clip();if(bg){x.fillStyle=bg;x.fillRect(0,0,size,size)}
+  const l=curLogo(),src=logoSrc(l)||placeURL();
+  try{const im=await getImg(src);const pad=size*S.icon.pad/100,box=size-pad*2,w=im.naturalWidth||256,h=im.naturalHeight||256,sc=Math.min(box/w,box/h);x.drawImage(im,(size-w*sc)/2,(size-h*sc)/2,w*sc,h*sc)}catch(e){}
+  x.restore();
+}
+async function renderIcons(){
+  await Promise.all([drawIcon($('cvTab'),32),drawIcon($('cvSerp'),36),drawIcon($('cvHome'),180)]);
+  try{const c=document.createElement('canvas');await drawIcon(c,64);$('fav').href=c.toDataURL('image/png')}catch(e){}
+}
+function renderLogos(){
+  const all=[{id:PLACE,name:'Placeholder'},...logos];
+  $('logos').innerHTML=all.map(l=>`<button class="lg" data-logo="${esc(l.id)}" aria-pressed="${l.id===S.logo}" title="${esc(l.name)}">${l.id===PLACE?`<span style="position:static;background:none;color:${S.c.primary}">${PLACE_SVG}</span>`:logoHTML(l.id)}<span>${esc(l.name)}</span></button>`).join('');
+}
+async function toDataUrl(file){
+  if(file.type==='image/svg+xml'&&file.size<150000)return await new Promise(ok=>{const fr=new FileReader();fr.onload=()=>ok(fr.result);fr.readAsDataURL(file)});
+  const url=URL.createObjectURL(file);const im=await getImg(url);const m=512,sc=Math.min(1,m/Math.max(im.naturalWidth,im.naturalHeight));const c=document.createElement('canvas');c.width=Math.round(im.naturalWidth*sc)||m;c.height=Math.round(im.naturalHeight*sc)||m;c.getContext('2d').drawImage(im,0,0,c.width,c.height);return c.toDataURL('image/png');
+}
+async function addLogo(file){
+  if(!/^image\//.test(file.type)){toast(file.name+' is not an image');return}
+  if(file.size>5e6){toast(file.name+' is over 5 MB');return}
+  const name=file.name.replace(/\.[^.]+$/,'').slice(0,40);
+  if(shared){
+    try{
+      toast('Uploading '+name+'…');
+      const ext=(file.name.split('.').pop()||'png').toLowerCase().replace(/[^a-z0-9]/g,'');
+      const path=Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
+      const up=await sb.storage.from('logos').upload(path,file,{contentType:file.type,upsert:false});if(up.error)throw up.error;
+      const url=sb.storage.from('logos').getPublicUrl(path).data.publicUrl;
+      const ins=await sb.from('logos').insert({name,url,author:uid}).select().single();if(ins.error)throw ins.error;
+      S.logo=ins.data.id;await fetchLogos();toast('Logo added for the team');
+    }catch(e){toast('Upload failed: '+((e&&e.message)||'unknown error'))}
+  }else{let src;try{src=await toDataUrl(file)}catch(e){toast('Could not read '+file.name);return}localAddLogo({name,src,by:uid,at:Date.now()})}
+  update();
+}
+function localAddLogo(rec){const id='l'+Date.now()+Math.floor(Math.random()*999);logos=[{id,...rec},...logos];S.logo=id;saveLocal()}
+
+/* controls */
+$('swatches').innerHTML=ROLES.map(([k,n])=>`<div class="sw"><input type="color" id="c-${k}" aria-label="${n} color"><div><div class="nm">${n}</div><div class="hx" id="h-${k}"></div></div><button class="lock" id="l-${k}" aria-pressed="false" title="Keep ${n} when shuffling">Lock</button></div>`).join('');
+$('fh').innerHTML=Object.keys(FONTS).map(f=>`<option>${f}</option>`).join('');$('fb').innerHTML=$('fh').innerHTML;
+function syncInputs(){
+  ROLES.forEach(([k])=>{$('c-'+k).value=S.c[k];$('l-'+k).setAttribute('aria-pressed',!!S.locks[k])});
+  $('fh').value=S.fh;$('fb').value=S.fb;$('hw').value=S.hw;$('ratio').value=String(S.ratio);$('base').value=S.base;$('ls').value=S.ls;$('rad').value=S.rad;
+  $('icBg').value=S.icon.bg;$('icShape').value=S.icon.shape;$('icPad').value=S.icon.pad;
+}
+function cssVars(){const q=S.ratio,b=S.base,s=n=>(b*q**n).toFixed(1)+'px';
+  return{'--c-bg':S.c.bg,'--c-surface':S.c.surface,'--c-ink':S.c.ink,'--c-primary':S.c.primary,'--c-accent':S.c.accent,'--c-onp':onColor(S.c.primary),'--c-ona':onColor(S.c.accent),'--f-head':stack(S.fh),'--f-body':stack(S.fb),'--hw':S.hw,'--base':b+'px','--s1':s(1),'--s2':s(2),'--s3':s(3),'--s4':`clamp(${s(3)},5.5vw,${s(5)})`,'--ls':S.ls+'em','--rad':S.rad+'px'}}
+function render(){
+  loadFont(S.fh);loadFont(S.fb);
+  const v=cssVars();[$('proof'),document.querySelector('.mocks')].forEach(el=>Object.entries(v).forEach(([k,x])=>el.style.setProperty(k,x)));
+  ROLES.forEach(([k])=>$('h-'+k).textContent=S.c[k].toUpperCase());
+  $('hwv').textContent=S.hw;$('basev').textContent=S.base;$('lsv').textContent=S.ls;$('radv').textContent=S.rad;$('icPadV').textContent=S.icon.pad;
+  $('navLogo').innerHTML=logoHTML(S.logo,'Healing Beats logo');$('navLogo').style.color=S.c.primary;
+  $('onbg').innerHTML=[['#ffffff',S.c.primary],[S.c.primary,onColor(S.c.primary)],['#161616','#ffffff']].map(([b,c])=>`<div style="background:${b};color:${c}">${logoHTML(S.logo)}</div>`).join('');
+  $('socialImg').style.background=S.c.bg;$('socialImg').style.color=S.c.primary;
+  $('socialImg').innerHTML=logoHTML(S.logo)+`<b style="font-family:${esc(stack(S.fh))};font-weight:${S.hw};color:${S.c.ink}">Music and companionship for hospital patients</b>`;
+  $('scale').innerHTML=[4,3,2,1,0].map(n=>{const px=(S.base*S.ratio**n).toFixed(0);return`<div><small>${n?'H'+(5-n):'Body'} · ${px}px</small><span style="font-size:${px}px;${n?'':'font-family:var(--f-body);font-weight:400'}">${esc(n?S.fh:S.fb+': the quick brown fox')}</span></div>`}).join('');
+  const ch=[['Text on background',S.c.ink,S.c.bg],['Text on cards',S.c.ink,S.c.surface],['Main button',onColor(S.c.primary),S.c.primary],['Donate button',onColor(S.c.accent),S.c.accent],['Primary text on background',S.c.primary,S.c.bg]];
+  $('chips').innerHTML=ch.map(([n,a,b])=>{const c=contrast(a,b),cls=c>=4.5?'ok':c>=3?'warn':'bad',t=c>=7?'AAA':c>=4.5?'AA':c>=3?'large text only':'fails';return`<span class="chip">${n}: <b class="${cls}">${c.toFixed(1)}:1 ${t}</b></span>`}).join('');
+  renderLogos();renderIcons();
+}
+const update=()=>render();
+
+ROLES.forEach(([k])=>{$('c-'+k).addEventListener('input',e=>{S.c[k]=e.target.value;update()});$('l-'+k).addEventListener('click',()=>{S.locks[k]=!S.locks[k];syncInputs()})});
+[['fh','fh',String],['fb','fb',String],['hw','hw',Number],['ratio','ratio',Number],['base','base',Number],['ls','ls',Number],['rad','rad',Number]].forEach(([id,k,fn])=>$(id).addEventListener('input',e=>{S[k]=fn(e.target.value);update()}));
+[['icBg','bg',String],['icShape','shape',String],['icPad','pad',Number]].forEach(([id,k,fn])=>$(id).addEventListener('input',e=>{S.icon[k]=fn(e.target.value);update()}));
+function shufColor(){genPalette($('harm').value);syncInputs();update()}
+function shufType(){const hs=Object.keys(FONTS);const h=hs[Math.floor(Math.random()*hs.length)];let b;do{b=BODY[Math.floor(Math.random()*BODY.length)]}while(b===h);S.fh=h;S.fb=b;S.hw=FONTS[h]==='display'?400:[500,600,700][Math.floor(Math.random()*3)];syncInputs();update()}
+$('shufColor').addEventListener('click',shufColor);$('shufType').addEventListener('click',shufType);
+$('shufAll').addEventListener('click',()=>{shufColor();shufType()});
+$('swapBg').addEventListener('click',()=>{const c=S.c;[c.bg,c.ink]=[c.ink,c.bg];c.surface=lum(c.bg)<.2?shade(c.bg,18):shade(c.bg,-12);syncInputs();update()});
+$('applyPaste').addEventListener('click',()=>{
+  const hs=($('paste').value.match(/#?\b[0-9a-f]{6}\b/gi)||[]).map(h=>'#'+h.replace('#','').toLowerCase());
+  if(!hs.length){toast('No hex codes found');return}
+  if(hs.length>=5){const s=[...hs].sort((a,b)=>lum(b)-lum(a)),mid=s.slice(2,-1).sort((a,b)=>sat(b)-sat(a));S.c={bg:s[0],surface:s[1],ink:s[s.length-1],primary:mid[0]||s[2],accent:mid[1]||mid[0]||s[2]}}
+  else hs.forEach((h,i)=>S.c[['primary','accent','bg','ink'][i]]=h);
+  syncInputs();update();toast('Applied '+hs.length+' colors');
+});
+$('logos').addEventListener('click',e=>{const b=e.target.closest('[data-logo]');if(!b)return;S.logo=b.dataset.logo;update()});
+$('pick').addEventListener('click',()=>$('file').click());
+$('file').addEventListener('change',async e=>{for(const f of e.target.files)await addLogo(f);e.target.value=''});
+const dz=$('drop');['dragenter','dragover'].forEach(t=>dz.addEventListener(t,e=>{e.preventDefault();dz.classList.add('on')}));
+['dragleave','drop'].forEach(t=>dz.addEventListener(t,e=>{e.preventDefault();dz.classList.remove('on')}));
+dz.addEventListener('drop',async e=>{for(const f of e.dataTransfer.files)await addLogo(f)});
+$('dlBtn').addEventListener('click',async()=>{
+  const n=+$('dlSize').value,c=document.createElement('canvas');await drawIcon(c,n);
+  try{c.toBlob(b=>{if(!b){toast('This logo cannot be exported');return}const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`healing-beats-icon-${n}.png`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)},'image/png')}catch(e){toast('This logo cannot be exported')}
+});
+function cssText(){const v=cssVars();return`/* Healing Beats: ${S.fh} + ${S.fb} */\n@import url('https://fonts.googleapis.com/css2?family=${S.fh.replace(/ /g,'+')}:wght@${S.hw}&family=${S.fb.replace(/ /g,'+')}:wght@400;600&display=swap');\n:root{\n${Object.entries(v).map(([k,x])=>`  ${k}: ${x};`).join('\n')}\n}`}
+$('copyCss').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(cssText());toast('CSS variables copied')}catch(e){toast('Copy blocked by the browser')}});
+
+/* board */
+function snap(){return{name:($('cName').value.trim()||`${S.fh} + ${S.fb}`).slice(0,60),note:$('cNote').value.trim().slice(0,400),c:{...S.c},fh:S.fh,fb:S.fb,hw:S.hw,ratio:S.ratio,base:S.base,ls:S.ls,rad:S.rad,logo:S.logo,icon:{...S.icon}}}
+function clean(d){const o={...S,...d};o.c={...S.c};ROLES.forEach(([k])=>{if(d.c&&isHex(d.c[k]))o.c[k]=d.c[k]});o.icon={...S.icon,...(d.icon||{})};o.locks=S.locks;return o}
+function saveLocal(){if(shared)return;try{localStorage.setItem(LKEY,JSON.stringify({board,logos}))}catch(e){}}
+$('save').addEventListener('click',async()=>{
+  const d={...snap(),by:uid,at:Date.now(),likes:{}};
+  if(shared){if(!needName())return;try{const q=await sb.from('combos').insert(toRow(d)).select().single();if(q.error)throw q.error;loadedId=q.data.id;await fetchCombos();toast('Saved to the team board')}catch(e){toast('Could not save: '+((e&&e.message)||'error'))}}
+  else{loadedId='b'+Date.now();board=[{id:loadedId,...d},...board];saveLocal();renderBoard();toast('Saved in this browser')}
+  $('update').hidden=!loadedId;
+});
+$('update').addEventListener('click',async()=>{
+  const old=board.find(b=>b.id===loadedId);if(!old)return;const d={...old,...snap(),at:Date.now()};delete d.id;
+  if(shared){try{const q=await sb.from('combos').update({name:d.name,note:d.note,data:toRow(d).data}).eq('id',loadedId);if(q.error)throw q.error;await fetchCombos();toast('Updated')}catch(e){toast('Could not update')}}
+  else{Object.assign(old,d);saveLocal();renderBoard();toast('Updated')}
+});
+const likeCount=b=>Object.values(b.likes||{}).filter(Boolean).length;
+async function renderBoard(){
+  board.forEach(b=>{loadFont(b.fh);loadFont(b.fb)});
+  if(!board.length){$('saved').innerHTML='<div class="empty">Nothing on the board yet. Shuffle or upload a logo until something clicks, name it, and hit “Save as new.”</div>';return}
+  $('saved').innerHTML=board.map(b=>{const c=clean(b).c;return`<div class="mini${b.id===loadedId?' cur':''}">
+    <div class="pv" data-load="${esc(b.id)}" style="background:${c.bg};color:${c.ink}" role="button" tabindex="0" title="Load this combo"><span class="lh" style="color:${c.primary}">${logoHTML(b.logo)}<b style="font-family:${esc(stack(b.fh))};font-weight:${+b.hw||600};color:${c.ink}">Healing Beats</b></span><i style="font-family:${esc(stack(b.fb))}">Music and companionship for patients.</i></div>
+    <div class="bar">${ROLES.map(([k])=>`<span style="background:${c[k]}"></span>`).join('')}</div>
+    <div class="meta"><strong>${esc(b.name||'Untitled')}</strong><em>${esc(b.fh)} / ${esc(b.fb)}${b.by?` · <span class="by" data-uid="${esc(b.by)}"></span>`:''}</em>${b.note?`<p>${esc(b.note)}</p>`:''}</div>
+    <div class="ft"><button data-load="${esc(b.id)}">Load</button><button data-like="${esc(b.id)}" class="${uid&&b.likes&&b.likes[uid]?'liked':''}" aria-pressed="${!!(uid&&b.likes&&b.likes[uid])}">Like${likeCount(b)?' · '+likeCount(b):''}</button><button data-dup="${esc(b.id)}">Duplicate</button><button data-del="${esc(b.id)}">Delete</button></div></div>`}).join('');
+  document.querySelectorAll('.by').forEach(el=>el.textContent='by '+el.dataset.uid);
+}
+function loadCombo(id){const b=board.find(x=>x.id===id);if(!b)return;S=clean(b);loadedId=id;$('cName').value=b.name||'';$('cNote').value=b.note||'';$('update').hidden=false;syncInputs();update();renderBoard();window.scrollTo({top:0,behavior:'smooth'});toast('Loaded “'+(b.name||'combo')+'”')}
+$('saved').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.load)loadCombo(e.target.dataset.load)});
+$('saved').addEventListener('click',async e=>{
+  const t=e.target.closest('[data-load],[data-dup],[data-del],[data-like]');if(!t)return;
+  if(t.dataset.load){loadCombo(t.dataset.load);return}
+  const id=t.dataset.dup||t.dataset.del||t.dataset.like,b=board.find(x=>x.id===id);if(!b)return;
+  if(t.dataset.dup){const d={...b,name:(b.name||'Combo')+' (copy)',by:uid,at:Date.now(),likes:{}};delete d.id;
+    if(shared){if(!needName())return;try{const q=await sb.from('combos').insert(toRow(d));if(q.error)throw q.error;await fetchCombos()}catch(e){toast('Could not duplicate')}}else{board=[{id:'b'+Date.now(),...d},...board];saveLocal();renderBoard()}}
+  if(t.dataset.del){if(t.dataset.armed!=='1'){t.dataset.armed='1';t.textContent='Confirm delete';setTimeout(()=>{t.dataset.armed='';t.textContent='Delete'},3000);return}
+    if(shared){try{const q=await sb.from('combos').delete().eq('id',id);if(q.error)throw q.error;await fetchCombos()}catch(e){toast('Could not delete')}}else{board=board.filter(x=>x.id!==id);saveLocal();renderBoard()}
+    if(loadedId===id){loadedId=null;$('update').hidden=true}}
+  if(t.dataset.like){if(shared&&!needName())return;const me=uid||'me',on=!(b.likes&&b.likes[me]);
+    if(shared){try{const q=await sb.from('combos').update({likes:{...(b.likes||{}),[me]:on}}).eq('id',id);if(q.error)throw q.error;await fetchCombos()}catch(e){toast('Could not save your like')}}else{b.likes={...(b.likes||{}),[me]:on};saveLocal();renderBoard()}}
+});
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1800)}
+
+/* start local, then connect */
+try{const l=JSON.parse(localStorage.getItem(LKEY)||'null');if(l){board=Array.isArray(l.board)?l.board:[];logos=Array.isArray(l.logos)?l.logos:[]}}catch(e){}
+syncInputs();update();renderBoard();
+function setStatus(live,txt){$('dot').classList.toggle('live',live);$('statusTxt').textContent=txt}
+function needName(){if(uid)return true;toast('Add your name at the top first');$('me').focus();return false}
+$('me').value=uid||'';
+$('me').addEventListener('change',e=>{uid=e.target.value.trim().slice(0,40)||null;try{uid?localStorage.setItem('hb-me',uid):localStorage.removeItem('hb-me')}catch(x){}renderBoard()});
+function toRow(d){const{name,note,by,at,likes,id,...data}=d;return{name:name||'Untitled',note:note||'',author:by||uid,likes:likes||{},data}}
+function fromRow(r){return{...(r.data||{}),id:r.id,name:r.name,note:r.note,by:r.author,at:r.created_at,likes:r.likes||{}}}
+async function fetchCombos(){const q=await sb.from('combos').select('*').order('created_at',{ascending:false}).limit(300);if(q.error){setStatus(false,'Shared board error: '+q.error.message);return}board=q.data.map(fromRow);setStatus(true,'Shared board · live for everyone with the link');renderBoard()}
+async function fetchLogos(){const q=await sb.from('logos').select('*').order('created_at',{ascending:false}).limit(100);if(q.error)return;logos=q.data.map(r=>({id:r.id,name:r.name,url:r.url,by:r.author}));if(S.logo!==PLACE&&!curLogo())S.logo=PLACE;update();renderBoard()}
+(async()=>{
+  const C=window.HB_CONFIG||{};
+  if(!C.SUPABASE_URL||!C.SUPABASE_ANON_KEY||!window.supabase){setStatus(false,'Saving in this browser only. Add Supabase keys to share with the team.');$('boardSub').textContent='Saved combos in this browser only.';return}
+  sb=window.supabase.createClient(C.SUPABASE_URL,C.SUPABASE_ANON_KEY);shared=true;board=[];logos=[];
+  await Promise.all([fetchCombos(),fetchLogos()]);
+  let t1,t2;
+  sb.channel('hb-lab').on('postgres_changes',{event:'*',schema:'public',table:'combos'},()=>{clearTimeout(t1);t1=setTimeout(fetchCombos,300)}).on('postgres_changes',{event:'*',schema:'public',table:'logos'},()=>{clearTimeout(t2);t2=setTimeout(fetchLogos,300)}).subscribe();
+  setInterval(()=>{if(!document.hidden)fetchCombos()},60000);
+})();
+}
+</script>
+</body>
+</html>
