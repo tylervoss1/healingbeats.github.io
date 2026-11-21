@@ -19,6 +19,15 @@
         ],
         "createdAt": "2026-11-21T20:50:52.781Z",
         "reason": "Agent: brand-lab is a separate team tool for trying fonts and colours; its fonts are the subject being tested, not site type"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "public/brand-lab/index.html"
+        ],
+        "createdAt": "2026-11-21T20:53:13.290Z",
+        "reason": "Agent: brand-lab is Tyler's supplied team tool; its neutral chrome is Inter by design (stated in the file's header comment), separate from the site's type"
       }
     ]
   }
